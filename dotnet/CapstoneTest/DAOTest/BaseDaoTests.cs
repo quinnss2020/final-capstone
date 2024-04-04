@@ -8,7 +8,7 @@ namespace Tutorial.Tests.DAO
     [TestClass]
     public class BaseDaoTests
     {
-        private const string DatabaseName = "final_capstone";
+        private const string DatabaseName = "final_capstone_testing";
 
         private static string AdminConnectionString;
         protected static string ConnectionString;

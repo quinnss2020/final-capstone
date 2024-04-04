@@ -6,6 +6,7 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
+import NotFoundView from "../views/NotFoundView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -47,7 +48,14 @@ const routes = [
     meta: {
       requiresAuth: false
     }
-  }
+  },
+
+  {
+    path: '/:pathMatch(.*)*',
+    name: "notFound",
+    component: NotFoundView,
+  },
+
 ];
 
 // Create the router
@@ -66,6 +74,7 @@ router.beforeEach((to) => {
 
   // If it does and they are not logged in, send the user to "/login"
   if (requiresAuth && store.state.token === '') {
+    console.log("Not logged in. Redirected to login view.")
     return {name: "login"};
   }
   // Otherwise, do nothing and they'll go to their next destination

@@ -14,22 +14,22 @@ namespace Tutorial.Tests.DAO
         [TestInitialize]
         public override void Setup()
         {
-            // Arrange - new instance of SaleSqlDao before each and every test
+            // Arrange - new instance of UserSqlDao before each and every test
             userSqlDao = new UserSqlDao(ConnectionString);
             base.Setup();
         }
 
         [TestMethod]
-        public void GetPets()
+        public void GetUsers()
         {
 
-            // Arrange 
+            // Arrange  - see above
 
 
-            // Act - retrieve Madge's first sale
+            // Act - retrieve users
             IList<User> users = userSqlDao.GetUsers();
 
-            // Assert - retrieved sale is not null and matches expected sale
+            // Assert - retrieved list not null and matches expected count
             Assert.IsNotNull(users);
             Assert.AreEqual(2, users.Count);
         }

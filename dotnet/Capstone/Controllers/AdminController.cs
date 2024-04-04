@@ -1,27 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Capstone.DAO;
+﻿using Capstone.DAO;
 using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
 {
-   
+    [Route("[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+
+    public class AdminController : ControllerBase
     {
         private readonly ITokenGenerator tokenGenerator;
         private readonly IPasswordHasher passwordHasher;
         private readonly IUserDao userDao;
 
-        public LoginController(ITokenGenerator tokenGenerator, IPasswordHasher passwordHasher, IUserDao userDao)
+        public AdminController(
+            ITokenGenerator tokenGenerator,
+            IPasswordHasher passwordHasher,
+            IUserDao userDao
+            )
         {
             this.tokenGenerator = tokenGenerator;
             this.passwordHasher = passwordHasher;
             this.userDao = userDao;
+
         }
 
-        [HttpPost("/login")]
+        //POST /admin/login
+        [HttpPost("login")]
         public IActionResult Authenticate(LoginUser userParam)
         {
             // Default to bad username/password message
@@ -30,7 +39,7 @@ namespace Capstone.Controllers
             User user;
             // Get the user by username
             try
-            { 
+            {
                 user = userDao.GetUserByUsername(userParam.Username);
             }
             catch (DaoException)
@@ -55,7 +64,8 @@ namespace Capstone.Controllers
             return result;
         }
 
-        [HttpPost("/register")]
+        //POST /admin/register
+        [HttpPost("register")]
         public IActionResult Register(RegisterUser userParam)
         {
             // Default generic error message
@@ -97,6 +107,47 @@ namespace Capstone.Controllers
             }
 
             return result;
+        }
+
+        //GET /admin/whoami
+        [HttpGet("whoami")]
+        public ActionResult<string> WhoAmI()
+        {
+            string result = User.Identity.Name;
+            if (result == null)
+            {
+                return "No token provided.";
+            }
+            else
+            {
+                return result;
+            }
+        }
+
+        //GET /admin
+        [HttpGet]
+        public ActionResult<string> Ready()
+        {
+            int userCount = userDao.GetUsers().Count;
+            return Ok($"Server is ready with {userCount} user(s).");
+        }
+
+        //GET /admin/confirm
+        [Authorize]
+        [HttpGet("confirm")]
+        public ActionResult<string> Confirm()
+        {
+            
+            return Ok($"A valid token was received.");
+        }
+
+        //GET /admin/confirmadmin
+        [Authorize(Roles ="admin")]
+        [HttpGet("confirmadmin")]
+        public ActionResult<string> ConfirmAdmin()
+        {
+
+            return Ok($"A valid admin token was received.");
         }
     }
 }
