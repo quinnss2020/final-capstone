@@ -3,11 +3,9 @@ using Capstone.Models;
 
 namespace Capstone.DAO
 {
-    public interface IUserDao
+    public interface ITempUserDao
     {
-        IList<User> GetUsers();
-        User GetUserById(int id);
-        User GetUserByEmail(string email);
+        public User GetUserById(int id);
         User CreateUser(string fn, string ln, string email, string password, string role);
     }
 }

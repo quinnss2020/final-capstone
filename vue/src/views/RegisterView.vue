@@ -6,8 +6,16 @@
         {{ registrationErrorMsg }}
       </div>
       <div class="form-input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" v-model="user.username" required autofocus />
+        <label for="first-name">First Name</label>
+        <input type="text" id="firstname" v-model="user.firstname" required autofocus />
+      </div>
+      <div class="form-input-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="lastname" v-model="user.lastname" required autofocus />
+      </div>
+      <div class="form-input-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" v-model="user.email" required autofocus />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
@@ -24,13 +32,15 @@
 </template>
 
 <script>
-import authService from '../services/AuthService';
+import userService from '../services/UserService';
 
 export default {
   data() {
     return {
       user: {
-        username: '',
+        firstname: '',
+        lastname: '',
+        email: '',
         password: '',
         confirmPassword: '',
         role: 'user',
@@ -45,7 +55,7 @@ export default {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
-        authService
+        userService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {

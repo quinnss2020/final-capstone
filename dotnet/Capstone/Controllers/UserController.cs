@@ -8,29 +8,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Capstone.Controllers
 {
-    [Route("[controller]")]
+ 
     [ApiController]
-
-    public class AdminController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly ITokenGenerator tokenGenerator;
         private readonly IPasswordHasher passwordHasher;
         private readonly IUserDao userDao;
+        private readonly ITempUserDao tempUserDao;
 
-        public AdminController(
+        public UserController(
             ITokenGenerator tokenGenerator,
             IPasswordHasher passwordHasher,
-            IUserDao userDao
+            IUserDao userDao,
+            ITempUserDao tempUserDao
             )
         {
             this.tokenGenerator = tokenGenerator;
             this.passwordHasher = passwordHasher;
             this.userDao = userDao;
+            this.tempUserDao = tempUserDao;
 
         }
 
-        //POST /admin/login
-        [HttpPost("login")]
+        //POST /login
+        [HttpPost("/login")]
         public IActionResult Authenticate(LoginUser userParam)
         {
             // Default to bad username/password message
@@ -64,8 +66,8 @@ namespace Capstone.Controllers
             return result;
         }
 
-        //POST /admin/register
-        [HttpPost("register")]
+        //POST /register
+        [HttpPost("/register")]
         public IActionResult Register(RegisterUser userParam)
         {
             // Default generic error message
@@ -79,7 +81,7 @@ namespace Capstone.Controllers
                 User existingUser = userDao.GetUserByEmail(userParam.Email);
                 if (existingUser != null)
                 {
-                    return Conflict(new { message = "Email already exists. Please login." });
+                    return Conflict(new { message = "Email already registered. Please login." });
                 }
             }
             catch (DaoException)
@@ -91,7 +93,7 @@ namespace Capstone.Controllers
             User newUser;
             try
             {
-                newUser = userDao.CreateUser(userParam.FirstName, userParam.LastName, userParam.Email, userParam.Password, userParam.Role);
+                newUser = tempUserDao.CreateUser(userParam.FirstName, userParam.LastName, userParam.Email, userParam.Password, userParam.Role);
             }
             catch (DaoException)
             {
@@ -109,8 +111,8 @@ namespace Capstone.Controllers
             return result;
         }
 
-        //GET /admin/whoami
-        [HttpGet("whoami")]
+        //GET /whoami
+        [HttpGet("/whoami")]
         public ActionResult<string> WhoAmI()
         {
             string result = User.Identity.Name;
@@ -124,13 +126,6 @@ namespace Capstone.Controllers
             }
         }
 
-        //GET /admin
-        [HttpGet]
-        public ActionResult<string> Ready()
-        {
-            int userCount = userDao.GetUsers().Count;
-            return Ok($"Server is ready with {userCount} user(s).");
-        }
 
         //GET /admin/confirm
         [Authorize]
@@ -141,13 +136,5 @@ namespace Capstone.Controllers
             return Ok($"A valid token was received.");
         }
 
-        //GET /admin/confirmadmin
-        [Authorize(Roles ="admin")]
-        [HttpGet("confirmadmin")]
-        public ActionResult<string> ConfirmAdmin()
-        {
-
-            return Ok($"A valid admin token was received.");
-        }
     }
 }
