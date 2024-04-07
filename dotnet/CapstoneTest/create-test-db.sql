@@ -1,8 +1,8 @@
-IF DB_ID('test_db_name') IS NOT NULL
+IF DB_ID('final_capstone_testing') IS NOT NULL
 BEGIN
-	ALTER DATABASE test_db_name SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-	DROP DATABASE test_db_name;
+	ALTER DATABASE final_capstone_testing SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+	DROP DATABASE final_capstone_testing;
 END
 
-CREATE DATABASE test_db_name;
+CREATE DATABASE final_capstone_testing;
 

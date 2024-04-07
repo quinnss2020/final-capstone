@@ -43,4 +43,7 @@ CREATE TABLE temp_users (
 INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role) VALUES ('User', 'Test','user@storage.com','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role) VALUES ('Admin', 'Test','admin@storage.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
+INSERT INTO temp_users (first_name, last_name, email, password_hash, salt, user_role, confirm_code) VALUES ('Temp', 'User', 'temp@storage.com', '14KFNJ+kvxguyeFJjg6O/Gzqs3w=', 'xnV8JjKT95w=', 'user', 123456);
+INSERT INTO temp_users (first_name, last_name, email, password_hash, salt, user_role, confirm_code) VALUES ('Temp', 'Admin', 'test@storage.com', 'tjFdz9WVDM0UUY9+2cTmbl6CLL4=', 'wv5YsMG9HtU=', 'admin', 567890);
+
 GO
