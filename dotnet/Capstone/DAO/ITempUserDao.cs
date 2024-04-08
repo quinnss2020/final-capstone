@@ -5,7 +5,7 @@ namespace Capstone.DAO
 {
     public interface ITempUserDao
     {
-        public User GetTempUserById(int id);
-        User CreateUser(string fn, string ln, string email, string password, string role);
+        public RegisterUser GetTempUserById(int id);
+        RegisterUser CreateUser(string fn, string ln, string email, string password, string role, string code);
     }
 }

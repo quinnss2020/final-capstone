@@ -5,10 +5,11 @@ using Capstone.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Capstone.Controllers
 {
- 
+
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -16,19 +17,21 @@ namespace Capstone.Controllers
         private readonly IPasswordHasher passwordHasher;
         private readonly IUserDao userDao;
         private readonly ITempUserDao tempUserDao;
+        private readonly EmailController emailController;
 
         public UserController(
             ITokenGenerator tokenGenerator,
             IPasswordHasher passwordHasher,
             IUserDao userDao,
-            ITempUserDao tempUserDao
+            ITempUserDao tempUserDao,
+            EmailController emailController
             )
         {
             this.tokenGenerator = tokenGenerator;
             this.passwordHasher = passwordHasher;
             this.userDao = userDao;
             this.tempUserDao = tempUserDao;
-
+            this.emailController = emailController;
         }
 
         //POST /login
@@ -90,10 +93,11 @@ namespace Capstone.Controllers
             }
 
             // create new user
-            User newUser;
+            RegisterUser newUser;
             try
             {
-                newUser = tempUserDao.CreateUser(userParam.FirstName, userParam.LastName, userParam.Email, userParam.Password, userParam.Role);
+                string codeString = VerificationCodeGenerator();
+                newUser = tempUserDao.CreateUser(userParam.FirstName, userParam.LastName, userParam.Email, userParam.Password, userParam.Role, codeString);
             }
             catch (DaoException)
             {
@@ -132,9 +136,15 @@ namespace Capstone.Controllers
         [HttpGet("confirm")]
         public ActionResult<string> Confirm()
         {
-            
+
             return Ok($"A valid token was received.");
         }
 
+        private string VerificationCodeGenerator()
+        {
+            Random rand = new Random();
+
+            return rand.Next(0, 1000000).ToString("000000");
+        }
     }
 }

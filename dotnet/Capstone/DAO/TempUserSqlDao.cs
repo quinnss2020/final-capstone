@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security;
 using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
@@ -19,18 +20,17 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
-        public User CreateUser(string fn, string ln, string email, string password, string role)
+        public RegisterUser CreateUser(string fn, string ln, string email, string password, string role, string code)
         {
-            User newUser = null;
+            RegisterUser newUser = null;
 
             IPasswordHasher passwordHasher = new PasswordHasher();
             PasswordHash hash = passwordHasher.ComputeHash(password);
 
-            
 
             string sql = "INSERT INTO temp_users (first_name, last_name, email, password_hash, salt, user_role, confirm_code) " +
                          "OUTPUT INSERTED.temp_id " +
-                         "VALUES (@fn, @ln, @email, @password_hash, @salt, @user_role, 123456);";
+                         "VALUES (@fn, @ln, @email, @password_hash, @salt, @user_role, @code);";
 
             int newUserId = 0;
             try
@@ -46,6 +46,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                     cmd.Parameters.AddWithValue("@salt", hash.Salt);
                     cmd.Parameters.AddWithValue("@user_role", role);
+                    cmd.Parameters.AddWithValue("@code", code);
 
                     newUserId = Convert.ToInt32(cmd.ExecuteScalar());
                     
@@ -61,11 +62,11 @@ namespace Capstone.DAO
             return newUser;
         }
 
-        public User GetTempUserById(int id)
+        public RegisterUser GetTempUserById(int id)
         {
-            User user = null;
+            RegisterUser user = null;
 
-            string sql = "SELECT temp_id, first_name, last_name, email, password_hash, salt, user_role FROM temp_users WHERE temp_id = @id";
+            string sql = "SELECT temp_id, first_name, last_name, email, password_hash, salt, user_role, code FROM temp_users WHERE temp_id = @id";
 
             try
             {
@@ -74,12 +75,12 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@temp_id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        user = MapRowToUser(reader);
+                        user = MapRowToTempUser(reader);
                     }
                 }
             }
@@ -98,9 +99,19 @@ namespace Capstone.DAO
             user.FirstName = Convert.ToString(reader["first_name"]);
             user.LastName = Convert.ToString(reader["last_name"]);
             user.Email = Convert.ToString(reader["email"]);
-            user.PasswordHash = Convert.ToString(reader["password_hash"]);
-            user.Salt = Convert.ToString(reader["salt"]);
             user.Role = Convert.ToString(reader["user_role"]);
+            return user;
+        }
+
+        private RegisterUser MapRowToTempUser(SqlDataReader reader)
+        {
+            RegisterUser user = new RegisterUser();
+            user.Id = Convert.ToInt32(reader["temp_id"]);
+            user.FirstName = Convert.ToString(reader["first_name"]);
+            user.LastName = Convert.ToString(reader["last_name"]);
+            user.Email = Convert.ToString(reader["email"]);
+            user.Role = Convert.ToString(reader["user_role"]);
+            user.Code = Convert.ToString(reader["code"]);
             return user;
         }
     }
