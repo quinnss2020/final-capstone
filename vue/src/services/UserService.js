@@ -8,6 +8,11 @@ export default {
 
   register(user) {
     return axios.post('/register', user)
+  },
+
+  confirmEmail(user, code) {
+    return axios.put('/login/confirm', user, code)
   }
+
 
 }

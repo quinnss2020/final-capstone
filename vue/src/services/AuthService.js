@@ -8,6 +8,6 @@ export default {
 
   register(user) {
     return axios.post('/admin/register', user)
-  }
+  },
 
 }

@@ -3,7 +3,6 @@ using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -44,28 +43,28 @@ namespace Capstone.Controllers
             {
                 //check if user in is users table
                 user = userDao.GetUserByEmail(userParam.Email);
-                if(user == null)
+                if (user != null && user.Confirmed && passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
                 {
+                    string token = tokenGenerator.GenerateToken(user.Id, user.Email, user.Role);
 
+                    // Create a ReturnUser object to return to the client
+                    LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { Id = user.Id, Email = user.Email, Role = user.Role }, Token = token };
+
+                    // Switch to 202 OK
+                    result = Accepted(retUser);
+
+                    return result;
+                }
+                else if (user != null && !user.Confirmed && passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
+                {
+                    
+                    return Ok();
                 }
             }
             catch (DaoException)
             {
                 // return default Unauthorized message instead of indicating a specific error
                 return result;
-            }
-
-            // If we found a user and the password hash matches
-            if (user != null && passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
-            {
-                // Create an authentication token
-                string token = tokenGenerator.GenerateToken(user.Id, user.Email, user.Role);
-
-                // Create a ReturnUser object to return to the client
-                LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { Id = user.Id, Email = user.Email, Role = user.Role }, Token = token };
-
-                // Switch to 200 OK
-                result = Ok(retUser);
             }
 
             return result;
@@ -80,7 +79,7 @@ namespace Capstone.Controllers
 
             IActionResult result = BadRequest(new { message = ErrorMessage });
 
-            // is username already taken?
+            // is username already taken
             try
             {
                 User existingUser = userDao.GetUserByEmail(userParam.Email);
@@ -95,11 +94,12 @@ namespace Capstone.Controllers
             }
 
             // create new user
-            RegisterUser newUser;
+            User newUser;
             try
             {
                 string codeString = VerificationCodeGenerator();
-                newUser = tempUserDao.CreateUser(userParam.FirstName, userParam.LastName, userParam.Email, userParam.Password, userParam.Role, codeString);
+                userParam.Code = codeString;
+                newUser = userDao.CreateUser(userParam);
             }
             catch (DaoException)
             {
@@ -115,6 +115,37 @@ namespace Capstone.Controllers
             }
 
             return result;
+        }
+
+        [Authorize]
+        [HttpPut("/login/confirm")]
+        public IActionResult ConfirmUser(LoginUser user, string code)
+        {
+            const string ErrorMessage = "An error occurred and user was not confirmed.";
+            User confirmedUser;
+            try
+            {
+                confirmedUser = userDao.GetUserByEmail(user.Email);
+                if(confirmedUser.Code == code)
+                {
+                    confirmedUser.Confirmed = true;
+                    string token = tokenGenerator.GenerateToken(confirmedUser.Id, confirmedUser.Email, confirmedUser.Role);
+
+                    // Create a ReturnUser object to return to the client
+                    LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { Id = confirmedUser.Id, Email = confirmedUser.Email, Role = confirmedUser.Role }, Token = token };
+
+                    return Ok(retUser);
+
+                }
+                
+            }
+            catch(DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+
+            }
+
+            return Unauthorized();
         }
 
         //GET /whoami

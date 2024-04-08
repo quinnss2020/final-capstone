@@ -6,6 +6,7 @@ using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
 using Capstone.Security.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 namespace Capstone.DAO
@@ -13,6 +14,7 @@ namespace Capstone.DAO
     public class UserSqlDao : IUserDao
     {
         private readonly string connectionString;
+
 
         public UserSqlDao(string dbConnectionString)
         {
@@ -23,7 +25,7 @@ namespace Capstone.DAO
         {
             IList<User> users = new List<User>();
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role FROM users";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed FROM users";
 
             try
             {
@@ -83,7 +85,7 @@ namespace Capstone.DAO
         {
             User user = null;
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role FROM users WHERE email = @email";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed FROM users WHERE email = @email";
 
             try
             {
@@ -109,16 +111,16 @@ namespace Capstone.DAO
             return user;
         }
 
-        public User CreateUser(string fn, string ln, string email, string password, string role)
+        public User CreateUser(RegisterUser user)
         {
             User newUser = null;
 
             IPasswordHasher passwordHasher = new PasswordHasher();
-            PasswordHash hash = passwordHasher.ComputeHash(password);
+            PasswordHash hash = passwordHasher.ComputeHash(user.Password);
 
-            string sql = "INSERT INTO temp_users (first_name, last_name, email, password_hash, salt, user_role) " +
+            string sql = "INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code) " +
                          "OUTPUT INSERTED.id " +
-                         "VALUES (@fn, @ln, @email, @password_hash, @salt, @user_role)";
+                         "VALUES (@fn, @ln, @email, @password_hash, @salt, @user_role, @code)";
 
             int newUserId = 0;
             try
@@ -128,12 +130,13 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@fn", fn);
-                    cmd.Parameters.AddWithValue("@ln", ln);
-                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@fn", user.FirstName);
+                    cmd.Parameters.AddWithValue("@ln", user.LastName);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
                     cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                     cmd.Parameters.AddWithValue("@salt", hash.Salt);
-                    cmd.Parameters.AddWithValue("@user_role", role);
+                    cmd.Parameters.AddWithValue("@user_role", user.Role);
+                    cmd.Parameters.AddWithValue("@code", user.Code);
 
                     newUserId = Convert.ToInt32(cmd.ExecuteScalar());
                     
@@ -148,6 +151,16 @@ namespace Capstone.DAO
             return newUser;
         }
 
+        //public LoginResponse CreateToken(ReturnUser user)
+        //{
+        //    string token = tokenGenerator.GenerateToken(user.Id, user.Email, user.Role);
+
+        //    // Create a ReturnUser object to return to the client
+        //    LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { Id = user.Id, Email = user.Email, Role = user.Role }, Token = token };
+        //    return retUser;
+
+        //}
+
         private User MapRowToUser(SqlDataReader reader)
         {
             User user = new User();
@@ -158,6 +171,8 @@ namespace Capstone.DAO
             user.PasswordHash = Convert.ToString(reader["password_hash"]);
             user.Salt = Convert.ToString(reader["salt"]);
             user.Role = Convert.ToString(reader["user_role"]);
+            user.Confirmed = Convert.ToBoolean(reader["confirmed"]);
+            
             return user;
         }
     }

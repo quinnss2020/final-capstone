@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import authService from "../services/AuthService";
+import userService from "../services/UserService"; //user
+import authService from "../services/AuthService"; //admin
 
 export default {
   components: {},
@@ -34,18 +35,21 @@ export default {
         email: "",
         password: ""
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     login() {
-      authService
+      userService
         .login(this.user)
         .then(response => {
-          if (response.status == 200) {
+          if (response.status == 202) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
+          }
+          else if(response.status == 200){
+            this.$router.push("/login/confirm");
           }
         })
         .catch(error => {

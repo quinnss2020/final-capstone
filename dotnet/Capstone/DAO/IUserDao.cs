@@ -8,6 +8,8 @@ namespace Capstone.DAO
         IList<User> GetUsers();
         User GetUserById(int id);
         User GetUserByEmail(string email);
-        User CreateUser(string fn, string ln, string email, string password, string role);
+        User CreateUser(RegisterUser user);
+        //User CreateUser(string fn, string ln, string email, string password, string role, string code);
+
     }
 }

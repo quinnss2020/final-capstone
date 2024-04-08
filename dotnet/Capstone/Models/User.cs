@@ -9,6 +9,8 @@
         public string PasswordHash { get; set; }
         public string Salt { get; set; }
         public string Role { get; set; }
+        public bool Confirmed { get; set; }
+        public string Code { get; set; }
     }
 
     /// <summary>
@@ -53,4 +55,6 @@
         public string Role { get; set; }
         public string Code { get; set; }
     }
+
+
 }

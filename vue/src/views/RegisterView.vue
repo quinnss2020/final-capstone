@@ -44,6 +44,7 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        code: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -57,14 +58,13 @@ export default {
       } else {
         userService
           .register(this.user)
-          .then((response) => {
-            if (response.status == 201) {
+          .then(() => {
               this.$router.push({
                 path: '/login',
                 query: { registration: 'success' },
               });
             }
-          })
+          )
           .catch((error) => {
             const response = error.response;
             this.registrationErrors = true;
