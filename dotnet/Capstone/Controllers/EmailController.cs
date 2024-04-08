@@ -19,14 +19,14 @@ namespace Capstone.Controllers
 
         //POST /auth
         [HttpPost("/auth/user/{id}")]
-        public IActionResult SendVerificationEmail(ReturnUser userParam)
+        public IActionResult SendVerificationEmail(ReturnUser userParam, int id)
         {
             RegisterUser user = tempUserDao.GetTempUserById(userParam.Id);
             string codeString = user.Code;
             Email email = new Email();
             email.ToAccount = userParam.Email;
             email.Subject = "Account Verification";
-            email.MessageBody = $"Use this code to verify you account: {codeString}";
+            email.MessageBody = $"Use this code to verify your account: {codeString}";
             try
             {
                 using (SmtpClient client = new SmtpClient("smtp.gmail.com", 587))

@@ -66,7 +66,7 @@ namespace Capstone.DAO
         {
             RegisterUser user = null;
 
-            string sql = "SELECT temp_id, first_name, last_name, email, password_hash, salt, user_role, code FROM temp_users WHERE temp_id = @id";
+            string sql = "SELECT temp_id, first_name, last_name, email, password_hash, salt, user_role, confirm_code FROM temp_users WHERE temp_id = @id";
 
             try
             {
@@ -75,7 +75,7 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@temp_id", id);
+                    cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
@@ -111,7 +111,7 @@ namespace Capstone.DAO
             user.LastName = Convert.ToString(reader["last_name"]);
             user.Email = Convert.ToString(reader["email"]);
             user.Role = Convert.ToString(reader["user_role"]);
-            user.Code = Convert.ToString(reader["code"]);
+            user.Code = Convert.ToString(reader["confirm_code"]);
             return user;
         }
     }
