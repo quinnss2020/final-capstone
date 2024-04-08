@@ -16,9 +16,18 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model="user.password" required />
       </div>
-      <button type="submit">Sign in</button>
+      <button type="submit" v-show="!isConfirmed">Sign in</button>
+      <form v-if="isConfirmed" v-on:submit.prevent="login">
+      <div class="form-input-group">
+        <p> A confirmation email was sent to you, please enter code below.</p>
+        <label for="code">Email Confirmation Code</label>
+        <input type="text" id="code" v-model="code" required autofocus />
+      </div>
+      <button type="submit">Confirm</button>
+      </form>
       <p>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+        <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
+      </p>
     </form>
   </div>
 </template>
@@ -33,9 +42,11 @@ export default {
     return {
       user: {
         email: "",
-        password: ""
+        password: "",
+
       },
       invalidCredentials: false,
+      isConfirmed: false
     };
   },
   methods: {
@@ -43,13 +54,14 @@ export default {
       userService
         .login(this.user)
         .then(response => {
-          if (response.status == 202) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+          if(response.status == 200)
+          {
+            this.isConfirmed = true;
           }
-          else if(response.status == 200){
-            this.$router.push("/login/confirm");
+          else {
+            this.$router.push("/");
           }
         })
         .catch(error => {
@@ -60,6 +72,7 @@ export default {
           }
         });
     }
+  
   }
 };
 </script>
