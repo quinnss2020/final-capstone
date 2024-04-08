@@ -42,7 +42,12 @@ namespace Capstone.Controllers
             // Get the user by username
             try
             {
+                //check if user in is users table
                 user = userDao.GetUserByEmail(userParam.Email);
+                if(user == null)
+                {
+
+                }
             }
             catch (DaoException)
             {

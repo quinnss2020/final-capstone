@@ -18,8 +18,8 @@ namespace Capstone.Controllers
         private readonly ITempUserDao tempUserDao;
 
         //POST /auth
-        [HttpPost("/auth/user/{id}")]
-        public IActionResult SendVerificationEmail(ReturnUser userParam, int id)
+        [HttpPost("/auth/user")]
+        public IActionResult SendVerificationEmail(ReturnUser userParam)
         {
             RegisterUser user = tempUserDao.GetTempUserById(userParam.Id);
             string codeString = user.Code;

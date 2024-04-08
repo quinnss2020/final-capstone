@@ -92,6 +92,36 @@ namespace Capstone.DAO
             return user;
         }
 
+        public RegisterUser GetTempUserByEmail(string email)
+        {
+            RegisterUser user = null;
+
+            string sql = "SELECT temp_id, first_name, last_name, email, password_hash, salt, user_role, confirm_code FROM temp_users WHERE email = @email";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        user = MapRowToTempUser(reader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return user;
+        }
+
         private User MapRowToUser(SqlDataReader reader)
         {
             User user = new User();
