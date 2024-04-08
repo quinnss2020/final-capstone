@@ -57,8 +57,12 @@ namespace Capstone.Controllers
                 }
                 else if (user != null && !user.Confirmed && passwordHasher.VerifyHashMatch(user.PasswordHash, userParam.Password, user.Salt))
                 {
-                    
-                    return Ok();
+                    string token = tokenGenerator.GenerateToken(user.Id, user.Email, user.Role);
+
+                    // Create a ReturnUser object to return to the client
+                    LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { Id = user.Id, Email = user.Email, Role = user.Role }, Token = token };
+
+                    return Ok(retUser);
                 }
             }
             catch (DaoException)
