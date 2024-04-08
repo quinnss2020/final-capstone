@@ -50,7 +50,8 @@ namespace Capstone.DAO
                     newUserId = Convert.ToInt32(cmd.ExecuteScalar());
                     
                 }
-                newUser = GetUserById(newUserId);
+                newUser = GetTempUserById(newUserId);
+
             }
             catch (SqlException ex)
             {
@@ -60,11 +61,11 @@ namespace Capstone.DAO
             return newUser;
         }
 
-        public User GetUserById(int id)
+        public User GetTempUserById(int id)
         {
             User user = null;
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role FROM users WHERE id = @id";
+            string sql = "SELECT temp_id, first_name, last_name, email, password_hash, salt, user_role FROM temp_users WHERE temp_id = @id";
 
             try
             {
@@ -93,7 +94,7 @@ namespace Capstone.DAO
         private User MapRowToUser(SqlDataReader reader)
         {
             User user = new User();
-            user.Id = Convert.ToInt32(reader["id"]);
+            user.Id = Convert.ToInt32(reader["temp_id"]);
             user.FirstName = Convert.ToString(reader["first_name"]);
             user.LastName = Convert.ToString(reader["last_name"]);
             user.Email = Convert.ToString(reader["email"]);

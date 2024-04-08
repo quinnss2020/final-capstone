@@ -50,5 +50,6 @@
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Role { get; set; }
+        public int Code { get; set; }
     }
 }
