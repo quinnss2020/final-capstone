@@ -10,5 +10,6 @@ namespace Capstone.DAO
         User GetUserByEmail(string email);
         User CreateUser(RegisterUser user);
         User UpdateUser(User updatedUser);
+        User UpdateAgreed(User user);
     }
 }

@@ -11,6 +11,8 @@
         public string Role { get; set; }
         public bool Confirmed { get; set; }
         public string Code { get; set; }
+        public bool Agreed { get; set; }
+
     }
 
     /// <summary>
@@ -30,6 +32,12 @@
     {
         public ReturnUser User { get; set; }
         public string Token { get; set; }
+    }
+
+    public class AgreedUser
+    {
+        public LoginUser User { get; set; }
+        public bool Agreed { get; set; }
     }
 
     public class ConfirmUser

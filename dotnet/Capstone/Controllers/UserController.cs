@@ -152,6 +152,40 @@ namespace Capstone.Controllers
             return Unauthorized();
 
         }
+        
+        [Authorize]
+        [HttpPut("/login/terms")]
+        public IActionResult AgreedUser(AgreedUser userParam)
+        {
+            const string ErrorMessage = "An error occurred and user was not confirmed.";
+            User agreedUser;
+            try
+            {
+                agreedUser = userDao.GetUserByEmail(userParam.User.Email);
+                if(userParam.Agreed)
+                {
+                    agreedUser.Agreed = true;
+                    User updatedUser = userDao.UpdateAgreed(agreedUser);
+                    if (updatedUser == null)
+                    {
+                        return BadRequest();
+                    }
+                    else
+                    {
+                        return Ok(updatedUser);
+                    }
+                }
+                
+            }
+            catch(DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+
+            }
+
+            return Unauthorized();
+
+        }
 
         //GET /whoami
         [HttpGet("/whoami")]
