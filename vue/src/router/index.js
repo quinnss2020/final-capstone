@@ -7,6 +7,7 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
+import TermsAndConditionsView from "../views/TermsAndConditionsView.vue"
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -30,6 +31,14 @@ const routes = [
     component: LoginView,
     meta: {
       requiresAuth: false
+    }
+  },
+  {
+    path: "/login/terms",
+    name: "terms",
+    component: TermsAndConditionsView,
+    meta: {
+      requiresAuth: true
     }
   },
   {

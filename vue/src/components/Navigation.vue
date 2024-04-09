@@ -4,7 +4,6 @@
             <li><a href="#">LISTED UNITS</a></li>
            <li><router-link v-bind:to="{name: 'login'}"> LOGIN </router-link></li>
            <li><a href="#">REGISTER</a></li>
-           <li><a href="#">LOGOUT</a></li>
             <!-- <router-link v-bind:to="{name: 'listedUnits'}"> LISTED UNITS </router-link> 
             <router-link v-bind:to="{name: 'login'}"> LOGIN </router-link> 
             <router-link v-bind:to="{name: 'register'}"> REGISTER </router-link> -->

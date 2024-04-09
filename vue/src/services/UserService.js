@@ -12,6 +12,11 @@ export default {
 
   confirmEmail(user, code) {
     return axios.put('/login/confirm', {user:user, code:code})
+  },
+
+  agreeTerms(user, agreed)
+  {
+    return axios.put('/login/terms', {user: user, agreed:agreed})
   }
 
 

@@ -61,7 +61,7 @@ export default {
             this.isConfirmed = true;
           }
           else {
-            this.$router.push("/");
+            this.$router.push("/login/terms");
           }
         })
         .catch(error => {
@@ -77,7 +77,7 @@ export default {
         .confirmEmail(this.user, this.code)
         .then(response => {
           if(response.status == 200) {
-            this.$router.push("/");
+            this.$router.push("/login/terms");
           }
         })
         .catch(error => {
