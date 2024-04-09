@@ -73,17 +73,14 @@ export default {
         });
     },
     confirm() {
-      console.log("reached confirm");
       userService
         .confirmEmail(this.user, this.code)
         .then(response => {
-          console.log("reached .then")
           if(response.status == 200) {
             this.$router.push("/");
           }
         })
         .catch(error => {
-          console.log("reached .catch")
           const response = error.response;
           this.invalidCredentials = true;         
         });

@@ -32,7 +32,7 @@ CREATE TABLE users (
 -- password for these is "password"
 INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed) VALUES ('User', 'Test','user@storage.com','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user', '123456', 1);
 INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed) VALUES ('Admin', 'Test','admin@storage.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin', '567890', 1);
--- INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role) VALUES ('Jake', 'Norris','jake@jake.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin', 234567, 0);
+--INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed) VALUES ('Jake', 'Norris','jake@jake.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user', 234567, 0);
 
 
 GO
