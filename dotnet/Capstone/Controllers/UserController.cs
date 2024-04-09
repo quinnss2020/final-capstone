@@ -161,8 +161,8 @@ namespace Capstone.Controllers
             User agreedUser;
             try
             {
-                agreedUser = userDao.GetUserByEmail(userParam.User.Email);
-                if(userParam.Agreed)
+                agreedUser = userDao.GetUserByEmail(User.Identity.Name);
+                if(userParam.Agreed == true)
                 {
                     agreedUser.Agreed = true;
                     User updatedUser = userDao.UpdateAgreed(agreedUser);
