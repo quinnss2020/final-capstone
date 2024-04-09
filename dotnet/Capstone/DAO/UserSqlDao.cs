@@ -1,7 +1,5 @@
 ﻿using System;
 using MailKit.Net.Smtp;
-using Microsoft.Extensions.Options;
-using System.Net;
 using MailKit;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,7 +30,7 @@ namespace Capstone.DAO
         {
             IList<User> users = new List<User>();
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code FROM users";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code, agreed FROM users";
 
             try
             {
@@ -62,7 +60,7 @@ namespace Capstone.DAO
         {
             User user = null;
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code FROM users WHERE id = @id";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code, agreed FROM users WHERE id = @id";
 
             try
             {
@@ -92,7 +90,7 @@ namespace Capstone.DAO
         {
             User user = null;
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code FROM users WHERE email = @email";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code, agreed FROM users WHERE email = @email";
 
             try
             {
@@ -192,16 +190,32 @@ namespace Capstone.DAO
             
         }
 
-        //public LoginResponse CreateToken(ReturnUser user)
-        //{
-        //    string token = tokenGenerator.GenerateToken(user.Id, user.Email, user.Role);
+       public User UpdateAgreed(User user)
+        {
+            string sql = "UPDATE users SET agreed=@agreed WHERE id =@id;";
 
-        //    // Create a ReturnUser object to return to the client
-        //    LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { Id = user.Id, Email = user.Email, Role = user.Role }, Token = token };
-        //    return retUser;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
 
-        //}
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@agreed", user.Agreed);
+                    cmd.Parameters.AddWithValue("@id", user.Id);
 
+                    int count = cmd.ExecuteNonQuery();
+
+                    if (count == 1)
+                    {
+                        return user;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
         private bool SendVerificationEmail(User user)
         {
             try

@@ -25,13 +25,14 @@ CREATE TABLE users (
 	user_role varchar(50) NOT NULL,
 	code varchar(6) NOT NULL,
 	confirmed bit NOT NULL DEFAULT 0,
+	agreed bit NOT NULL DEFAULT 0,
 	CONSTRAINT PK_user PRIMARY KEY (id)
 )
 
 -- populate default data
 -- password for these is "password"
-INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed) VALUES ('User', 'Test','user@storage.com','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user', '123456', 1);
-INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed) VALUES ('Admin', 'Test','admin@storage.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin', '567890', 1);
+INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed, agreed) VALUES ('User', 'Test','user@storage.com','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user', '123456', 1, 0);
+INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed, agreed) VALUES ('Admin', 'Test','admin@storage.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin', '567890', 1, 0);
 --INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed) VALUES ('Jake', 'Norris','jake@jake.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user', 234567, 0);
 
 
