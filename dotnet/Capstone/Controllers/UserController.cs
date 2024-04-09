@@ -128,11 +128,11 @@ namespace Capstone.Controllers
             try
             {
                 confirmedUser = userDao.GetUserByEmail(userParam.User.Email);
-                if(String.Equals(confirmedUser.Code, userParam.Code))
+                if (String.Equals(confirmedUser.Code, userParam.Code))
                 {
                     confirmedUser.Confirmed = true;
                     User updatedUser = userDao.UpdateUser(confirmedUser);
-                    if(updatedUser == null)
+                    if (updatedUser == null)
                     {
                         return BadRequest();
                     }
@@ -141,9 +141,9 @@ namespace Capstone.Controllers
                         return Ok(updatedUser);
                     }
                 }
-                
+
             }
-            catch(DaoException)
+            catch (DaoException)
             {
                 return StatusCode(500, ErrorMessage);
 
@@ -152,17 +152,17 @@ namespace Capstone.Controllers
             return Unauthorized();
 
         }
-        
+
         [Authorize]
         [HttpPut("/login/terms")]
         public IActionResult AgreedUser(AgreedUser userParam)
         {
-            const string ErrorMessage = "An error occurred and user was not confirmed.";
+            const string ErrorMessage = "An error occurred and user did not agree to the terms and conditions.";
             User agreedUser;
             try
             {
                 agreedUser = userDao.GetUserByEmail(User.Identity.Name);
-                if(userParam.Agreed == true)
+                if (userParam.Agreed == true)
                 {
                     agreedUser.Agreed = true;
                     User updatedUser = userDao.UpdateAgreed(agreedUser);
@@ -175,9 +175,9 @@ namespace Capstone.Controllers
                         return Ok(updatedUser);
                     }
                 }
-                
+
             }
-            catch(DaoException)
+            catch (DaoException)
             {
                 return StatusCode(500, ErrorMessage);
 
@@ -185,6 +185,36 @@ namespace Capstone.Controllers
 
             return Unauthorized();
 
+        }
+
+        [Authorize]
+        [HttpPut("/logout")]
+        public IActionResult DisagreedUser()
+        {
+            const string ErrorMessage = "An error occurred and user did not disagree to the terms and conditions.";
+            User agreedUser;
+            try
+            {
+                agreedUser = userDao.GetUserByEmail(User.Identity.Name);
+
+                agreedUser.Agreed = false;
+                User updatedUser = userDao.UpdateAgreed(agreedUser);
+                if (updatedUser == null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    return Ok(updatedUser);
+                }
+
+
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+
+            }
         }
 
         //GET /whoami
