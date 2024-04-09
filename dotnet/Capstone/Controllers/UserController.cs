@@ -101,8 +101,6 @@ namespace Capstone.Controllers
             User newUser;
             try
             {
-                string codeString = VerificationCodeGenerator();
-                userParam.Code = codeString;
                 newUser = userDao.CreateUser(userParam);
             }
             catch (DaoException)
@@ -180,11 +178,5 @@ namespace Capstone.Controllers
             return Ok($"A valid token was received.");
         }
 
-        private string VerificationCodeGenerator()
-        {
-            Random rand = new Random();
-
-            return rand.Next(0, 1000000).ToString("000000");
-        }
     }
 }
