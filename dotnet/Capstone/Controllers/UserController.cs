@@ -122,7 +122,7 @@ namespace Capstone.Controllers
         }
 
         [Authorize]
-        [HttpPost("/login/confirm")]
+        [HttpPut("/login/confirm")]
         public IActionResult ConfirmUser(ConfirmUser userParam)
         {
             const string ErrorMessage = "An error occurred and user was not confirmed.";
@@ -133,7 +133,15 @@ namespace Capstone.Controllers
                 if(String.Equals(confirmedUser.Code, userParam.Code))
                 {
                     confirmedUser.Confirmed = true;
-                    return Ok(confirmedUser);
+                    User updatedUser = userDao.UpdateUser(confirmedUser);
+                    if(updatedUser == null)
+                    {
+                        return BadRequest();
+                    }
+                    else
+                    {
+                        return Ok(updatedUser);
+                    }
                 }
                 
             }

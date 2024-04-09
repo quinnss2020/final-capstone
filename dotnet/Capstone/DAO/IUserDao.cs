@@ -9,7 +9,6 @@ namespace Capstone.DAO
         User GetUserById(int id);
         User GetUserByEmail(string email);
         User CreateUser(RegisterUser user);
-        //User CreateUser(string fn, string ln, string email, string password, string role, string code);
-
+        User UpdateUser(User updatedUser);
     }
 }

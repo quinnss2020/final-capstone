@@ -151,6 +151,34 @@ namespace Capstone.DAO
             return newUser;
         }
 
+        public User UpdateUser(User updatedUser)
+        {
+            string sql = "UPDATE users SET confirmed=@confirmed WHERE id =@id;";
+            
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                using(SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@confirmed", updatedUser.Confirmed);
+                    cmd.Parameters.AddWithValue("@id", updatedUser.Id);
+
+                    int count = cmd.ExecuteNonQuery();
+
+                    if(count == 1)
+                    {
+                        return updatedUser;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            
+        }
+
         //public LoginResponse CreateToken(ReturnUser user)
         //{
         //    string token = tokenGenerator.GenerateToken(user.Id, user.Email, user.Role);
