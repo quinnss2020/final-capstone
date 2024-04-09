@@ -6,6 +6,10 @@ export default {
     return axios.post('/login', user)
   },
 
+  logout() {
+   return axios.put('/logout')
+  },
+
   register(user) {
     return axios.post('/register', user)
   },

@@ -59,6 +59,8 @@ Please note that you will be required to agree to these Terms and Conditions eac
       </div>
       <br>
       <button type="submit">Submit</button>
+     
+      <button @click="logout()">Cancel</button>
     </form> 
   </div>
 </template>
@@ -124,6 +126,21 @@ export default {
         if(response.status == 200)
         {
           this.$router.push("/");
+        }
+      })
+      .catch(error => {
+          const response = error.response;
+          this.invalidCredentials = true;         
+        });
+    },
+
+    logout() {
+      userService
+      .logout()
+      .then(response =>{
+        if(response.status == 200)
+        {
+          this.$router.push("/logout");
         }
       })
       .catch(error => {
