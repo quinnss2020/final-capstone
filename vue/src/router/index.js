@@ -7,8 +7,6 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
-import ConfirmEmailView from "../views/ConfirmEmailView.vue";
-
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -55,12 +53,6 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: "notFound",
     component: NotFoundView,
-  },
-
-  {
-    path: '/login/confirm',
-    name: 'confirmEmail',
-    component: ConfirmEmailView
   },
 
 ];

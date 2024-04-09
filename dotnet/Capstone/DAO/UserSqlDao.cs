@@ -25,7 +25,7 @@ namespace Capstone.DAO
         {
             IList<User> users = new List<User>();
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed FROM users";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code FROM users";
 
             try
             {
@@ -55,7 +55,7 @@ namespace Capstone.DAO
         {
             User user = null;
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed FROM users WHERE id = @id";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code FROM users WHERE id = @id";
 
             try
             {
@@ -85,7 +85,7 @@ namespace Capstone.DAO
         {
             User user = null;
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed FROM users WHERE email = @email";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code FROM users WHERE email = @email";
 
             try
             {
@@ -172,6 +172,7 @@ namespace Capstone.DAO
             user.Salt = Convert.ToString(reader["salt"]);
             user.Role = Convert.ToString(reader["user_role"]);
             user.Confirmed = Convert.ToBoolean(reader["confirmed"]);
+            user.Code = Convert.ToString(reader["code"]);
             
             return user;
         }

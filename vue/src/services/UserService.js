@@ -11,7 +11,7 @@ export default {
   },
 
   confirmEmail(user, code) {
-    return axios.put('/login/confirm', user, code)
+    return axios.post('/login/confirm', {user:user, code:code})
   }
 
 

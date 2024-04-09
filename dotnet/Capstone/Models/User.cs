@@ -32,6 +32,13 @@
         public string Token { get; set; }
     }
 
+    public class ConfirmUser
+    {
+        public LoginUser User { get; set; }
+        public string Code { get; set; }
+    }
+
+
     /// <summary>
     /// Model to accept login parameters
     /// </summary>

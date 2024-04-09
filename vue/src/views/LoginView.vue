@@ -17,9 +17,10 @@
         <input type="password" id="password" v-model="user.password" required />
       </div>
       <button type="submit" v-show="!isConfirmed">Sign in</button>
-      <form v-if="isConfirmed" v-on:submit.prevent="login">
+    </form>
+    <form v-if="isConfirmed" v-on:submit.prevent="confirm">
       <div class="form-input-group">
-        <p> A confirmation email was sent to you, please enter code below.</p>
+        <p> A confirmation email was sent to you, please enter the code below.</p>
         <label for="code">Email Confirmation Code</label>
         <input type="text" id="code" v-model="code" required autofocus />
       </div>
@@ -28,7 +29,6 @@
       <p>
         <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
       </p>
-    </form>
   </div>
 </template>
 
@@ -43,10 +43,10 @@ export default {
       user: {
         email: "",
         password: "",
-
       },
       invalidCredentials: false,
-      isConfirmed: false
+      isConfirmed: false,
+      code: '',
     };
   },
   methods: {
@@ -71,6 +71,23 @@ export default {
             this.invalidCredentials = true;
           }
         });
+    },
+    confirm() {
+      console.log("reached confirm");
+      userService
+        .confirmEmail(this.user, this.code)
+        .then(response => {
+          console.log("reached .then")
+          if(response.status == 200) {
+            this.$router.push("/");
+          }
+        })
+        .catch(error => {
+          console.log("reached .catch")
+          const response = error.response;
+          this.invalidCredentials = true;         
+        });
+
     }
   
   }

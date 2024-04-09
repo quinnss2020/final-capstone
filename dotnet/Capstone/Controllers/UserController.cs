@@ -122,24 +122,18 @@ namespace Capstone.Controllers
         }
 
         [Authorize]
-        [HttpPut("/login/confirm")]
-        public IActionResult ConfirmUser(LoginUser user, string code)
+        [HttpPost("/login/confirm")]
+        public IActionResult ConfirmUser(ConfirmUser userParam)
         {
             const string ErrorMessage = "An error occurred and user was not confirmed.";
             User confirmedUser;
             try
             {
-                confirmedUser = userDao.GetUserByEmail(user.Email);
-                if(confirmedUser.Code == code)
+                confirmedUser = userDao.GetUserByEmail(userParam.User.Email);
+                if(String.Equals(confirmedUser.Code, userParam.Code))
                 {
                     confirmedUser.Confirmed = true;
-                    string token = tokenGenerator.GenerateToken(confirmedUser.Id, confirmedUser.Email, confirmedUser.Role);
-
-                    // Create a ReturnUser object to return to the client
-                    LoginResponse retUser = new LoginResponse() { User = new ReturnUser() { Id = confirmedUser.Id, Email = confirmedUser.Email, Role = confirmedUser.Role }, Token = token };
-
-                    return Ok(retUser);
-
+                    return Ok(confirmedUser);
                 }
                 
             }
@@ -150,6 +144,7 @@ namespace Capstone.Controllers
             }
 
             return Unauthorized();
+
         }
 
         //GET /whoami
