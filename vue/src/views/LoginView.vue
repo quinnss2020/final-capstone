@@ -24,18 +24,20 @@
       
       <br>
       <button type="submit" v-show="!isConfirmed">SIGN IN</button>
+      <!-- <button v-bind:to="{ name: 'register' }">SIGN UP</button> -->
       <br>
     </form>
     <form v-if="isConfirmed" v-on:submit.prevent="confirm">
       <div class="form-input-group">
         <p> A confirmation email was sent to you, please enter the code below.</p>
-        <label for="code">Email Confirmation Code</label>
-        <input type="text" id="code" v-model="code" required autofocus />
+     
+        <input type="text" placeholder="Email Confirmation Code" id="code" v-model="code" required autofocus />
       </div>
-      <button type="submit">Confirm</button>
+      <button type="submit">CONFIRM</button>
       </form>
       <p>
-        <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
+      <br>
+      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
       </p>
       </div>
   </div>
@@ -146,6 +148,18 @@ input {
   padding: 8px;
  
 }
+
+p{
+  font-weight: 500;
+  color:#264B56;
+  text-decoration: none;
+  font-size: 14px;
+  
+}
+
+/* button {
+  margin-top: 10px;
+} */
 
 
 </style>

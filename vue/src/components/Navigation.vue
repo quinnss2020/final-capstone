@@ -1,35 +1,33 @@
 <template>
     <section class="nav">
-       <!-- <img :src="image"/> -->
         <ol id="nav-buttons">
-            <li><a href="#">LISTED UNITS</a></li>
-           <li><router-link v-bind:to="{name: 'login'}"> LOGIN </router-link></li>
-           <li><a href="#">REGISTER</a></li>
+            <img :src="image" id="logo" />
+            <li><a href="#">UNITS</a></li>
+            <li><a href="#">REGISTER</a></li>
             <!-- <router-link v-bind:to="{name: 'listedUnits'}"> LISTED UNITS </router-link> 
-            <router-link v-bind:to="{name: 'login'}"> LOGIN </router-link> 
-            <router-link v-bind:to="{name: 'register'}"> REGISTER </router-link> -->
-            <li><router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">LOGOUT</router-link></li>
-            </ol>
+                <router-link v-bind:to="{name: 'register'}"> REGISTER </router-link> -->
+            <li><router-link v-bind:to="{ name: 'logout' }" v-show="$store.state.token">LOGOUT</router-link></li>
+            <li><router-link v-bind:to="{ name: 'login' }" v-show="!$store.state.token"> LOGIN </router-link></li>
+        </ol>
     </section>
 </template>
 
 <script>
 
-import image from "../assets/DeltaStorageSolutionsLogo.svg"
+import image from "../assets/DeltaLogo.svg"
 export default {
-    data: function() {
+    data: function () {
         return {
-            image : image
+            image: image
         }
     }
 }
 </script>
 
 <style scoped>
-
-nav> :is(ul,ol) {
+nav> :is(ul, ol) {
     list-style: none;
-   
+
 }
 
 #nav-buttons {
@@ -59,7 +57,8 @@ a {
     margin-right: 20px;
 }
 
-img {
-    resize: ;
+ol>img {
+    height: 60px;
+    margin-right: auto;
 }
 </style>
