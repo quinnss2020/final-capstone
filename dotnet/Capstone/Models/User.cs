@@ -80,7 +80,6 @@ namespace Capstone.Models
     /// </summary>
     public class RegisterUser
     {
-        public int Id { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -88,6 +87,7 @@ namespace Capstone.Models
         public string ConfirmPassword { get; set; }
         public string Role { get; set; }
         public string Code { get; set; }
+
     }
 
 

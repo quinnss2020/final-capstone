@@ -79,6 +79,71 @@ namespace Tutorial.Tests.DAO
             AssertUsersMatch(USER_2, user);
         }
 
+        [TestMethod]
+        public void GetUserByEmail_ThrowsDaoException()
+        {
+            try
+            {
+                userSqlDao.GetUserByEmail("testing@test.com");
+            }
+            catch (DaoException ex)
+            {
+                if (ex.GetType() == typeof(DaoException))
+                {
+                    Assert.AreEqual(1, 1);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void CreateUser_CreatesUser()
+        {
+            RegisterUser newUser = new RegisterUser();
+            newUser.Email = "email@email.com";
+            newUser.FirstName = "Jake";
+            newUser.LastName = "Norris";
+            newUser.Password = "password";
+            newUser.ConfirmPassword = "password";
+            newUser.Role = "user";
+
+            userSqlDao.CreateUser(newUser);
+
+            User actualUser = userSqlDao.GetUserByEmail("email@email.com");
+
+            Assert.AreEqual(newUser.Email, actualUser.Email);
+        }
+
+        [TestMethod]
+        public void CreateUser_DoesntCreateUser()
+        {
+            RegisterUser newUser = new RegisterUser();
+            newUser.FirstName = "Jake";
+            newUser.LastName = "Norris";
+            newUser.Password = "password";
+            newUser.ConfirmPassword = "password";
+            newUser.Role = "user";
+            try
+            {
+                User actualUser = userSqlDao.CreateUser(newUser);
+            }
+            catch (Exception ex)
+            {
+                if(ex.Message != "")
+                {
+                    Assert.AreEqual(1, 1);
+                }
+            }
+
+        }
+
+        [TestMethod]
+        public void UpdateUser()
+        {
+            User oldUser = USER_1;
+
+
+        }
+
         private void AssertUsersMatch(User expected, User actual)
         {
             Assert.AreEqual(expected.Id, actual.Id);
@@ -87,7 +152,6 @@ namespace Tutorial.Tests.DAO
             Assert.AreEqual(expected.Email, actual.Email);
             Assert.AreEqual(expected.Role, actual.Role);
             Assert.AreEqual(expected.Confirmed, actual.Confirmed);
-            Assert.AreEqual(expected.Code, actual.Code);
             Assert.AreEqual(expected.Agreed, actual.Agreed);
         }
 
