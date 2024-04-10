@@ -1,4 +1,6 @@
-﻿namespace Capstone.Models
+﻿using Org.BouncyCastle.Asn1.Misc;
+
+namespace Capstone.Models
 {
     public class User
     {
@@ -12,6 +14,23 @@
         public bool Confirmed { get; set; }
         public string Code { get; set; }
         public bool Agreed { get; set; }
+
+        public User(int id, string firstName, string lastName, string email, string passwordHash, 
+            string salt, string role, string code, bool confirmed, bool agreed)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            PasswordHash = passwordHash;
+            Salt = salt;
+            Role = role;
+            Confirmed = confirmed;
+            Code = code;
+            Agreed = agreed;
+        }
+
+        public User() { }
 
     }
 

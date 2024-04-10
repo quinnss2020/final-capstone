@@ -1,6 +1,4 @@
 ﻿using System;
-using MailKit.Net.Smtp;
-using MailKit;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,9 +8,7 @@ using Capstone.Security;
 using Capstone.Security.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using MimeKit;
-using MimeKit.Text;
-using MailKit.Security;
+
 
 namespace Capstone.DAO
 {
@@ -90,7 +86,7 @@ namespace Capstone.DAO
         {
             User user = null;
 
-            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, confirmed, code, agreed FROM users WHERE email = @email";
+            string sql = "SELECT id, first_name, last_name, email, password_hash, salt, user_role, code, confirmed, agreed FROM users WHERE email = @email";
 
             try
             {
@@ -231,6 +227,7 @@ namespace Capstone.DAO
             user.Role = Convert.ToString(reader["user_role"]);
             user.Confirmed = Convert.ToBoolean(reader["confirmed"]);
             user.Code = Convert.ToString(reader["code"]);
+            user.Agreed = Convert.ToBoolean(reader["agreed"]);
             
             return user;
         }

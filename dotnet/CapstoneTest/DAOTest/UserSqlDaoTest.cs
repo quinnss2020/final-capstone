@@ -9,8 +9,8 @@ namespace Tutorial.Tests.DAO
     [TestClass]
     public class UserSqlDaoTest : BaseDaoTests
     {
-        //private static readonly User USER_1 = new User(1, 'User', 'Test', 'user@storage.com', 'Jg45HuwT7PZkfuKTz6IB90CtWY4=', 'LHxP4Xh7bN0=', 'user');
-        //private static readonly User USER_2 = new User(2, 'Admin', 'Test', 'admin@storage.com', 'YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=', 'admin')
+        private static readonly User USER_1 = new User(1, "Admin", "Test", "admin@storage.com", "YhyGVQ+Ch69n4JMBncM4lNF/i9s=", "Ar/aB2thQTI=", "admin", "123456", true, true);
+        private static readonly User USER_2 = new User(2, "User", "Test", "user@storage.com", "Jg45HuwT7PZkfuKTz6IB90CtWY4=", "LHxP4Xh7bN0=", "user", "456789", true, false);
 
 
         private UserSqlDao userSqlDao;
@@ -38,7 +38,7 @@ namespace Tutorial.Tests.DAO
             Assert.AreEqual(2, users.Count);
         }
 
-        [TestMethod] //NEEDS UPDATING
+        [TestMethod]
         public void GetUserById_ReturnsCorrectUser()
         {
             //Arrange 
@@ -46,10 +46,10 @@ namespace Tutorial.Tests.DAO
 
             //Act - retrieve user
             User user = userSqlDao.GetUserById(id);
-            User TEMP = userSqlDao.GetUserById(1); //DELETE 
+
 
             //Assert - use AssertUsersMatch method
-            AssertUsersMatch(TEMP, user);
+            AssertUsersMatch(USER_1, user);
         }
 
         [TestMethod]
@@ -59,13 +59,24 @@ namespace Tutorial.Tests.DAO
             {
                 userSqlDao.GetUserById(4);
             }
-            catch(DaoException ex)
+            catch (DaoException ex)
             {
-                if(ex.GetType() == typeof(DaoException))
+                if (ex.GetType() == typeof(DaoException))
                 {
                     Assert.AreEqual(1, 1);
                 }
             }
+        }
+
+        [TestMethod]
+        public void GetUserByEmail_ReturnsCorrectUser()
+        {
+            //Arrange
+            User user = userSqlDao.GetUserByEmail(USER_2.Email);
+            //Act
+
+            //Assert
+            AssertUsersMatch(USER_2, user);
         }
 
         private void AssertUsersMatch(User expected, User actual)
@@ -75,9 +86,9 @@ namespace Tutorial.Tests.DAO
             Assert.AreEqual(expected.LastName, actual.LastName);
             Assert.AreEqual(expected.Email, actual.Email);
             Assert.AreEqual(expected.Role, actual.Role);
-
-
-
+            Assert.AreEqual(expected.Confirmed, actual.Confirmed);
+            Assert.AreEqual(expected.Code, actual.Code);
+            Assert.AreEqual(expected.Agreed, actual.Agreed);
         }
 
     }
