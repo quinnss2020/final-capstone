@@ -2,21 +2,18 @@
     <div id="view-units">
         <h1>This is the Unit View</h1>
         <section class="unit-container">
-            <unit v-for="unit in units" v-bind:key="unit.id" v-bind:item="unit" />
+            <UnitCard v-for="unit in units" v-bind:key="unit.id" v-bind:item="unit" />
         </section>
     </div>
 </template>
 
 <script>
-// import Unit from '../components/Unit.vue';
-import UnitService from '../services/UnitService';
+import UnitCard from '../components/UnitCard.vue';
+import UnitService from '../services/UnitService.js';
 
 export default {
-    props: [],
-    components: {
-      
-    },
-
+    name: "ListUnits",
+    components: {UnitCard},
     data() {
         return {
             units: [],

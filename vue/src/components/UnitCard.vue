@@ -1,9 +1,9 @@
 <template>
     <section class="unit-card" v-on:click="this.$router.push({name: 'UnitDetailsView', params: {id: unit.id}})">
-        <p id="top-line">City: {{ item.location }} #{{ item.id }} | Size: {{ item.size }}</p>
+        <p id="top-line">{{ item.city }} #{{ item.id }} | {{ item.size }}</p>
         <p id="closing-time">Closes in: {{ item.expiration }}</p>
-        <p id="highest-bid"></p>
-        <button></button>
+        <p id="highest-bid">High bid: ${{ item.highestBid }}</p>
+        <button>BID NOW</button>
 
         
     </section>
