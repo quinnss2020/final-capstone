@@ -4,6 +4,8 @@
       <h1>Create Account</h1>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
+        <br>
+        <br>
       </div>
       <div class="form-input-group">
         <label for="first-name">First Name</label>
@@ -59,6 +61,7 @@ export default {
         userService
           .register(this.user)
           .then(() => {
+
               this.$router.push({
                 path: '/login',
                 query: { registration: 'success' },
@@ -70,6 +73,9 @@ export default {
             this.registrationErrors = true;
             if (response.status === 400) {
               this.registrationErrorMsg = 'Bad Request: Validation Errors';
+            }
+            else if (response.status === 409) {
+              this.registrationErrorMsg = 'Email already registered. Please log in.';
             }
           });
       }
@@ -89,4 +95,11 @@ export default {
 label {
   margin-right: 0.5rem;
 }
+
+div[role=alert] {
+color: red;
+font-weight: 500;
+
+}
+
 </style>

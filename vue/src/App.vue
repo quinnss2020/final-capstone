@@ -25,5 +25,26 @@ export default {
 #app {
   font-family: "Roboto", sans-serif;
   text-align: center;
+  background-color:#677477;
+  background-size: cover;
+  margin: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  position:absolute;
 }
+button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  color: #264B56;
+  background: none;
+  border-color: #264B56;
+  border-radius: 0.6rem;
+  padding: 8px;
+  padding-inline: 4.2rem;
+}
+
 </style>

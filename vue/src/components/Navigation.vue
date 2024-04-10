@@ -1,5 +1,6 @@
 <template>
     <section class="nav">
+       <!-- <img :src="image"/> -->
         <ol id="nav-buttons">
             <li><a href="#">LISTED UNITS</a></li>
            <li><router-link v-bind:to="{name: 'login'}"> LOGIN </router-link></li>
@@ -13,6 +14,15 @@
 </template>
 
 <script>
+
+import image from "../assets/DeltaStorageSolutionsLogo.svg"
+export default {
+    data: function() {
+        return {
+            image : image
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -21,15 +31,17 @@ nav> :is(ul,ol) {
     list-style: none;
    
 }
+
 #nav-buttons {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
-
-    margin: 0;
+    justify-content: flex-end;
+    margin-top: 30px;
     list-style: none;
     background: none;
+    margin-right: 20px;
 }
+
 
 a {
     display: flex;
@@ -44,6 +56,10 @@ a {
     border-radius: 2rem;
     padding-inline: 1.5rem;
     padding-block: 0.6rem;
+    margin-right: 20px;
 }
 
+img {
+    resize: ;
+}
 </style>

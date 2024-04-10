@@ -33,8 +33,8 @@ THE COMPANY DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES O
 THE COMPANY SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE PLATFORM OR THE STORAGE UNIT AUCTION, INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR PERSONAL INJURY, PROPERTY DAMAGE, LOST PROFITS, OR BUSINESS INTERRUPTION.</p>
 <p>8. Indemnification:
 You agree to indemnify and hold harmless the Company, its officers, directors, employees, agents, and affiliates, from and against any and all claims, losses, liabilities, expenses, including attorney's fees, arising out of or related to your use of the platform or the storage unit auction.</p>
-9. Governing Law:
-These Terms shall be governed by and construed in accordance with the laws of the State of Ohio, without regard to its conflict of laws principles.
+<p>9. Governing Law:
+These Terms shall be governed by and construed in accordance with the laws of the State of Ohio, without regard to its conflict of laws principles.</p>
 10. Entire Agreement:
 These Terms constitute the entire agreement between you and the Company regarding the subject matter hereof and supersede all prior or contemporaneous communications, representations, or agreements, whether oral or written.
 11. Amendment:
