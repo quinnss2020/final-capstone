@@ -15,19 +15,18 @@ namespace Capstone.Controllers
         private readonly ITokenGenerator tokenGenerator;
         private readonly IPasswordHasher passwordHasher;
         private readonly IUserDao userDao;
-        private readonly ITempUserDao tempUserDao;
+        
 
         public UserController(
             ITokenGenerator tokenGenerator,
             IPasswordHasher passwordHasher,
-            IUserDao userDao,
-            ITempUserDao tempUserDao
+            IUserDao userDao            
             )
         {
             this.tokenGenerator = tokenGenerator;
             this.passwordHasher = passwordHasher;
             this.userDao = userDao;
-            this.tempUserDao = tempUserDao;
+            
         }
 
         //POST /login
