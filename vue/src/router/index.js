@@ -7,7 +7,9 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
-import TermsAndConditionsView from "../views/TermsAndConditionsView.vue"
+import TermsAndConditionsView from "../views/TermsAndConditionsView.vue";
+import ListUnitView from '../views/ListUnitView.vue';
+// import UnitDetailsView from '../views/UnitDetailsView.vue';
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -57,6 +59,24 @@ const routes = [
       requiresAuth: false
     }
   },
+
+  {
+    path: "/units",
+    name: "units",
+    component: ListUnitView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+
+  // {
+  //   path: "/units/:id",
+  //   name: "unitDetails",
+  //   component: UnitDetailsView,
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
 
   {
     path: '/:pathMatch(.*)*',
