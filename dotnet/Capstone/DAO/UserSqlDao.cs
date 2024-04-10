@@ -119,8 +119,9 @@ namespace Capstone.DAO
         public User CreateUser(RegisterUser user)
         {
             User newUser = null;
+            EmailUtility emailUtility = new EmailUtility();
 
-            user.Code = VerificationCodeGenerator();
+            user.Code = emailUtility.VerificationCodeGenerator();
 
             IPasswordHasher passwordHasher = new PasswordHasher();
             PasswordHash hash = passwordHasher.ComputeHash(user.Password);
@@ -149,7 +150,8 @@ namespace Capstone.DAO
                     
                 }
                 newUser = GetUserById(newUserId);
-                if (!SendVerificationEmail(newUser))
+                Email email = emailUtility.FormEmail(user.Email, "Verification Code", "Your account verification code is " + user.Code);
+                if (!emailUtility.SendVerificationEmail(email))
                 {
                     return null;
                 }
@@ -216,41 +218,7 @@ namespace Capstone.DAO
                 }
             }
         }
-        private bool SendVerificationEmail(User user)
-        {
-            try
-            {
-
-                var email = new MimeMessage();
-                email.From.Add(MailboxAddress.Parse("deltastoragesolutions@outlook.com"));
-                email.To.Add(MailboxAddress.Parse(user.Email));
-                email.Subject = $"Use this code to verify your account: {user.Code}";
-                email.Body = new TextPart(TextFormat.Html) { Text = "<h1>Potential Html</h1>" };
-
-                //send email
-
-                using var smtp = new SmtpClient();
-                smtp.Connect("smtp-mail.outlook.com", 587, SecureSocketOptions.StartTls);
-                smtp.AuthenticationMechanisms.Remove("XOAUTH2");
-                smtp.Authenticate("deltastoragesolutions@outlook.com", "JakeQuinnSerinaTiana");
-                smtp.Send(email);
-                smtp.Disconnect(true);
-
-                return true;
-            }
-            catch(SmtpCommandException ex)
-            {
-                Console.WriteLine("Email failed: " + ex);
-                return false;
-            }
-        }
-
-        private string VerificationCodeGenerator()
-        {
-            Random rand = new Random();
-
-            return rand.Next(0, 1000000).ToString("000000");
-        }
+        
         private User MapRowToUser(SqlDataReader reader)
         {
             User user = new User();
