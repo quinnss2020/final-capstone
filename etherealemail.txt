@@ -1,7 +1,0 @@
-name: Perry Jenkins
-email: perry.jenkins@ethereal.email
-password: 4TRp3DaKg7pkcZGmZd
-
-name: Delta Team
-email: deltastoragesolutions@gmail.com
-password: DeltaStoragePassword
