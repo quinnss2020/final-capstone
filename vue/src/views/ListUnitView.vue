@@ -1,6 +1,10 @@
 <template>
     <div id="view-units">
         <h1>This is the Unit View</h1>
+       
+        <div>
+    <input type="checkbox" v-on:click="countdown()"/>
+    </div>
         <section class="unit-container">
             <UnitCard v-for="unit in units" v-bind:key="unit.id" v-bind:item="unit" />
         </section>
@@ -21,7 +25,11 @@ export default {
         }
     },
 
+    computed: {
+    },
+    
     methods: {
+       
         getUnits(){
             UnitService
             .list()

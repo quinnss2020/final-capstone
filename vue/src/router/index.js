@@ -65,7 +65,7 @@ const routes = [
     name: "units",
     component: ListUnitView,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
 

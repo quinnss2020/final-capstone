@@ -1,6 +1,6 @@
 <template>
   <div id="capstone-app">
-    <navigation/>
+    <navigation />
     <!-- <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
@@ -14,7 +14,7 @@ import Navigation from "./components/Navigation.vue"
 
 export default {
   name: 'App',
-  components: {Navigation},
+  components: { Navigation },
 
 }
 
@@ -22,20 +22,22 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-#app {
+
+html {
   font-family: "Roboto", sans-serif;
   text-align: center;
-  background-color:#677477;
-  background-size: cover;
+  background-color: #677477;
   margin: 0;
-  right: 0;
+  /* background-size: auto; */
+
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
   top: 0;
   bottom: 0;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  position:absolute;
+  position: absolute;
 }
+
 button {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -46,5 +48,4 @@ button {
   padding: 8px;
   padding-inline: 4.2rem;
 }
-
 </style>
