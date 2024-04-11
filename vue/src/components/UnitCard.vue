@@ -16,7 +16,8 @@ export default {
 
     data() {
         return {
-          expiring: "",  
+          expiring: "",
+            
         }
     },
 
@@ -55,4 +56,13 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.unit-card {
+    border: 2px solid white;
+    display: grid;
+    /* flex-direction: column; */
+    /* width: 10vw;
+    height: 400px; */
+
+}
+</style>
