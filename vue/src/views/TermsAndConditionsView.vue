@@ -1,7 +1,7 @@
 <template>
-  <div id="terms">
+  <div class="terms-container">
     <form v-on:submit.prevent="agree()">
-      <div id="terms-box">
+      <div id="box">
         <h1>Delta Storage Solutions Terms and Conditions</h1>
         <h2>Welcome to the Delta Storage Solutions Platform!</h2>
         <p>
@@ -82,14 +82,14 @@
           <label for="userInput" onclick id="label">
             By clicking on the submit button, I agree to the terms & conditions.
           </label>
+          <br>
+          <br>
+          <button type="submit">SUBMIT</button>
+          <button @click="logout()">CANCEL</button>
+          <br>
+          <br>
         </div>
-        </div>
-        <br>
-        <button type="submit">SUBMIT</button>
-        <button @click="logout()">CANCEL</button>
-        <br>
-        <br>
-       
+       </div>
     </form>
 
   </div>
@@ -182,18 +182,43 @@ export default {
 
 <style scoped>
 
-#terms {
+.terms-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  flex-direction: column;
   justify-content: center;
   overflow-y: scroll;
-  height: 100%;
-  width: 100%;
+  height: 400px;
+  width: 800px;
   border: 2px solid #264B56;
+  border-radius: 1rem;
   padding: 30px;
-  position: absolute;
   background-color: #FAEFE0;
   text-align: left;
+  margin-top: 100px;
 }
+::-webkit-scrollbar {
+width: 16px;
+}
+
+::-webkit-scrollbar-track {
+/* box-shadow: inset 0 0 5px grey;  */
+border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb {
+background:#264B56; 
+border-radius: 2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background:rgb(54, 56, 58); }
+
 
 .form-input-group {
   margin-bottom: 1rem;

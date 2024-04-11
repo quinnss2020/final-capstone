@@ -87,7 +87,6 @@ export default {
     components: {UnitCard},
     data() {
         return {
-            units: [],
             filteredUnits: [],
             filter: {
                 location: [],
@@ -108,7 +107,7 @@ export default {
             UnitService
             .list()
             .then((response) => {
-                this.units = response.data;
+                this.filteredUnits = response.data;
             })
             .catch((error) => {
                 if (error.response) {
@@ -125,13 +124,10 @@ export default {
 
         filterUnits() {
             
-            this.filteredUnits = this.units;
-            console.log("Inside filterUnits: ", this.filteredUnits);
             this.filteredUnits = this.filteredUnits.filter(unit => {
                 if (this.filter.location.length === 0) {
                     return true;
                 }
-
                 return this.filter.location.includes(unit.city); 
             }) 
 
@@ -143,7 +139,6 @@ export default {
                 if (this.filter.size.length === 0) {
                     return true;
                 }
-
                 return this.filter.size.includes(unit.size);
             })
 

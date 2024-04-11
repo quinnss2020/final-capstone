@@ -24,9 +24,9 @@
       
       <br>
       <button type="submit" v-show="!isConfirmed">SIGN IN</button>
-      <!-- <button v-bind:to="{ name: 'register' }">SIGN UP</button> -->
-      <br>
     </form>
+    <button v-on:click= "this.$router.push('/register')">SIGN UP</button>
+    <br>
     <form v-if="isConfirmed" v-on:submit.prevent="confirm">
       <div class="form-input-group">
         <p> A confirmation email was sent to you, please enter the code below.</p>
@@ -37,7 +37,7 @@
       </form>
       <p>
       <br>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link>
+      <!-- <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link> -->
       </p>
       </div>
   </div>
@@ -109,7 +109,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 200px
+  margin-top: 90px
 }
 
 #login {
@@ -121,11 +121,10 @@ align-items: center;
 border-radius: 2rem;
 margin-top: 20px;
 background-color:#B4B09B;
-padding: 1.5rem;
+padding: 0.5rem;
 }
-.form-input-group {
+ .form-input-group {
   margin-bottom: 1rem;
-  text-align: left;
   
 }
 label {
@@ -141,7 +140,7 @@ h1 {
 }
 
 input {
-  align-items: right;
+
   background-color: #FAEFE0;
   border: none;
   border-radius: 0.3rem;
@@ -157,9 +156,9 @@ p{
   
 }
 
-/* button {
+ button {
   margin-top: 10px;
-} */
+} 
 
 
 </style>

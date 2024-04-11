@@ -2,10 +2,8 @@
     <section class="nav">
         <ol id="nav-buttons">
             <img :src="image" id="logo" />
-            <li><a href="#">UNITS</a></li>
-            <li><a href="#">REGISTER</a></li>
-            <!-- <router-link v-bind:to="{name: 'listedUnits'}"> LISTED UNITS </router-link> 
-                <router-link v-bind:to="{name: 'register'}"> REGISTER </router-link> -->
+            <li><router-link v-bind:to="{name:'units'}">UNITS</router-link></li>
+            <li> <router-link v-bind:to="{name: 'register'}"  v-show="!$store.state.token"> REGISTER </router-link></li>
             <li><router-link v-bind:to="{ name: 'logout' }" v-show="$store.state.token">LOGOUT</router-link></li>
             <li><router-link v-bind:to="{ name: 'login' }" v-show="!$store.state.token"> LOGIN </router-link></li>
         </ol>
