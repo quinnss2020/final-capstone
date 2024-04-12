@@ -69,14 +69,23 @@ const routes = [
     }
   },
 
-  // {
-  //   path: "/units/:id",
-  //   name: "unitDetails",
-  //   component: UnitDetailsView,
-  //   meta: {
-  //     requiresAuth: true
-  //   }
-  // },
+  {
+    path: "/units/:id",
+    name: "unitDetails",
+    component: UnitDetailsView,
+    meta: {
+      requiresAuth: false
+    }
+  },
+
+  {
+    path: "/bids",
+    name: "bids",
+    component: UserBidView,
+    meta: {
+      requiresAuth: true
+    }
+  },
 
   {
     path: '/:pathMatch(.*)*',
