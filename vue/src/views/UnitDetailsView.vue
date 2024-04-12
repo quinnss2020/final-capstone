@@ -1,6 +1,14 @@
 <template>
     <div class="unit-details">
-        <h1>{{ item.city }} {{ item.id }}</h1>
+        <h1>This is the Unit Details View</h1>
+        <div id="container">
+            <div id="writing-box">
+
+            </div>
+            <div id="images-box">
+                
+            </div>
+        </div>
 
     </div>
 </template>
@@ -14,5 +22,5 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 </style>
