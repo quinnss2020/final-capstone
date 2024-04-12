@@ -33,7 +33,7 @@ namespace Capstone.Controllers
 
             Unit unit = unitDao.GetUnitById(bid.UnitId);
 
-            if(bid.Amount > unit.HighestBid)
+            if(bid.Amount > unit.HighestBid && unit.Active)
             {
                 try
                 {

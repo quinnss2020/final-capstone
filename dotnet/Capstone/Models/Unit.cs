@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MimeKit;
+using System;
 using System.Data;
 
 namespace Capstone.Models
@@ -16,6 +17,23 @@ namespace Capstone.Models
         public bool Active { get; set; }
         public DateTime Expiration { get; set; }
         public DateTime Created { get; set; }
+
+        public Unit() { }
+
+        public Unit(int id, int localId, int startBid, int highestBid, int highestBidder, string orderNumber, string city, string size, bool active, DateTime expiration, DateTime created)
+        {
+            Id = id;
+            LocalId = localId;
+            StartBid = startBid;
+            HighestBid = highestBid;
+            HighestBidder = highestBidder;
+            OrderNumber = orderNumber;
+            City = city;
+            Size = size;
+            Active = active;
+            Expiration = expiration;
+            Created = created;
+        }
 
     }
 }
