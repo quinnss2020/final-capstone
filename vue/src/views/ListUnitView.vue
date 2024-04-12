@@ -64,6 +64,7 @@
                     <br>
                 </div>
                 <button v-on:click="filterUnits">Apply Filters</button>
+                <button v-on:click="clearFilters">Clear Filters</button>
             </nav>
         </div>
 
@@ -161,18 +162,24 @@ export default {
                 }
 
                 let result;
-                
+
                 this.filter.highestBid.forEach((x) => {
                     let range = x.split("-");
                     result = unit.highestBid >= parseInt(range[0]) && unit.highestBid <= parseInt(range[1]);
                 })
-                
+
                 return result;
-
             })
+        },
 
+        clearFilters() {
+            if (this.filter.location || this.filter.expiration || this.filter.size || this.filter.highestBid){
+                this.filter = {};
+            }
 
+            return this.filter;
         }
+
     },
 
     created() {
@@ -182,7 +189,17 @@ export default {
                 this.units = response.data;
 
             })
-            .catch(); //TODO add generic error handling
+            .catch((error) => {
+                if (error.response) {
+                    console.log("Error loading units in <CREATED>: ", error.response.status);
+                }
+                else if (error.request) {
+                    console.log("Error loading units in <CREATED>. Unable to communicate to server.");
+                }
+                else {
+                    console.log("Error making request in <CREATED>");
+                }
+            });
 
         this.getUnits();
     },

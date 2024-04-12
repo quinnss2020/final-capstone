@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export default {
-    bid(user) {
-        return axios.put('/bids', user);
+    bid(thisBid) {
+        return axios.post(`/units/${unitId}`, user);
     },
 
     list() {
