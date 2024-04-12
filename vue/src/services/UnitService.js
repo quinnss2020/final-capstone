@@ -7,5 +7,6 @@ export default {
 
     unitDetails(id) {
         return axios.get(`/units/${id}`);
-    }
+    },
+
 }

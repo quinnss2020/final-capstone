@@ -40,7 +40,7 @@ CREATE TABLE bids (
 	CONSTRAINT PK_bids PRIMARY KEY (id)
 )
 
---populate default data
+--USER COUNT: 5
 INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed, agreed) 
 VALUES ('Admin', 'Test','admin@storage.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin', '567890', 1, 0);
 INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed, agreed) 
@@ -52,11 +52,7 @@ VALUES ('Quinn', 'Santucci','quinn.s.santucci@gmail.com','YhyGVQ+Ch69n4JMBncM4lN
 INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role, code, confirmed, agreed) 
 VALUES ('Evil', 'Jake','eviljaketaylornorris@evil.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user', '234567', 1, 0);
 
-INSERT INTO bids(unit_id, bidder_id, amount, date_placed) 
-VALUES (1001, 1, 100, '2024-04-10 11:08:10')
-INSERT INTO bids(unit_id, bidder_id, amount, date_placed) 
-VALUES (1002, 3, 100, '2024-04-10 11:08:10')
-
+-- UNIT COUNT: 4
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
 VALUES (202, 85, 85, 4, 'II0008', 'Columbus', '5x5', 1, '2024-04-18 18:08:10', GETDATE())
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
@@ -65,6 +61,11 @@ INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number
 VALUES (273, 220, 220, 1, 'KK0010', 'Cincinnati', '10x15', 1, '2024-04-12 11:38:10', GETDATE())
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
 VALUES (166, 20, 20, 2, 'LL0011', 'Akron', '10x20', 1, '2024-04-17 11:08:10', GETDATE())
+
+INSERT INTO bids(unit_id, bidder_id, amount, date_placed) 
+VALUES (1001, 1, 100, '2024-04-10 11:08:10')
+INSERT INTO bids(unit_id, bidder_id, amount, date_placed) 
+VALUES (1002, 3, 100, '2024-04-10 11:08:10')
 
 ALTER TABLE units WITH CHECK ADD CONSTRAINT [FK_users_units]
 FOREIGN KEY(highest_bidder) REFERENCES [users] (id)
