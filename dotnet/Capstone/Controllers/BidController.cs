@@ -27,7 +27,7 @@ namespace Capstone.Controllers
         }
 
         [Authorize]
-        [HttpPost("/units/{unitId}")]
+        [HttpPost("/bid")]
         public ActionResult<Bid> CreateBid(Bid bid)
         {
             const string ErrorMessage = "An error occurred and bid was not placed.";

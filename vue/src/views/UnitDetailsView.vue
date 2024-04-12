@@ -6,10 +6,11 @@
                 <h3>{{ unit.city }} Unit #{{ unit.id }}</h3>
                 <h3>Highest Bid: ${{ unit.highestBid }}</h3>
                 <form v-on:submit.prevent="placeBid()">
-                    <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount" v-bind="bid.amount">
+                    <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount" v-model="bid.amount">
                     <br>
                     <br>
-                    <button v-on:click="this.$router.push('/bids')">BID NOW</button>
+                    <button type="submit">BID NOW</button>
+                    
                 </form>
                 <h3>Details:</h3>
             </div>
@@ -42,10 +43,11 @@ export default {
 
     methods: {
         placeBid(){
+            console.log("reached placedBid in UnitDetailsView")
             BidService
             .bid(this.bid)
             .then((response) =>{
-            if (response.status === 201){
+            if (response.status == 201){
                 this.$router.push({
                     path: '/bids'
                 });
