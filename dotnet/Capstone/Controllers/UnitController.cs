@@ -38,5 +38,22 @@ namespace Capstone.Controllers
             }
         }
 
+        [HttpGet("/units/{id}")]
+        public ActionResult<Unit> GetUnitById(int id)
+        {
+            Unit unit = new Unit();
+
+            const string ErrorMessage = "An error has occurred and unit was not retrieved.";
+
+            try
+            {
+                unit = unitDao.GetUnitById(id);
+                return Ok(unit);
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+            }
+        }
     }
 }

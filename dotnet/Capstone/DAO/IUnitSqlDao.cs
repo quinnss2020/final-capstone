@@ -6,5 +6,7 @@ namespace Capstone.DAO
     public interface IUnitSqlDao
     {
         public IList<Unit> GetAllUnits();
+        public Unit GetUnitById(int id);
+        public Unit UpdateUnit(Unit unit, int amount);
     }
 }

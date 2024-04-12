@@ -22,6 +22,36 @@ namespace Capstone.DAO
             connectionString = dbConnectionString;
         }
 
+        public Unit GetUnitById(int id)
+        {
+            Unit unit = new Unit();
+            string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
+                "order_number, city, size, active, expiration, created FROM units WHERE id = @id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        unit = MapRowToUnit(reader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+            return unit;
+        }
+
         public IList<Unit> GetAllUnits()
         {
 
@@ -54,6 +84,33 @@ namespace Capstone.DAO
             return units;
         }
 
+        public Unit UpdateUnit(Unit unit, int amount)
+        {
+            string sql = "UPDATE units SET amount = @amount WHERE id = @unitId";
+
+            Unit newUnit = new Unit();
+            int newUnitId = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@unitId", unit.Id);
+
+                    newUnitId = unit.Id;
+
+                    newUnit = GetUnitById(newUnitId);
+                }
+                return newUnit;
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+        }
         private Unit MapRowToUnit(SqlDataReader reader)
         {
             Unit unit = new Unit();
