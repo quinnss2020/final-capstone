@@ -9,7 +9,9 @@ import RegisterView from '../views/RegisterView.vue';
 import NotFoundView from "../views/NotFoundView.vue";
 import TermsAndConditionsView from "../views/TermsAndConditionsView.vue";
 import ListUnitView from '../views/ListUnitView.vue';
-// import UnitDetailsView from '../views/UnitDetailsView.vue';
+import UnitDetailsView from '../views/UnitDetailsView.vue';
+import UserBidView from '../views/UserBidView.vue';
+
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
