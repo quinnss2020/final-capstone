@@ -21,13 +21,13 @@
 
                 <div class="expiration">
                     <h3>Expires in</h3>
-                    <input type="checkbox" id="one-hour" value="60" v-model="filter.expiration">
+                    <input type="radio" id="one-hour" value="60" v-model="filter.expiration">
                     <label for="one-hour"> &lt; 1 hour </label>
                     <br>
-                    <input type="checkbox" id="three-hours" value="180" v-model="filter.expiration">
+                    <input type="radio" id="three-hours" value="180" v-model="filter.expiration">
                     <label for="three-hours"> &lt; 3 hours</label>
                     <br>
-                    <input type="checkbox" id="twentyfour-hours" value="1440" v-model="filter.expiration">
+                    <input type="radio" id="twentyfour-hours" value="1440" v-model="filter.expiration">
                     <label for="twentyfour-hours"> &lt; 24 hours</label>
                     <br>
                 </div>
@@ -50,17 +50,17 @@
 
                 <div class="high-bid">
                     <h3>High Bid</h3>
-                    <input type="checkbox" id="0-50" value="0-50" v-model="filter.highBid">
+                    <input type="checkbox" id="0-50" value="0-50" v-model="filter.highestBid">
                     <label for="0-50">$0 - $50</label>
                     <br>
-                    <input type="checkbox" id="51-100" value="51-100" v-model="filter.highBid">
+                    <input type="checkbox" id="51-100" value="51-100" v-model="filter.highestBid">
                     <label for="51-100">$51 - $100</label>
                     <br>
-                    <input type="checkbox" id="101-150" value="101-150" v-model="filter.highBid">
+                    <input type="checkbox" id="101-150" value="101-150" v-model="filter.highestBid">
                     <label for="101-150">$101 - $150</label>
                     <br>
-                    <input type="checkbox" id="150" value="150" v-model="filter.highBid">
-                    <label for="150">$151+</label>
+                    <input type="checkbox" id="150" value="151-200" v-model="filter.highestBid">
+                    <label for="150">$151 - $200</label>
                     <br>
                 </div>
                 <button v-on:click="filterUnits">Apply Filters</button>
@@ -92,7 +92,7 @@ export default {
                 location: [],
                 expiration: [],
                 size: [],
-                highBid: [],
+                highestBid: [],
             },
 
         }
@@ -124,6 +124,8 @@ export default {
 
         filterUnits() {
 
+            this.filteredUnits = this.units;
+
             this.filteredUnits = this.filteredUnits.filter(unit => {
                 if (this.filter.location.length === 0) {
                     return true;
@@ -132,7 +134,9 @@ export default {
             })
 
             this.filteredUnits = this.filteredUnits.filter(unit => {
-
+                if (this.filter.expiration.length === 0) {
+                    return true;
+                }
                 var date = new Date(Date.parse(unit.expiration));
                 const now = Date.now();
                 let timeRemaining = date - now;
@@ -140,7 +144,7 @@ export default {
                 var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
                 console.log('reached expiration filter')
                 return minutes < (this.filter.expiration) && seconds > 0;
-                
+
             })
 
             this.filteredUnits = this.filteredUnits.filter(unit => {
@@ -148,6 +152,23 @@ export default {
                     return true;
                 }
                 return this.filter.size.includes(unit.size);
+            })
+
+
+            this.filteredUnits = this.filteredUnits.filter(unit => {
+                if (this.filter.highestBid.length === 0) {
+                    return true;
+                }
+
+                let result;
+                
+                this.filter.highestBid.forEach((x) => {
+                    let range = x.split("-");
+                    result = unit.highestBid >= parseInt(range[0]) && unit.highestBid <= parseInt(range[1]);
+                })
+                
+                return result;
+
             })
 
 

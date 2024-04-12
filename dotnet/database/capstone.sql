@@ -72,7 +72,7 @@ VALUES (101, 100, 100, 1, 'AA0000', 'Columbus', '5x5', 1, '2024-04-13 11:08:10',
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
 VALUES (102, 120, 120, 2, 'BB0001', 'Cleveland', '10x10', 1, '2024-04-12 12:08:10', GETDATE())
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
-VALUES (103, 234, 234, 3, 'CC0002', 'Cincinnati', '10x15', 1, '2024-04-13 11:08:10', GETDATE())
+VALUES (103, 180, 180, 3, 'CC0002', 'Cincinnati', '10x15', 1, '2024-04-13 11:08:10', GETDATE())
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
 VALUES (104, 6000, 6000, 4, 'DD0003', 'Akron', '10x20', 1, '2024-04-17 11:08:10', GETDATE())
 

@@ -16,6 +16,11 @@ export default {
 </script>
 
 <style scoped>
+
+template {
+  background-color:#B4B09B;
+}
+
 h1 {
 -webkit-text-fill-color:#264B56;
 -webkit-text-stroke: 1.5px black;

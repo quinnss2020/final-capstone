@@ -28,8 +28,6 @@ html {
   text-align: center;
   background-color: #677477;
   margin: 0;
-  /* background-size: auto; */
-
   height: 100vh;
   width: 100vw;
   padding: 0;
