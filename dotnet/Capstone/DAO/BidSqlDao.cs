@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
+using Capstone.Controllers;
 
 namespace Capstone.DAO
 {
     public class BidSqlDao : IBidSqlDao
     {
         private readonly string connectionString;
-
         public BidSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -77,6 +78,37 @@ namespace Capstone.DAO
             return bid;
         }
 
+        public IList<Bid> GetAllBidsByUserId(int id)
+        {
+            IList<Bid> usersBids = new List<Bid>();
+            
+
+            string sql = "SELECT id, unit_id, bidder_id, amount, date_placed FROM bids WHERE bidder_id = @id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while(reader.Read())
+                    {
+                        Bid bid = MapRowToBid(reader);
+                        usersBids.Add(bid);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return usersBids;
+        }
         private Bid MapRowToBid(SqlDataReader reader)
         {
             Bid bid = new Bid();

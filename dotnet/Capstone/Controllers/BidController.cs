@@ -3,6 +3,7 @@ using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections;
@@ -16,15 +17,17 @@ namespace Capstone.Controllers
     {
         private readonly IBidSqlDao bidDao;
         private readonly IUnitSqlDao unitDao;
-        public BidController(IBidSqlDao bidDao, IUnitSqlDao unitSqlDao)
+        private readonly IUserDao userDao;
+        public BidController(IBidSqlDao bidDao, IUnitSqlDao unitSqlDao, IUserDao userDao)
         {
             this.bidDao = bidDao;
             this.unitDao = unitSqlDao;
+            this.userDao = userDao;
 
         }
 
         [Authorize]
-        [HttpPost("/units/{unitId}/bid")]
+        [HttpPost("/units/{unitId}")]
         public ActionResult<Bid> CreateBid(Bid bid)
         {
             const string ErrorMessage = "An error occurred and bid was not placed.";
@@ -37,7 +40,7 @@ namespace Capstone.Controllers
             {
                 try
                 {
-                    unitDao.UpdateUnit(unit, bid.Amount);
+                    unitDao.UpdateUnit(unit, bid.Amount, bid.BidderId);
                     newBid = bidDao.CreateBid(bid);
                     return Created($"/account/bids", newBid);
                 }
@@ -70,5 +73,32 @@ namespace Capstone.Controllers
 
             return Ok(bid);
         }
+
+        [HttpGet("/bids")]
+        public ActionResult<List<Bid>> GetAllBidsByUserId()
+        {
+            const string ErrorMessage = "An error has occurred and a list of ubids was not created.";
+
+            IList<Bid> userBids = new List<Bid>();
+
+            try
+            {
+                string userEmail = User.Identity.Name;
+                User user = userDao.GetUserByEmail(userEmail);
+                int userId = user.Id;
+
+                userBids = bidDao.GetAllBidsByUserId(userId);
+
+                return Ok(userBids);
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+            }
+
+
+        }
+
+
     }
 }

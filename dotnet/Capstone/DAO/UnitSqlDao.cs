@@ -84,9 +84,9 @@ namespace Capstone.DAO
             return units;
         }
 
-        public Unit UpdateUnit(Unit unit, int amount)
+        public Unit UpdateUnit(Unit unit, int amount, int userId)
         {
-            string sql = "UPDATE units SET amount = @amount WHERE id = @unitId";
+            string sql = "UPDATE units SET amount = @amount, highest_bidder = @highest_bidder WHERE id = @unitId";
 
             Unit newUnit = new Unit();
             int newUnitId = 0;
@@ -98,6 +98,7 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@highest_bidder", userId);
                     cmd.Parameters.AddWithValue("@unitId", unit.Id);
 
                     newUnitId = unit.Id;
