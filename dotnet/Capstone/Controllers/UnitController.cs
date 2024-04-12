@@ -20,7 +20,6 @@ namespace Capstone.Controllers
             this.unitDao = unitDao;
         }
 
-        [Authorize]
         [HttpGet("/units")]
         public ActionResult<List<Unit>> GetAllUnits()
         {
