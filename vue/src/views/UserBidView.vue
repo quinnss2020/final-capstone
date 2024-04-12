@@ -2,8 +2,11 @@
     <div class="user-bids">
         <h1>These are the user's bids</h1>
         <!--for each bid in the user's bids: create bid div-->
+        <section class="bid-container">
+            <Bid v-for="bid in userBids" v-bind:key="bid.id" v-bind:b="bid" />
+        </section>
         <div class="bid-details">
-           <h3>A bid and its details</h3> 
+            <h3>A bid and its details</h3>
         </div>
         <div class="bid-details">
             <h3>A bid and its details</h3>
@@ -17,24 +20,43 @@
 
 <script>
 import BidService from '../services/BidService.js';
+import Bid from '../components/Bid.vue';
 
 export default {
+    name: "UserBids",
+    components: { Bid },
+    data() {
+        return {
+            userBids: [],
+        }
+    },
 
     methods: {
-        listBids(){
-            //list all bids
-            return null;
+        getBids() {
+            BidService
+                .list()
+                .then((response) => {
+                    this.userBids = response.data;
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Error loading bids: ", error.response.status);
+                    }
+                    else if (error.request) {
+                        console.log("Error loading bids. Unable to communicate to server.");
+                    }
+                    else {
+                        console.log("Error making request");
+                    }
+                })
         }
 
     },
 
     created() {
-        BidService
-        //TODO ensure that server controller is taking user's ID and only returning their bids
-        .list()
 
         //then call method above that lists bids
-        this.listBids();
+        this.getBids();
 
     }
 }
