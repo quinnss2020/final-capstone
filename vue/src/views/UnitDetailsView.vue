@@ -31,13 +31,14 @@ export default {
     data() {
         return {
             unit: {},
+            
             bid: {
-                id: this.unitId,
+                unitId: "",
                 bidderId: this.$store.state.user.id,
                 amount: "",
-                dateTime: "",
+                
             },
-            unitId: 0
+            
         }
     },
 
@@ -65,9 +66,10 @@ export default {
     },
 
     created() {
-        this.unitId = this.$route.params.id
+        //supposively
+        this.bid.unitId = this.$route.params.unitId;
         UnitService
-            .unitDetails(this.unitId)
+            .unitDetails(this.bid.unitId)
             .then((response) => {
                 this.unit = response.data;
             })

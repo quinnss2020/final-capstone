@@ -72,7 +72,7 @@ const routes = [
   },
 
   {
-    path: "/units/:id",
+    path: "/units/:unitId",
     name: "unitDetails",
     component: UnitDetailsView,
     meta: {

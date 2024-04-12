@@ -3,7 +3,7 @@
         <h1>These are the user's bids</h1>
         <!--for each bid in the user's bids: create bid div-->
         <section class="bid-container">
-            <Bid v-for="bid in userBids" v-bind:key="bid.id" v-bind:b="bid" />
+            <Bid v-for="bid in userBids" v-bind:key="bid.amount" v-bind:b="bid" />
         </section>
         <div class="bid-details">
             <h3>A bid and its details</h3>

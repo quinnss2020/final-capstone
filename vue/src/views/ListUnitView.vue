@@ -183,23 +183,23 @@ export default {
     },
 
     created() {
-        UnitService
-            .list()
-            .then((response) => {
-                this.units = response.data;
+        // UnitService
+        //     .list()
+        //     .then((response) => {
+        //         this.units = response.data;
 
-            })
-            .catch((error) => {
-                if (error.response) {
-                    console.log("Error loading units in <CREATED>: ", error.response.status);
-                }
-                else if (error.request) {
-                    console.log("Error loading units in <CREATED>. Unable to communicate to server.");
-                }
-                else {
-                    console.log("Error making request in <CREATED>");
-                }
-            });
+        //     })
+        //     .catch((error) => {
+        //         if (error.response) {
+        //             console.log("Error loading units in <CREATED>: ", error.response.status);
+        //         }
+        //         else if (error.request) {
+        //             console.log("Error loading units in <CREATED>. Unable to communicate to server.");
+        //         }
+        //         else {
+        //             console.log("Error making request in <CREATED>");
+        //         }
+        //     });
 
         this.getUnits();
     },

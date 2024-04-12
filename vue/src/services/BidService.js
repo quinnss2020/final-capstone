@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
     bid(bid) {
-        return axios.post('/bid', bid);
+        return axios.post(`/units/${bid.unitId}`, bid);
     },
 
     list() {

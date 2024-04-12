@@ -2,7 +2,7 @@
     <section class="bid">
         <p id="bid-id">Bid # {{b.id}}</p>
         <p id="bid-amount">Your bid: ${{ b.amount }}</p>
-        <p id="bid-highest">High bid: ${{ item.highestBid }}</p>
+        <p id="bid-highest">High bid: $</p>
         <p id="bid-status">Status:</p>
         <p id="bid-result" v-if="!isActive">Result____</p>
     </section>
@@ -10,8 +10,8 @@
 
 <script>
 export default {
-    name: "bid",
-    props: ['b', 'item'],
+    name: "Bid",
+    props: ['b'],
     isActive: false, //can we make this computed to reflect unit active status?
 
 }
@@ -20,7 +20,9 @@ export default {
 <style scoped>
 .bid p {
     display: inline;
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 30px;
 }
-
 
 </style>

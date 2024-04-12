@@ -22,7 +22,7 @@ namespace Capstone.DAO
             Bid bid = new Bid();
             int newBidId = 0;
 
-            string sql = "BEGIN TRANSACTION " + "INSERT INTO bids(unit_id, bidder_id, amount, date_placed) " + "OUTPUT INSERTED.id VALUES(@unitId, @bidderId, @amount, @datePlaced) COMMIT";
+            string sql = "BEGIN TRANSACTION " + "INSERT INTO bids(unit_id, bidder_id, amount) " + "OUTPUT INSERTED.id VALUES(@unitId, @bidderId, @amount) COMMIT";
 
             try
             {
@@ -34,7 +34,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@unitId", newBid.UnitId);
                     cmd.Parameters.AddWithValue("@bidderId", newBid.BidderId);
                     cmd.Parameters.AddWithValue("@amount", newBid.Amount);
-                    cmd.Parameters.AddWithValue("datePlaced", newBid.DatePlaced);
+                    //cmd.Parameters.AddWithValue("datePlaced", newBid.DatePlaced);
 
                     newBidId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
