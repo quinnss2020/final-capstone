@@ -31,7 +31,7 @@ export default {
             var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-            console.log(typeof timeRemaining);
+            
             if (timeRemaining < 0) {
                 this.expiring = "EXPIRED"
             }

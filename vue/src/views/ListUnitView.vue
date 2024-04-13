@@ -127,7 +127,7 @@ export default {
 
         filterUnits() {
 
-            this.filteredUnits = this.units;
+            //this.filteredUnits = this.units;
 
             this.filteredUnits = this.filteredUnits.filter(unit => {
                 if (this.filter.location.length === 0) {
