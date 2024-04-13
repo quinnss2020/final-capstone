@@ -40,6 +40,7 @@ namespace Tutorial.Tests.DAO
             AssertUnitsMatch(UNIT_1, unit);
         }
 
+
         private void AssertUnitsMatch(Unit expected, Unit actual)
         {
             Assert.AreEqual(expected.Id, actual.Id);

@@ -241,6 +241,11 @@ export default {
     flex-direction: row;
 }
 
+.unit-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #page-container{
     display: flex;
     flex-direction: row;
