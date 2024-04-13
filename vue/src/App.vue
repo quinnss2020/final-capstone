@@ -26,7 +26,7 @@ export default {
 html {
   font-family: "Roboto", sans-serif;
   text-align: center;
-  color: white;
+  color:#faefe0;
   background-color: #677477;
   margin: 0;
   height: 100vh;
@@ -41,12 +41,21 @@ button {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   color: #264B56;
-  background-color: #faefe0;;
+  background-color: #faefe0;
   border-color: #264B56;
   border-radius: 0.6rem;
   padding: 8px;
-  width: 180px;
+  width: 170px;
   height: 35px;
+  margin-bottom: 7px;
   white-space: nowrap;
+}
+
+
+input {
+background-color: #FAEFE0;
+border: none;
+border-radius: 0.3rem;
+padding: 8px;
 }
 </style>

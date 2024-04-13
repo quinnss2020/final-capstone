@@ -1,36 +1,38 @@
 <template>
     <div class="user-bids">
-        <h1>Bid History</h1>
+        <h1>My Bid History</h1>
         <!--for each bid in the user's bids: create bid div-->
         <section class="bid-container">
             <table id="bid-table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Auction [LINK TO UNIT PAGE]</th>
                         <th>Current Status</th>
                         <th>Time Remaining</th>
                         <th>Bid Amount </th>
                         <th>Current High Bid</th>
                         <th>Outcome [COMPUTED WON OR LOST]</th>
-
                     </tr>
                 </thead>
+                <tbody>
+                    <tr v-for="bid in userBids" v-bind:key="bid.amount" v-bind:b="bid">
+                        <td>{{ bid.id }}</td>
+                        <td>the auction link</td>
+                        <td>COMPUTED</td>
+                        <td id="unit-time-remaining">text here</td>
+                        <td>${{ bid.amount }}</td>
+                        <td>text</td>
+                        <td>COMPUTED</td>
 
+                    </tr>
+                </tbody>
 
             </table>
 
 
-            <Bid v-for="bid in userBids" v-bind:key="bid.amount" v-bind:b="bid" />
+            <!-- <Bid v-for="bid in userBids" v-bind:key="bid.amount" v-bind:b="bid" /> -->
         </section>
-        <div class="bid-details">
-            <h3>A bid and its details</h3>
-        </div>
-        <div class="bid-details">
-            <h3>A bid and its details</h3>
-        </div>
-        <div class="bid-details">
-            <h3>A bid and its details</h3>
-        </div>
 
     </div>
 </template>
@@ -38,13 +40,17 @@
 <script>
 import BidService from '../services/BidService.js';
 import Bid from '../components/Bid.vue';
+import UnitCard from '../components/UnitCard.vue';
+import UnitService from '../services/UnitService.js';
 
 export default {
     name: "UserBids",
-    components: { Bid },
+    //props: ['item'],
+    // components: { UnitCard },
     data() {
         return {
             userBids: [],
+            thisUnit: {},
         }
     },
 
@@ -66,7 +72,26 @@ export default {
                         console.log("Error making request");
                     }
                 })
-        }
+        },
+
+        getUnitDetails() {
+            UnitService
+                .unitDetails(this.bid.unitId)
+                .then((response) => {
+                    this.thisUnit = response.data;
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Error loading unit details: ", error.response.status);
+                    }
+                    else if (error.request) {
+                        console.log("Error loading unit details. Unable to communicate to server.");
+                    }
+                    else {
+                        console.log("Error making request to fetch unit details");
+                    }
+                })
+        },
 
     },
 
@@ -74,6 +99,8 @@ export default {
 
         //then call method above that lists bids
         this.getBids();
+        //this.getUnitDetails();
+        
 
     }
 }
@@ -85,5 +112,27 @@ export default {
     display: flex;
     border: 2px dashed black;
 
+}
+
+.bid-container {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    color: #faefe0;
+}
+
+table {
+    margin: 10px;
+}
+
+td {
+    padding: 50px;
+}
+
+th {
+    color: #faefe0;
+    font-size: 1.5rem;
 }
 </style>
