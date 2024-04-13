@@ -10,9 +10,9 @@ namespace Tutorial.Tests.DAO
     [TestClass]
     public class UnitSqlDaoTest : BaseDaoTests
     {
-        private static readonly Unit UNIT_1 = new Unit(1006, 117, 100, 100, 3, "AA1000", "Columbus", "5x5", true, new DateTime(2024, 04, 15, 10, 30, 50), new DateTime(2024, 04, 12, 10, 30, 50));
+        private static readonly Unit UNIT_1 = new Unit(1000, 202, 85, 85, 4, "II0008", "Columbus", "5x5", true, new DateTime(2024, 04, 18, 18, 08, 00), new DateTime(2024, 04, 13, 12, 00, 00), "Kitchen odds and ends: Scratched cookware, outdated appliances, and half-used ingredients, a hodgepodge of culinary essentials perfect for those who appreciate the charm of well-loved kitchenware and budget-friendly cooking.");
 
-        private static readonly Unit UNIT_2 = new Unit(1007, 118, 200, 200, 3, "AA1001", "Cleveland", "10x10", false, new DateTime(2024, 04, 15, 10, 30, 50), new DateTime(2024, 04, 12, 10, 30, 50));
+        private static readonly Unit UNIT_2 = new Unit(1006, 118, 200, 200, 3, "AA1001", "Cleveland", "10x10", false, new DateTime(2024, 04, 15, 10, 30, 50), new DateTime(2024, 04, 12, 10, 30, 50), "this is also a test unit");
 
         private UnitSqlDao unitDao;
 
@@ -33,10 +33,9 @@ namespace Tutorial.Tests.DAO
         }
 
         [TestMethod]
-        public void GetUnitById_ReturnCorrectUser()
+        public void GetUnitById_ReturnCorrectUnit()
         {
-            int id = 1006;
-            Unit unit = unitDao.GetUnitById(id);
+            Unit unit = unitDao.GetUnitById(1000);
 
             AssertUnitsMatch(UNIT_1, unit);
         }

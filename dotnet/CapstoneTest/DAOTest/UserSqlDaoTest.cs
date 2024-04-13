@@ -9,7 +9,7 @@ namespace Tutorial.Tests.DAO
     [TestClass]
     public class UserSqlDaoTest : BaseDaoTests
     {
-        private static readonly User USER_1 = new User(1, "Admin", "Test", "admin@storage.com", "YhyGVQ+Ch69n4JMBncM4lNF/i9s=", "Ar/aB2thQTI=", "admin", "123456", true, true);
+        private static readonly User USER_1 = new User(1, "Admin", "Test", "admin@storage.com", "YhyGVQ+Ch69n4JMBncM4lNF/i9s=", "Ar/aB2thQTI=", "admin", "123456", true, false);
         private static readonly User USER_2 = new User(2, "User", "Test", "user@storage.com", "Jg45HuwT7PZkfuKTz6IB90CtWY4=", "LHxP4Xh7bN0=", "user", "456789", true, false);
 
 
@@ -35,7 +35,7 @@ namespace Tutorial.Tests.DAO
 
             // Assert - retrieved list not null and matches expected count
             Assert.IsNotNull(users);
-            Assert.AreEqual(2, users.Count);
+            Assert.AreEqual(5, users.Count);
         }
 
         [TestMethod]
