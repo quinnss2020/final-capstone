@@ -50,7 +50,7 @@ CREATE TABLE bids (
 	unit_id int NOT NULL,
 	bidder_id int NOT NULL DEFAULT 1,
 	amount int NOT NULL,
-	date_placed datetime NOT NULL,
+	date_placed datetime NOT NULL DEFAULT GETDATE(),
 	CONSTRAINT PK_bids PRIMARY KEY (id)
 )
 
