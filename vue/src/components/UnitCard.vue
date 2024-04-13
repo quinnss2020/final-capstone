@@ -31,12 +31,12 @@ export default {
             var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-            console.log(typeof timeRemaining);
+            
             if (timeRemaining < 0) {
                 this.expiring = "EXPIRED"
             }
             else {
-            this.expiring = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds `;
+            this.expiring = `${days} D ${hours} H ${minutes} M ${seconds} S `;
             }
         },
     },
@@ -78,7 +78,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    width: 200px;
+    width: 250px;
     height: 200px;
 }
 </style>

@@ -36,3 +36,4 @@ const app = createApp(CapstoneApp);
 app.use(store);
 app.use(router);
 app.mount('#app');
+//add app.use(NAME-OF-PLUGIN) if we want to use plugins

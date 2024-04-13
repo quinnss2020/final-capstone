@@ -127,7 +127,7 @@ export default {
 
         filterUnits() {
 
-            this.filteredUnits = this.units;
+            //this.filteredUnits = this.units;
 
             this.filteredUnits = this.filteredUnits.filter(unit => {
                 if (this.filter.location.length === 0) {
@@ -239,6 +239,11 @@ export default {
     width: 600px;
     height: 100vh;
     flex-direction: row;
+}
+
+.unit-container {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 #page-container{

@@ -16,13 +16,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="bid in userBids" v-bind:key="bid.amount" v-bind:b="bid">
+                    <tr v-for="{bid, unit} in bidsAndUnits" v-bind:key="bid.amount">
                         <td>{{ bid.id }}</td>
-                        <td>the auction link</td>
+                        <td>URL</td>
                         <td>COMPUTED</td>
-                        <td id="unit-time-remaining">text here</td>
+                        <td id="unit-time-remaining">
+                            <Countdown :expiration="unit.expiration">QQ</Countdown>
+                        </td>
+                        
                         <td>${{ bid.amount }}</td>
-                        <td>text</td>
+                        <td>${{unit.highestBid}}</td>
                         <td>COMPUTED</td>
 
                     </tr>
@@ -42,19 +45,25 @@ import BidService from '../services/BidService.js';
 import Bid from '../components/Bid.vue';
 import UnitCard from '../components/UnitCard.vue';
 import UnitService from '../services/UnitService.js';
+import Countdown from '../components/Countdown.vue';
+//import {countdown} from '../helpers/countdown.js';
 
 export default {
     name: "UserBids",
     //props: ['item'],
-    // components: { UnitCard },
+    components: { Countdown },
     data() {
         return {
             userBids: [],
-            thisUnit: {},
+            //thisUnit: {},
+            units: [],
         }
     },
 
     methods: {
+        // countdown(expiration) {
+        //     return countdown(expiration);
+        // },
         getBids() {
             BidService
                 .list()
@@ -74,11 +83,32 @@ export default {
                 })
         },
 
-        getUnitDetails() {
+        getUnitDetails(unitId) {
+            // UnitService
+            //     .unitDetails(this.bid.unitId)
+            //     .then((response) => {
+            //         this.thisUnit = response.data;
+            //     })
+            //     .catch((error) => {
+            //         if (error.response) {
+            //             console.log("Error loading unit details: ", error.response.status);
+            //         }
+            //         else if (error.request) {
+            //             console.log("Error loading unit details. Unable to communicate to server.");
+            //         }
+            //         else {
+            //             console.log("Error making request to fetch unit details");
+            //         }
+            //     })
+            return this.units.find((u) => u.id === unitId);
+
+        },
+
+        getUnits(){
             UnitService
-                .unitDetails(this.bid.unitId)
+                .list()
                 .then((response) => {
-                    this.thisUnit = response.data;
+                    this.units = response.data;
                 })
                 .catch((error) => {
                     if (error.response) {
@@ -91,14 +121,31 @@ export default {
                         console.log("Error making request to fetch unit details");
                     }
                 })
+        }
+
+    },
+
+    computed: {
+        bidsAndUnits() {
+            //.map function
+            return this.userBids.map( (bid) => {
+                return {
+                    bid,
+                    unit: this.getUnitDetails(bid.unitId)
+                }
+            })
+            
         },
 
     },
+
+
 
     created() {
 
         //then call method above that lists bids
         this.getBids();
+        this.getUnits();
         //this.getUnitDetails();
         
 
