@@ -45,7 +45,6 @@ button {
   border-color: #264B56;
   border-radius: 0.6rem;
   padding: 8px;
-  padding-inline: 4.2rem;
   width: 180px;
   height: 35px;
   white-space: nowrap;
