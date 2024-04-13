@@ -26,7 +26,7 @@ namespace Capstone.DAO
         {
             Unit unit = new Unit();
             string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
-                "order_number, city, size, active, expiration, created FROM units WHERE id = @id";
+                "order_number, city, size, active, expiration, created, details FROM units WHERE id = @id";
 
             try
             {
@@ -58,7 +58,7 @@ namespace Capstone.DAO
             IList<Unit> units = new List<Unit>();
 
             string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
-                "order_number, city, size, active, expiration, created FROM units";
+                "order_number, city, size, active, expiration, created, details FROM units";
 
             try
             {
@@ -126,6 +126,7 @@ namespace Capstone.DAO
             unit.Active = Convert.ToBoolean(reader["active"]);
             unit.Expiration = Convert.ToDateTime(reader["expiration"]);
             unit.Created = Convert.ToDateTime(reader["created"]);
+            unit.Details = Convert.ToString(reader["details"]);
 
             return unit;
         }

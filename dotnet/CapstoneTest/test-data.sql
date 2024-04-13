@@ -27,7 +27,7 @@ CREATE TABLE units (
 	active bit NOT NULL, 
 	expiration smalldatetime NOT NULL, 
 	created datetime NOT NULL DEFAULT GETDATE(),
-
+	details varchar(max) NOT NULL,
 	CONSTRAINT PK_units PRIMARY KEY (id)
 )
 
@@ -36,7 +36,7 @@ CREATE TABLE bids (
 	unit_id int NOT NULL,
 	bidder_id int NOT NULL DEFAULT 1,
 	amount int NOT NULL,
-	date_placed datetime NOT NULL,
+	date_placed datetime NOT NULL DEFAULT GETDATE(),
 	CONSTRAINT PK_bids PRIMARY KEY (id)
 )
 
@@ -53,14 +53,15 @@ INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role,
 VALUES ('Evil', 'Jake','eviljaketaylornorris@evil.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user', '234567', 1, 0);
 
 -- UNIT COUNT: 4
-INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
-VALUES (202, 85, 85, 4, 'II0008', 'Columbus', '5x5', 1, '2024-04-18 18:08:10', GETDATE())
-INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
-VALUES (358, 130, 130, 5, 'JJ0009', 'Cleveland', '10x10', 1, '2024-04-22 12:08:10', GETDATE())
-INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
-VALUES (273, 220, 220, 1, 'KK0010', 'Cincinnati', '10x15', 1, '2024-04-12 11:38:10', GETDATE())
-INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created) 
-VALUES (166, 20, 20, 2, 'LL0011', 'Akron', '10x20', 1, '2024-04-17 11:08:10', GETDATE())
+INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
+VALUES (202, 85, 85, 4, 'II0008', 'Columbus', '5x5', 1, '2024-04-18 18:08:10', '2024-04-13 12:00:00', 'Kitchen odds and ends: Scratched cookware, outdated appliances, and half-used ingredients, a hodgepodge of culinary essentials perfect for those who appreciate the charm of well-loved kitchenware and budget-friendly cooking.')
+INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
+VALUES (358, 130, 130, 5, 'JJ0009', 'Cleveland', '10x10', 1, '2024-04-22 12:08:10', GETDATE(), 'Vintage toy collection: Play-worn toys, missing pieces, and well-loved games from childhoods long past, offering a trip down memory lane for those who cherish the simple joys of playtime and imagination.')
+INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
+VALUES (273, 220, 220, 1, 'KK0010', 'Cincinnati', '10x15', 1, '2024-04-13 16:38:10', GETDATE(), 'Artistic mishmash gallery: Paintings with faded colors, sculptures with chipped edges, and eclectic creations with stories to tell, offering a glimpse into the creative minds and artistic endeavors of the past.')
+INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
+VALUES (166, 20, 20, 2, 'LL0011', 'Akron', '10x20', 1, '2024-04-13 18:08:10', GETDATE(), 'Fitness gear grab bag: Tattered yoga mats, worn-out dumbbells, and cracked exercise machines, a testament to the dedication and sweat of past fitness enthusiasts, waiting to be revitalized by new energy and determination.')
+
 
 INSERT INTO bids(unit_id, bidder_id, amount, date_placed) 
 VALUES (1001, 1, 100, '2024-04-10 11:08:10')

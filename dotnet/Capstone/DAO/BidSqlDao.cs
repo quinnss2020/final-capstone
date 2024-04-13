@@ -6,6 +6,7 @@ using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using Capstone.Controllers;
+using Org.BouncyCastle.Asn1.Mozilla;
 
 namespace Capstone.DAO
 {
@@ -108,6 +109,39 @@ namespace Capstone.DAO
             }
 
             return usersBids;
+        }
+
+        public IList<Bid> GetBidsByUnitId(int id)
+        {
+            IList<Bid> unitBids = new List<Bid>();
+
+            string sql = "SELECT  id, unit_id, bidder_id, amount, date_placed FROM bids WHERE unit_id = @unitId ORDER BY date_placed DESC";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@unitId", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while(reader.Read())
+                    {
+                        Bid bid = MapRowToBid(reader);
+                        unitBids.Add(bid);
+
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return unitBids;
         }
         private Bid MapRowToBid(SqlDataReader reader)
         {
