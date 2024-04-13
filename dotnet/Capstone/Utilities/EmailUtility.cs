@@ -7,7 +7,7 @@ using System;
 
  public class EmailUtility
 {
-    public bool SendVerificationEmail(Email emailModel)
+    public bool SendEmail(Email emailModel)
     {
         try
         {

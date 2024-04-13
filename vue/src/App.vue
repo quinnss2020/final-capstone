@@ -11,6 +11,7 @@
 
 <script>
 import Navigation from "./components/Navigation.vue"
+import TestUploadImage from "./components/TestUploadImage.vue"
 
 export default {
   name: 'App',

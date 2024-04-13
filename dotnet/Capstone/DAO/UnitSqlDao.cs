@@ -112,6 +112,34 @@ namespace Capstone.DAO
                 throw new DaoException("SQL exception occurred", ex);
             }
         }
+
+        public Unit UpdateUnitActive(Unit unit, bool active)
+        {
+            string sql = "UPDATE units SET active = @active WHERE id = @unitId";
+
+            Unit newUnit = new Unit();
+            int newUnitId = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@active", active);
+                    cmd.Parameters.AddWithValue("@unitId", unit.Id);
+
+                    newUnitId = unit.Id;
+
+                    newUnit = GetUnitById(newUnitId);
+                }
+                return newUnit;
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+        }
         private Unit MapRowToUnit(SqlDataReader reader)
         {
             Unit unit = new Unit();
@@ -130,6 +158,5 @@ namespace Capstone.DAO
 
             return unit;
         }
-        
     }
 }

@@ -36,8 +36,14 @@ namespace Capstone.Controllers
 
             Unit unit = unitDao.GetUnitById(bid.UnitId);
 
-            if(bid.Amount > unit.HighestBid && unit.Active)
+            if (!CheckIfUnitHasExpired(unit))
             {
+                return StatusCode(500, "This auction has closed.");
+            }
+
+            if (bid.Amount > unit.HighestBid)
+            {
+                
                 try
                 {
                     unitDao.UpdateUnit(unit, bid.Amount, bid.BidderId);
@@ -119,7 +125,38 @@ namespace Capstone.Controllers
             }
 
         }
+        private bool CheckIfUnitHasExpired(Unit unitIn)
+        {
+            Unit unit = unitDao.GetUnitById(unitIn.Id);
 
+            if ((unit.Expiration > DateTime.Now) && unit.Active)
+            {
+                return true;
+            }
+            else if ((unit.Expiration < DateTime.Now) && unit.Active)
+            {
+                unitDao.UpdateUnitActive(unit, false);
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        private void SendEmailToHighestBidder(Unit unit, int id)
+        {
+            Email email = new Email();
+            EmailUtility emailUtility = new EmailUtility();
+            User user = userDao.GetUserById(id);
+            string code = emailUtility.VerificationCodeGenerator();
+
+            string subject = $"Congrats From DSS!";
+            string messageBody = $"Congratulations! You have won an auction! \n Your unit is number {unit.LocalId} and is located in {unit.City}. \nYour confirmation code is {code}.";
+
+            email = emailUtility.FormEmail(user.Email, subject, messageBody);
+
+            emailUtility.SendEmail(email);
+        }
     }
 }
