@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Capstone.DAO;
 using Capstone.Models;
 using Capstone.Exceptions;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace Tutorial.Tests.DAO
 {
@@ -175,6 +176,18 @@ namespace Tutorial.Tests.DAO
             User updatedUser = userSqlDao.UpdateAgreed(oldUser);
 
             Assert.AreEqual(true, updatedUser.Agreed);
+
+        }
+
+        [TestMethod]
+        public void UpdateAgreed_DoesNotUpdateAgreed()
+        {
+            User oldUser = USER_1;
+            oldUser.Agreed = false; 
+
+            User updatedUser = userSqlDao.UpdateAgreed(oldUser);
+
+            Assert.AreEqual(false, updatedUser.Agreed);
 
         }
 

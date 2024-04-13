@@ -36,7 +36,7 @@ export default {
                 this.expiring = "EXPIRED"
             }
             else {
-            this.expiring = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds `;
+            this.expiring = `${days} D ${hours} H ${minutes} M ${seconds} S `;
             }
         },
     },
@@ -78,7 +78,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    width: 200px;
+    width: 250px;
     height: 200px;
 }
 </style>
