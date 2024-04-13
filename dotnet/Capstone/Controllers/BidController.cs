@@ -99,6 +99,27 @@ namespace Capstone.Controllers
 
         }
 
+        //[Authorize]
+        [HttpGet("/units/{unitId}/bids")]
+        public ActionResult<List<Bid>> GetBidsByUnitId(int unitId)
+        {
+            const string ErrorMessage = "An error has occurred and a list of bids by unit was not created.";
+
+            IList<Bid> unitBids = new List<Bid>();
+
+            try
+            {
+                unitBids = bidDao.GetBidsByUnitId(unitId);
+
+                return Ok(unitBids);
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+            }
+
+        }
+
 
     }
 }
