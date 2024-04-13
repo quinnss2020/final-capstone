@@ -8,8 +8,11 @@
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
                 <h3>Highest Bid: ${{ unit.highestBid }}</h3>
+                <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
+                
                 <form v-on:submit.prevent="placeBid()">
-                    <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount" v-model="bid.amount">
+                    <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
+                        v-model.number="bid.amount">
                     <br>
                     <br>
                     <button type="submit">BID NOW</button>
@@ -19,7 +22,7 @@
         </div>
         <div id="bid-history-container">
             <h1>Bid History</h1>
-            
+
         </div>
     </div>
 </template>
@@ -33,38 +36,50 @@ export default {
     data() {
         return {
             unit: {},
-            
+
             bid: {
                 unitId: "",
                 bidderId: this.$store.state.user.id,
                 amount: "",
-                
+
             },
-            
+            bidErrors: false,
+            bidErrorMsg: 'Bid must be higher than current bid. Enter whole number.',
+
         }
     },
 
     methods: {
-        placeBid(){
-            console.log("reached placedBid in UnitDetailsView")
-            BidService
-            .bid(this.bid)
-            .then((response) =>{
-            if (response.status == 201){
-                this.$router.push({
-                    path: '/bids'
-                });
+        placeBid() {
+            
+            if (this.bid.amount <= this.unit.highestBid) {
+                this.bidErrors = true;
+
             }
-            })
-            .catch((error) => {
-                const response = error.response;
-                if (response.status === 400)
-                {
-                    console.log("Error placing bid.")
-                }
-            })
-         
-        }    
+            else if (!Number.isInteger(this.bid.amount)) {
+                this.bidErrors = true;
+                this.bidErrorMsg = 'Bid must be a whole number. Do not use decimals';
+            }
+            else {
+                BidService
+                    .bid(this.bid)
+                    .then((response) => {
+                        if (response.status == 201) {
+                            this.$router.push({
+                                path: '/bids'
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        const response = error.response;
+                        if (response.status === 400) {
+                            console.log("Error placing bid.")
+                        }
+                    })
+            }
+
+
+        }
     },
 
     created() {
@@ -92,7 +107,7 @@ export default {
 </script>
 
 <style scoped>
-h1{
+h1 {
     padding: 20px;
 }
 
@@ -103,7 +118,7 @@ h1{
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    background-color:rgb(48, 66, 78);
+    background-color: rgb(48, 66, 78);
 }
 
 #writing-box {
@@ -112,7 +127,7 @@ h1{
     border-radius: 2rem;
     margin-left: 100px;
     padding: 50px;
-    background-color:#B4B09B;
+    background-color: #B4B09B;
     color: #264B56;
 }
 
@@ -121,13 +136,17 @@ h1{
     border-radius: 2rem;
     border-style: outset;
     height: 300px;
-   margin-right:100px;
+    margin-right: 100px;
     padding: 20px;
 }
 
-#bid-history-container{
-    background-color:#B4B09B;
+#bid-history-container {
+    background-color: #B4B09B;
     height: 200px;
 }
 
+.bid-error-msg {
+    color: red;
+    font-weight: bold;
+}
 </style>
