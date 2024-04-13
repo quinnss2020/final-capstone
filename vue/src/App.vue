@@ -41,7 +41,7 @@ button {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   color: #264B56;
-  background-color: #faefe0;;
+  background-color: #faefe0;
   border-color: #264B56;
   border-radius: 0.6rem;
   padding: 8px;
