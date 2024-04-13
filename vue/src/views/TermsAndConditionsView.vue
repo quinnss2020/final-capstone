@@ -190,6 +190,7 @@ export default {
 }
 
 form {
+  color:black;
   flex-direction: column;
   justify-content: center;
   overflow-y: scroll;

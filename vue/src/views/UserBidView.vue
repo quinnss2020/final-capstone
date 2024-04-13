@@ -1,8 +1,25 @@
 <template>
     <div class="user-bids">
-        <h1>These are the user's bids</h1>
+        <h1>Bid History</h1>
         <!--for each bid in the user's bids: create bid div-->
         <section class="bid-container">
+            <table id="bid-table">
+                <thead>
+                    <tr>
+                        <th>Auction [LINK TO UNIT PAGE]</th>
+                        <th>Current Status</th>
+                        <th>Time Remaining</th>
+                        <th>Bid Amount </th>
+                        <th>Current High Bid</th>
+                        <th>Outcome [COMPUTED WON OR LOST]</th>
+
+                    </tr>
+                </thead>
+
+
+            </table>
+
+
             <Bid v-for="bid in userBids" v-bind:key="bid.amount" v-bind:b="bid" />
         </section>
         <div class="bid-details">

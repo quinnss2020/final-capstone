@@ -23,9 +23,9 @@
       </div>
       
       <br>
-      <button type="submit" v-show="!isConfirmed">SIGN IN</button>
+      <button id="sign-in" type="submit" v-show="!isConfirmed">SIGN IN</button>
     </form>
-    <button v-on:click= "this.$router.push('/register')">SIGN UP</button>
+    <button id="new-user" v-on:click= "this.$router.push('/register')">NEW USER</button>
     <br>
     <form v-if="isConfirmed" v-on:submit.prevent="confirm">
       <div class="form-input-group">
@@ -110,6 +110,10 @@ export default {
   align-items: center;
   width: 100%;
   margin-top: 90px
+}
+
+#new-user {
+  text-align: center;
 }
 
 #login {
