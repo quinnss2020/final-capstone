@@ -1,24 +1,26 @@
 <template>
     <div class="unit-details">
         <h1>This is the Unit Details View</h1>
-        <div id="container">
+        <div id="container-details">
+            <div id="images-box">
+                <h1>- Pictures Here -</h1>
+            </div>
             <div id="writing-box">
-                <h3>{{ unit.city }} Unit #{{ unit.id }}</h3>
+                <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
                 <h3>Highest Bid: ${{ unit.highestBid }}</h3>
                 <form v-on:submit.prevent="placeBid()">
                     <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount" v-model="bid.amount">
                     <br>
                     <br>
                     <button type="submit">BID NOW</button>
-                    
                 </form>
                 <h3>Details:</h3>
             </div>
-            <div id="images-box">
-                {Pictures Here of Unit}
-            </div>
         </div>
-
+        <div id="bid-history-container">
+            <h1>Bid History</h1>
+            
+        </div>
     </div>
 </template>
 
@@ -87,9 +89,45 @@ export default {
     }
 }
 
-
-
-
 </script>
 
-<style scoped></style>
+<style scoped>
+h1{
+    padding: 20px;
+}
+
+#container-details {
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(48, 66, 78);
+}
+
+#writing-box {
+    border-style: outset;
+    border-color: #faefe0;
+    border-radius: 2rem;
+    margin-left: 100px;
+    padding: 50px;
+    background-color:#B4B09B;
+    color: #264B56;
+}
+
+#images-box {
+    border-color: #faefe0;
+    border-radius: 2rem;
+    border-style: outset;
+    height: 300px;
+   margin-right:100px;
+    padding: 20px;
+}
+
+#bid-history-container{
+    background-color:#B4B09B;
+    height: 200px;
+}
+
+</style>

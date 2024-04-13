@@ -1,80 +1,82 @@
 <template>
     <div id="view-units">
         <h1>This is the Unit View</h1>
-        <div id="filter-container">
-            <nav>
-                <div class="location">
-                    <h3>Location</h3>
-                    <input type="checkbox" id="columbus" value="Columbus" v-model="filter.location">
-                    <label for="Columbus">Columbus</label>
-                    <br>
-                    <input type="checkbox" id="cleveland" value="Cleveland" v-model="filter.location">
-                    <label for="Cleveland">Cleveland</label>
-                    <br>
-                    <input type="checkbox" id="cincinnati" value="Cincinnati" v-model="filter.location">
-                    <label for="Cincinnati">Cincinnati</label>
-                    <br>
-                    <input type="checkbox" id="akron" value="Akron" v-model="filter.location">
-                    <label for="Akron">Akron</label>
-                    <br>
-                </div>
+        <div id="page-container">
+            <div id="filter-container">
+                <nav>
+                    <div class="location">
+                        <h3>Location</h3>
+                        <input type="checkbox" id="columbus" value="Columbus" v-model="filter.location">
+                        <label for="Columbus">Columbus</label>
+                        <br>
+                        <input type="checkbox" id="cleveland" value="Cleveland" v-model="filter.location">
+                        <label for="Cleveland">Cleveland</label>
+                        <br>
+                        <input type="checkbox" id="cincinnati" value="Cincinnati" v-model="filter.location">
+                        <label for="Cincinnati">Cincinnati</label>
+                        <br>
+                        <input type="checkbox" id="akron" value="Akron" v-model="filter.location">
+                        <label for="Akron">Akron</label>
+                        <br>
+                    </div>
 
-                <div class="expiration">
-                    <h3>Expires in</h3>
-                    <input type="radio" id="one-hour" value="60" v-model="filter.expiration">
-                    <label for="one-hour"> &lt; 1 hour </label>
-                    <br>
-                    <input type="radio" id="three-hours" value="180" v-model="filter.expiration">
-                    <label for="three-hours"> &lt; 3 hours</label>
-                    <br>
-                    <input type="radio" id="twentyfour-hours" value="1440" v-model="filter.expiration">
-                    <label for="twentyfour-hours"> &lt; 24 hours</label>
-                    <br>
-                </div>
+                    <div class="expiration">
+                        <h3>Expires in</h3>
+                        <input type="radio" id="one-hour" value="60" v-model="filter.expiration">
+                        <label for="one-hour"> &lt; 1 hour </label>
+                        <br>
+                        <input type="radio" id="three-hours" value="180" v-model="filter.expiration">
+                        <label for="three-hours"> &lt; 3 hours</label>
+                        <br>
+                        <input type="radio" id="twentyfour-hours" value="1440" v-model="filter.expiration">
+                        <label for="twentyfour-hours"> &lt; 24 hours</label>
+                        <br>
+                    </div>
 
-                <div class="size">
-                    <h3>Size</h3>
-                    <input type="checkbox" id="5x5" value="5x5" v-model="filter.size">
-                    <label for="5x5">5x5</label>
-                    <br>
-                    <input type="checkbox" id="10x10" value="10x10" v-model="filter.size">
-                    <label for="10x10">10x10</label>
-                    <br>
-                    <input type="checkbox" id="10x15" value="10x15" v-model="filter.size">
-                    <label for="10x15">10x15</label>
-                    <br>
-                    <input type="checkbox" id="10x20" value="10x20" v-model="filter.size">
-                    <label for="10x20">10x20</label>
-                    <br>
-                </div>
+                    <div class="size">
+                        <h3>Size</h3>
+                        <input type="checkbox" id="5x5" value="5x5" v-model="filter.size">
+                        <label for="5x5">5x5</label>
+                        <br>
+                        <input type="checkbox" id="10x10" value="10x10" v-model="filter.size">
+                        <label for="10x10">10x10</label>
+                        <br>
+                        <input type="checkbox" id="10x15" value="10x15" v-model="filter.size">
+                        <label for="10x15">10x15</label>
+                        <br>
+                        <input type="checkbox" id="10x20" value="10x20" v-model="filter.size">
+                        <label for="10x20">10x20</label>
+                        <br>
+                    </div>
 
-                <div class="high-bid">
-                    <h3>High Bid</h3>
-                    <input type="checkbox" id="0-50" value="0-50" v-model="filter.highestBid">
-                    <label for="0-50">$0 - $50</label>
-                    <br>
-                    <input type="checkbox" id="51-100" value="51-100" v-model="filter.highestBid">
-                    <label for="51-100">$51 - $100</label>
-                    <br>
-                    <input type="checkbox" id="101-150" value="101-150" v-model="filter.highestBid">
-                    <label for="101-150">$101 - $150</label>
-                    <br>
-                    <input type="checkbox" id="150" value="151-200" v-model="filter.highestBid">
-                    <label for="150">$151 - $200</label>
-                    <br>
-                </div>
+                    <div class="high-bid">
+                        <h3>High Bid</h3>
+                        <input type="checkbox" id="0-50" value="0-50" v-model="filter.highestBid">
+                        <label for="0-50">$0 - $50</label>
+                        <br>
+                        <input type="checkbox" id="51-100" value="51-100" v-model="filter.highestBid">
+                        <label for="51-100">$51 - $100</label>
+                        <br>
+                        <input type="checkbox" id="101-150" value="101-150" v-model="filter.highestBid">
+                        <label for="101-150">$101 - $150</label>
+                        <br>
+                        <input type="checkbox" id="150" value="151-200" v-model="filter.highestBid">
+                        <label for="150">$151 - $200</label>
+                        <br>
+                    </div>
+                </nav>
                 <button v-on:click="filterUnits">Apply Filters</button>
                 <button v-on:click="clearFilters">Clear Filters</button>
-            </nav>
+            </div>
+
+
+            <div>
+
+            </div>
+            <section class="unit-container">
+                <UnitCard v-for="unit in filteredUnits" v-bind:key="unit.id" v-bind:item="unit" />
+            </section>
         </div>
-
-
-        <div>
-
-        </div>
-        <section class="unit-container">
-            <UnitCard v-for="unit in filteredUnits" v-bind:key="unit.id" v-bind:item="unit" />
-        </section>
     </div>
 </template>
 
@@ -173,7 +175,7 @@ export default {
         },
 
         clearFilters() {
-            if (this.filter.location || this.filter.expiration || this.filter.size || this.filter.highestBid){
+            if (this.filter.location || this.filter.expiration || this.filter.size || this.filter.highestBid) {
                 this.filter = {};
             }
 
@@ -214,8 +216,33 @@ export default {
     display: flex;
     justify-content: left;
     border: 2px solid white;
-    width: 20vw;
-    height: 100vh;
+    background-color: #264B56;
+    width: 200px;
+    height: 680px;
+    flex-direction: column;
+    padding-left: 20px;
+    border-color: #faefe0;
+    border-radius: 2rem;
+    border-style: outset;
 
+}
+
+#filter-container>nav {
+    text-align: left;
+    padding-bottom: 30px
+}
+
+#unit-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 600px;
+    height: 100vh;
+    flex-direction: row;
+}
+
+#page-container{
+    display: flex;
+    flex-direction: row;
 }
 </style>
