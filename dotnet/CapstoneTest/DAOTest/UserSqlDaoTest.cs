@@ -9,8 +9,8 @@ namespace Tutorial.Tests.DAO
     [TestClass]
     public class UserSqlDaoTest : BaseDaoTests
     {
-        private static readonly User USER_1 = new User(1, "Admin", "Test", "admin@storage.com", "YhyGVQ+Ch69n4JMBncM4lNF/i9s=", "Ar/aB2thQTI=", "admin", "123456", true, false);
-        private static readonly User USER_2 = new User(2, "User", "Test", "user@storage.com", "Jg45HuwT7PZkfuKTz6IB90CtWY4=", "LHxP4Xh7bN0=", "user", "456789", true, false);
+        private static readonly User USER_1 = new User(1, "Admin", "Test", "admin@storage.com", "YhyGVQ+Ch69n4JMBncM4lNF/i9s=", "Ar/aB2thQTI=", "admin", "123456", false, false);
+        private static readonly User USER_2 = new User(2, "User", "Test", "user@storage.com", "Jg45HuwT7PZkfuKTz6IB90CtWY4=", "LHxP4Xh7bN0=", "user", "456789", false, false);
 
 
         private UserSqlDao userSqlDao;
@@ -114,7 +114,7 @@ namespace Tutorial.Tests.DAO
         }
 
         [TestMethod]
-        public void CreateUser_DoesntCreateUser()
+        public void CreateUser_DoesNotCreateUser()
         {
             RegisterUser newUser = new RegisterUser();
             newUser.FirstName = "Jake";
@@ -126,9 +126,9 @@ namespace Tutorial.Tests.DAO
             {
                 User actualUser = userSqlDao.CreateUser(newUser);
             }
-            catch (Exception ex)
+            catch (DaoException ex)
             {
-                if(ex.Message != "")
+                if (ex.GetType() == typeof(DaoException))
                 {
                     Assert.AreEqual(1, 1);
                 }
@@ -137,10 +137,44 @@ namespace Tutorial.Tests.DAO
         }
 
         [TestMethod]
-        public void UpdateUser()
+        public void UpdateUser_ConfirmsUser()
         {
             User oldUser = USER_1;
+            oldUser.Confirmed = true;
 
+            User updatedUser = userSqlDao.UpdateUser(oldUser);
+
+            Assert.AreEqual(true, updatedUser.Confirmed);
+
+        }
+
+        [TestMethod]
+        public void UpdateUser_ThrowsDaoException()
+        {
+            User oldUser = USER_1;
+            oldUser.Id = 1008;
+            try
+            {
+                User updatedUser = userSqlDao.UpdateUser(oldUser);
+            }
+            catch (DaoException ex)
+            {
+                if (ex.GetType() == typeof(DaoException))
+                {
+                    Assert.AreEqual(1, 1);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UpdateAgreed_UpdatesAgreed()
+        {
+            User oldUser = USER_1;
+            oldUser.Agreed = true;
+
+            User updatedUser = userSqlDao.UpdateAgreed(oldUser);
+
+            Assert.AreEqual(true, updatedUser.Agreed);
 
         }
 
