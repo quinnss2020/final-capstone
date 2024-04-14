@@ -46,7 +46,6 @@ import Bid from '../components/Bid.vue';
 import UnitCard from '../components/UnitCard.vue';
 import UnitService from '../services/UnitService.js';
 import Countdown from '../components/Countdown.vue';
-//import {countdown} from '../helpers/countdown.js';
 
 export default {
     name: "UserBids",
@@ -84,6 +83,8 @@ export default {
         },
 
         getUnitDetails(unitId) {
+
+            return this.units.find((u) => u.id === unitId);
             // UnitService
             //     .unitDetails(this.bid.unitId)
             //     .then((response) => {
@@ -100,7 +101,7 @@ export default {
             //             console.log("Error making request to fetch unit details");
             //         }
             //     })
-            return this.units.find((u) => u.id === unitId);
+            
 
         },
 

@@ -13,4 +13,8 @@ export default {
         return axios.get(`/units/${id}/bids`);
     },
 
+    endAuction(unitId) {
+        return axios.put('/units/checkout', unitId);
+    },
+
 }
