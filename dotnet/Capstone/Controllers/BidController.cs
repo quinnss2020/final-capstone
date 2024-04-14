@@ -144,19 +144,5 @@ namespace Capstone.Controllers
             }
         }
 
-        private void SendEmailToHighestBidder(Unit unit, int id)
-        {
-            Email email = new Email();
-            EmailUtility emailUtility = new EmailUtility();
-            User user = userDao.GetUserById(id);
-            string code = emailUtility.VerificationCodeGenerator();
-
-            string subject = $"Congrats From DSS!";
-            string messageBody = $"Congratulations! You have won an auction! \n Your unit is number {unit.LocalId} and is located in {unit.City}. \nYour confirmation code is {code}.";
-
-            email = emailUtility.FormEmail(user.Email, subject, messageBody);
-
-            emailUtility.SendEmail(email);
-        }
     }
 }

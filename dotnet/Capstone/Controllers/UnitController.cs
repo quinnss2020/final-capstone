@@ -14,10 +14,12 @@ namespace Capstone.Controllers
     public class UnitController : ControllerBase
     {
         private readonly IUnitSqlDao unitDao;
+        private readonly IUserDao userDao;
 
-        public UnitController(IUnitSqlDao unitDao)
+        public UnitController(IUnitSqlDao unitDao, IUserDao userDao)
         {
             this.unitDao = unitDao;
+            this.userDao = userDao;
         }
 
         [HttpGet("/units")]
@@ -54,6 +56,28 @@ namespace Capstone.Controllers
             {
                 return StatusCode(500, ErrorMessage);
             }
+        }
+
+        [HttpPut("/units/checkout")]
+        private ActionResult<Unit> UnitCheckout(int unitId)
+        {
+            Unit unit = unitDao.GetUnitById(unitId);
+            if(unit.Active)
+            {
+                unitDao.UpdateUnitActive(unit, false);
+                Email email = new Email();
+                EmailUtility emailUtility = new EmailUtility();
+                User user = userDao.GetUserById(unit.HighestBidder);
+                string code = emailUtility.OrderNumberGenerator();
+                //call DAO to update unit table w/ order number, returns int
+                //if 1, trigger sendcheckoutemail
+                //DO NOT SEND EMAIL IF WINNER IS ID 1 OR 2
+
+                emailUtility.SendCheckoutEmail(user.Email, unit, code);
+            }
+
+            return Ok(unit);
+
         }
     }
 }
