@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using Capstone.Exceptions;
 using Capstone.Models;
 using Capstone.Security;
@@ -84,9 +85,44 @@ namespace Capstone.DAO
             return units;
         }
 
-        public Unit UpdateUnit(Unit unit, int amount, int userId)
+        public Unit CreateUnit(Unit unit)
         {
-            string sql = "UPDATE units SET amount = @amount, highest_bidder = @highest_bidder WHERE id = @unitId";
+            Unit newUnit = new Unit();
+            int newUnitId = 0;
+
+            string sql = "INSERT INTO units(local_id, start_bid, highest_bid, order_number, city, size, active, expiration, details) " +
+                "OUTPUT INSERTED.id VALUES(@localId, @startBid, @highestBid, @orderNumber, @city, @size, @active, @expiration, @details);";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@localId", newUnit.LocalId);
+                    cmd.Parameters.AddWithValue("@startBid", newUnit.StartBid);
+                    cmd.Parameters.AddWithValue("@highestBid", newUnit.HighestBid);
+                    cmd.Parameters.AddWithValue("@orderNumber", newUnit.OrderNumber);
+                    cmd.Parameters.AddWithValue("@city", newUnit.City);
+                    cmd.Parameters.AddWithValue("@size", newUnit.Size);
+                    cmd.Parameters.AddWithValue("@active", newUnit.Active);
+                    cmd.Parameters.AddWithValue("@expiration", newUnit.Expiration);
+                    cmd.Parameters.AddWithValue("@details", newUnit.Details);
+
+                    newUnitId = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                newUnit = GetUnitById(newUnitId);
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+            return newUnit;
+        }
+        public Unit UpdateUnit(Unit unit, int highestBid, int userId)
+        {
+            string sql = "UPDATE units SET highest_bid = @highestBid, highest_bidder = @highest_bidder WHERE id = @unitId";
 
             Unit newUnit = new Unit();
             int newUnitId = 0;
@@ -97,7 +133,7 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@amount", amount);
+                    cmd.Parameters.AddWithValue("@highest_bid", highestBid);
                     cmd.Parameters.AddWithValue("@highest_bidder", userId);
                     cmd.Parameters.AddWithValue("@unitId", unit.Id);
 
@@ -134,6 +170,31 @@ namespace Capstone.DAO
                     newUnit = GetUnitById(newUnitId);
                 }
                 return newUnit;
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+        }
+
+        private Unit DeleteUnit(int unitId)
+        {
+            string sql = "DELETE FROM units WHERE id=@unitId";
+            Unit unit = new Unit();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@unitId", unitId);
+
+                    cmd.ExecuteNonQuery();
+
+                    unit = GetUnitById(unitId);
+                }
+                return unit;
             }
             catch (SqlException ex)
             {
