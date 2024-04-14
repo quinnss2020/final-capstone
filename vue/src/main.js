@@ -3,14 +3,25 @@ import CapstoneApp from './App.vue'
 import { createStore } from './store'
 import router from './router'
 import axios from 'axios'
-import {v2 as cloudinary} from 'cloudinary';
-  
-//these are our cloudinary credentials
-cloudinary.config({ 
-  cloud_name: 'dpicdmebf', 
-  api_key: '434166887691892', 
-  api_secret: 'Lfui7OUC0GzisU5ktSi7a5dm2FA' 
+import { Cloudinary } from "@cloudinary/url-gen";
+
+// Create a Cloudinary instance and set your cloud name.
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: "dpicdmebf",
+  },
 });
+
+
+// import {v2 as cloudinary} from 'cloudinary';
+
+// //these are our cloudinary credentials
+// cloudinary.config({ 
+//   cloud_name: 'dpicdmebf', 
+//   api_key: process.env.CLOUDINARY_API_KEY, 
+//   api_secret: process.env.CLOUDINARY_API_SECRET,
+//   secure: true
+// });
 
 /* sets the base url for server API communication with axios */
 axios.defaults.baseURL = import.meta.env.VITE_REMOTE_API;
