@@ -64,7 +64,7 @@ namespace Capstone.Controllers
             Unit unit = unitDao.GetUnitById(unitId);
             if(unit.Active)
             {
-                unitDao.UpdateUnitActive(unit, false);
+                unitDao.UpdateUnit(unit);
                 Email email = new Email();
                 EmailUtility emailUtility = new EmailUtility();
                 User user = userDao.GetUserById(unit.HighestBidder);

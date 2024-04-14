@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 110.96 109.42">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-3 {
+        fill: #314668;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-8 {
+        clip-path: url(#clippath-5);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" width="56.3" height="3.26"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-1" x="26.96" width="29.33" height="56.59"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-1" x="54.96" width="56" height="3.26"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-1" x="82.96" width="28" height="56.59"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-1" x="82.84" y="53.68" width="28" height="55.74"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-1" y="52.59" width="56.3" height="4"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-3" d="m55.36,18.6v2.39l-20.97-.02h-13.42s-2.39-2.4-2.39-2.4h18.18s18.59.03,18.59.03Z"/>
+    <path class="cls-3" d="m55.36,24.81v2.39l-27.18-.02h-.99l-2.39-2.39h5.77s24.8.02,24.8.02Z"/>
+    <path class="cls-3" d="m55.36,12.39v2.39h-14.77s-25.83-.03-25.83-.03l-2.39-2.39,30.61.02h12.39Z"/>
+    <path class="cls-3" d="m55.36,6.19v2.39h-8.57s-38.25-.04-38.25-.04l-2.39-2.39,43.02.03h6.18Z"/>
+    <g class="cls-2">
+      <path class="cls-3" d="m55.36,0v2.36h-2.36s-50.67-.03-50.67-.03L0,0h55.36Z"/>
+    </g>
+    <g class="cls-4">
+      <path class="cls-3" d="m55.36,0v55.36l-27.68-27.68,15.29-15.29,3.82-3.82,6.21-6.21,2.36-2.35Z"/>
+    </g>
+    <path class="cls-3" d="m110.72,18.6v2.39l-20.97-.02h-13.42s-2.39-2.4-2.39-2.4h18.18s18.59.03,18.59.03Z"/>
+    <path class="cls-3" d="m110.72,24.81v2.39l-27.18-.02h-.99l-2.39-2.39h5.77s24.8.02,24.8.02Z"/>
+    <path class="cls-3" d="m110.72,12.39v2.39h-14.77s-25.83-.03-25.83-.03l-2.39-2.39,30.61.02h12.39Z"/>
+    <path class="cls-3" d="m110.72,6.19v2.39h-8.57s-38.25-.04-38.25-.04l-2.39-2.39,43.02.03h6.18Z"/>
+    <g class="cls-7">
+      <path class="cls-3" d="m110.72,0v2.36h-2.36s-50.67-.03-50.67-.03l-2.33-2.33h55.36Z"/>
+    </g>
+    <g class="cls-6">
+      <path class="cls-3" d="m110.72,0v55.36l-27.68-27.68,15.29-15.29,3.82-3.82,6.21-6.21,2.36-2.35Z"/>
+    </g>
+    <path class="cls-3" d="m110.6,72.39v2.39l-20.97-.02h-13.42s-2.39-2.4-2.39-2.4h18.18s18.59.03,18.59.03Z"/>
+    <path class="cls-3" d="m110.6,78.59v2.39l-27.18-.02h-.99l-2.39-2.39h5.77s24.8.02,24.8.02Z"/>
+    <path class="cls-3" d="m110.6,66.17v2.39h-14.77s-25.83-.03-25.83-.03l-2.39-2.39,30.61.02h12.39Z"/>
+    <path class="cls-3" d="m110.6,59.97v2.39h-8.57s-38.25-.04-38.25-.04l-2.39-2.39,43.02.03h6.18Z"/>
+    <path class="cls-3" d="m110.6,53.78v2.36h-2.36s-50.67-.03-50.67-.03l-2.33-2.33h55.36Z"/>
+    <g class="cls-5">
+      <path class="cls-3" d="m110.6,53.78v55.36l-27.68-27.68,15.29-15.29,3.82-3.82,6.21-6.21,2.36-2.35Z"/>
+    </g>
+    <path class="cls-3" d="m55.36,72.28v2.39l-20.97-.02h-13.42s-2.39-2.4-2.39-2.4h18.18s18.59.03,18.59.03Z"/>
+    <path class="cls-3" d="m55.36,78.49v2.39l-27.18-.02h-.99l-2.39-2.39h5.77s24.8.02,24.8.02Z"/>
+    <path class="cls-3" d="m55.36,66.07v2.39h-14.77s-25.83-.03-25.83-.03l-2.39-2.39,30.61.02h12.39Z"/>
+    <path class="cls-3" d="m55.36,59.86v2.38h-8.57s-38.25-.03-38.25-.03l-2.39-2.39,43.02.03h6.18Z"/>
+    <g class="cls-8">
+      <path class="cls-3" d="m55.36,53.68v2.36h-2.36s-50.67-.04-50.67-.04l-2.33-2.32h55.36Z"/>
+    </g>
+    <path class="cls-3" d="m55.36,53.68v55.36l-27.68-27.68,15.29-15.29,3.82-3.82,6.21-6.21,2.36-2.35Z"/>
+  </g>
+</svg>

@@ -23,12 +23,15 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   text-align: center;
-  color:#faefe0;
-  background-color: #677477;
+  color:#314668;
+  /* background-color:  #F9F6F0; */
+  background-image: linear-gradient(#F9F6F0, #8393C2);
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -39,11 +42,13 @@ html {
 }
 
 button {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  color: #264B56;
-  background-color: #faefe0;
-  border-color: #264B56;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 730;
+  color:#314668;
+  /* background-color: #faefe0; */
+  /* background-color:#9A94BC; */
+  border-style: outset;
+  border-color: #F4ECE1;
   border-radius: 0.6rem;
   padding: 8px;
   width: 170px;
@@ -54,7 +59,7 @@ button {
 
 
 input {
-background-color: #FAEFE0;
+background-color:#F9F6F0;
 border: none;
 border-radius: 0.3rem;
 padding: 8px;

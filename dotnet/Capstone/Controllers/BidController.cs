@@ -46,7 +46,9 @@ namespace Capstone.Controllers
                 
                 try
                 {
-                    unitDao.UpdateUnit(unit, bid.Amount, bid.BidderId);
+                    unit.HighestBid = bid.Amount;
+                    unit.HighestBidder = bid.BidderId;
+                    unitDao.UpdateUnit(unit);
                     newBid = bidDao.CreateBid(bid);
                     return Created($"/account/bids", newBid);
                 }
@@ -83,7 +85,7 @@ namespace Capstone.Controllers
         [HttpGet("/bids")]
         public ActionResult<List<Bid>> GetAllBidsByUserId()
         {
-            const string ErrorMessage = "An error has occurred and a list of ubids was not created.";
+            const string ErrorMessage = "An error has occurred and a list of user bids was not created.";
 
             IList<Bid> userBids = new List<Bid>();
 
@@ -105,7 +107,6 @@ namespace Capstone.Controllers
 
         }
 
-        //[Authorize]
         [HttpGet("/units/{unitId}/bids")]
         public ActionResult<List<Bid>> GetBidsByUnitId(int unitId)
         {
@@ -135,7 +136,8 @@ namespace Capstone.Controllers
             }
             else if ((unit.Expiration < DateTime.Now) && unit.Active)
             {
-                unitDao.UpdateUnitActive(unit, false);
+                unit.Active = false;
+                unitDao.UpdateUnit(unit);
                 return false;
             }
             else
