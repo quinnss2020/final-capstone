@@ -14,6 +14,7 @@ export default {
     data () {
         return {
             currentTime: "",
+            isExpired: reformatDate(this.expiration),
         }
     },
 

@@ -11,7 +11,7 @@
                         <th>Current Status</th>
                         <th>Time Remaining</th>
                         <th>Bid Amount </th>
-                        <th>Current High Bid</th>
+                        <th>High Bid</th>
                         <th>Outcome</th>
                     </tr>
                 </thead>
@@ -31,6 +31,7 @@
                         <td>{{outcome(unit, bid)}}</td>
 
                     </tr>
+                    
                 </tbody>
 
             </table>
@@ -183,7 +184,6 @@ export default {
 <style scoped>
 .bid-details {
     display: flex;
-    border: 2px dashed black;
 
 }
 
@@ -193,19 +193,35 @@ export default {
 }
 
 h1 {
-    color: #faefe0;
+    color: #314668;
 }
 
 table {
     margin: 10px;
+    border-collapse: separate;
+    /*border-spacing: 10px; */
+}
+
+
+tbody tr:nth-child(odd) {
+    background-color: #8393C2;
+    padding: 2rem;
+
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(244, 236, 225, .2);
+
 }
 
 td {
-    padding: 50px;
+    padding: 30px;
 }
 
 th {
-    color: #faefe0;
+    color: #314668;
     font-size: 1.5rem;
+    padding: 2rem;
+
 }
 </style>

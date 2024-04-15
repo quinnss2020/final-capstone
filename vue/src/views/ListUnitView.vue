@@ -71,7 +71,7 @@
                     <button v-on:click="clearFilters">CLEAR</button>
                 </aside>
                 <main id="unit-cards-container">
-                    <div class="unit-cards">
+                    <div id="unit-cards">
                         <UnitCard v-for="unit in filteredUnits" v-bind:key="unit.id" v-bind:item="unit" />
                     </div>
                 </main>
@@ -173,10 +173,12 @@ export default {
                 highestBid: [],
             },
 
+
         }
     },
 
     computed: {
+ 
     },
 
     methods: {
@@ -298,8 +300,14 @@ export default {
     justify-content: flex-start;
     flex-direction: row;
     overflow-y: auto;
-    margin-left: 180px;
+    margin-left: 330px;
     padding: 0px 10px;
+
+}
+
+#unit-cards{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 aside {
