@@ -6,7 +6,6 @@
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
     </div> -->
     <router-view />
-    <test-upload-image/>
   </div>
 </template>
 
@@ -16,7 +15,7 @@ import TestUploadImage from "./components/TestUploadImage.vue"
 
 export default {
   name: 'App',
-  components: { Navigation, TestUploadImage },
+  components: { Navigation },
 
 }
 
@@ -27,10 +26,11 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
+
 html {
   font-family: "Nunito Sans", sans-serif;
   text-align: center;
-  color:#314668;
+  color: #314668;
   /* background-color:  #F9F6F0; */
   background-image: linear-gradient(#F9F6F0, #8393C2);
   background-attachment: fixed;
@@ -45,7 +45,7 @@ html {
 button {
   font-family: "Nunito Sans", sans-serif;
   font-weight: 730;
-  color:#314668;
+  color: #314668;
   /* background-color: #faefe0; */
   /* background-color:#9A94BC; */
   border-style: outset;
@@ -60,9 +60,20 @@ button {
 
 
 input {
-background-color:#F9F6F0;
-border: none;
-border-radius: 0.3rem;
-padding: 8px;
+  background-color: #F9F6F0;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 8px;
 }
+
+/* .slide-enter-from,
+.slide-leave-to {
+opacity: 0;
+transform: translateX(-100%);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: 0.3s ease-out;
+} */
 </style>

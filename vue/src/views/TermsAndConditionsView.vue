@@ -196,10 +196,12 @@ form {
   overflow-y: scroll;
   height: 400px;
   width: 800px;
-  border: 2px solid #264B56;
+  border: 2px solid #314668;
   border-radius: 1rem;
   padding: 30px;
-  background-color: #FAEFE0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: rgba(244, 236, 225, .2);
   text-align: left;
   margin-top: 100px;
 }
@@ -213,7 +215,7 @@ border-radius: 2rem;
 }
 
 ::-webkit-scrollbar-thumb {
-background:#264B56; 
+background:#314668; 
 border-radius: 2rem;
 }
 
