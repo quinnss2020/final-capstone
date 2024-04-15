@@ -6,6 +6,7 @@
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
+                <h3 class="emphasis"><Countdown :expiration="unit.expiration"></Countdown></h3>
                 <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3>
                 <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
                 
@@ -20,8 +21,9 @@
                 <h3 id="details-text">{{ unit.details }}</h3>
             </div>
         </div>
-        <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
-            <h1>Bid History</h1>
+    <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
+        <br><br>
+            <h2 id="history-title">Bid History</h2>
             <table id="bid-history">
                 <thead>
                     <tr>
@@ -43,17 +45,18 @@
                 </tbody>
                  </table>
 
-        </div>
+    </div>
     </div>
 </template>
 
 <script>
-import UnitService from '../services/UnitService'
-import BidService from '../services/BidService'
+import UnitService from '../services/UnitService';
+import BidService from '../services/BidService';
+import Countdown from '../components/Countdown.vue';
 
 export default {
     name: "UnitDetails",
-
+    components: {Countdown},
     data() {
         return {
             unit: {},
@@ -152,14 +155,12 @@ export default {
 </script>
 
 <style scoped>
-.unit-details {
-    display: flex;
-}
 
 h2 {
     font-size: 3rem;
     margin: 0;
 }
+
 
 h3 {
     text-align: left;
@@ -174,10 +175,13 @@ button {
     margin-bottom: 30px;
 }
 
+h3.emphasis {
+    color: #FF7243;
+}
+
 #details-text{
     font-weight: 300;
 }
-
 
 .highest-bid {
     margin:0;
@@ -213,14 +217,9 @@ button {
     border-color: #faefe0;
     border-radius: 2rem;
     border-style: outset;
-    height: 300px;
+    /* height: 300px; */
     margin-right: 80px;
-    padding: 20px;
-}
-
-#bid-history-container {
-    background-color: #F9F6F0;
-    height: 200px;
+    /* padding: 20px; */
 }
 
 .bid-error-msg {
@@ -232,6 +231,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: rgba(239, 237, 255, 0.8);
 }
 
 #bid-amount {
@@ -239,16 +239,27 @@ button {
 }
 
 table {
-
     margin: 10px;
+    border-collapse: separate;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #8393C2;
+    padding: 2rem;
+
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(244, 236, 225, .2);
+
 }
 
 td {
-    padding: 50px;
+    padding: 30px;
 }
 
 th {
-    color: #faefe0;
+    color: #314668;
     font-size: 1.5rem;
 }
 </style>
