@@ -1,10 +1,11 @@
 <template>
     <div id="view-units">
-        <h1>This is the Unit View</h1>
+        <h1>Available Units</h1>
         <div id="page-container">
             <div id="filter-container">
                 <nav>
                     <div class="location">
+                        <h2>Filter Units</h2>
                         <h3>Location</h3>
                         <input type="checkbox" id="columbus" value="Columbus" v-model="filter.location">
                         <label for="Columbus">Columbus</label>
@@ -64,18 +65,16 @@
                         <label for="150">$151 - $200</label>
                         <br>
                     </div>
+                    <br>
+                    <button v-on:click="filterUnits">APPLY</button>
+                    <button v-on:click="clearFilters">CLEAR</button>
                 </nav>
-                <button v-on:click="filterUnits">Apply Filters</button>
-                <button v-on:click="clearFilters">Clear Filters</button>
             </div>
-
-
             <div>
-
+                <section class="unit-container">
+                    <UnitCard v-for="unit in filteredUnits" v-bind:key="unit.id" v-bind:item="unit" />
+                </section>
             </div>
-            <section class="unit-container">
-                <UnitCard v-for="unit in filteredUnits" v-bind:key="unit.id" v-bind:item="unit" />
-            </section>
         </div>
     </div>
 </template>
@@ -212,24 +211,36 @@ export default {
 </script>
 
 <style scoped>
+
+#page-container {
+    display: flex;
+    flex-direction: row;
+}
+/* 
 #filter-container {
     display: flex;
     justify-content: left;
     border: 2px solid white;
-    background-color: #264B56;
-    width: 200px;
-    height: 680px;
+    height: 100vh;
     flex-direction: column;
     padding-left: 20px;
     border-color: #faefe0;
     border-radius: 2rem;
     border-style: outset;
+    margin-left: 50px
 
-}
+} */
 
 #filter-container>nav {
     text-align: left;
-    padding-bottom: 30px
+    padding-bottom: 30px;
+    border-color: #faefe0;
+    border-radius: 2rem;
+    border-style: outset;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: rgba(244, 236, 225, .5);
+    margin-left: 50px;
 }
 
 #unit-container {
@@ -246,8 +257,11 @@ export default {
     flex-wrap: wrap;
 }
 
-#page-container{
-    display: flex;
-    flex-direction: row;
+h3{
+    color: #706d57;
+}
+
+button{
+    width: 115px;
 }
 </style>
