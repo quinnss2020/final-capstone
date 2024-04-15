@@ -32,13 +32,13 @@ html {
   color:#314668;
   /* background-color:  #F9F6F0; */
   background-image: linear-gradient(#F9F6F0, #8393C2);
+  background-attachment: fixed;
   margin: 0;
   height: 100vh;
   width: 100vw;
   padding: 0;
   top: 0;
   bottom: 0;
-  position: absolute;
 }
 
 button {
