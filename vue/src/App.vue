@@ -6,6 +6,7 @@
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
     </div> -->
     <router-view />
+    <test-upload-image/>
   </div>
 </template>
 
@@ -15,7 +16,7 @@ import TestUploadImage from "./components/TestUploadImage.vue"
 
 export default {
   name: 'App',
-  components: { Navigation },
+  components: { Navigation, TestUploadImage },
 
 }
 
