@@ -9,5 +9,9 @@ export default {
         return axios.get('/bids');
     },
 
+    bidHistory(unitId) {
+        return axios.get(`/units/${unitId}/bids`);
+    },
+
 
 }
