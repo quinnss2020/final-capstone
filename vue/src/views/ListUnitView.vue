@@ -134,7 +134,7 @@ export default {
                 }
                 return this.filter.location.includes(unit.city);
             })
-
+            //TODO see if we can call countdown util below
             this.filteredUnits = this.filteredUnits.filter(unit => {
                 if (this.filter.expiration.length === 0) {
                     return true;
@@ -184,6 +184,8 @@ export default {
     },
 
     created() {
+        this.getUnits();
+
         // UnitService
         //     .list()
         //     .then((response) => {
@@ -201,8 +203,6 @@ export default {
         //             console.log("Error making request in <CREATED>");
         //         }
         //     });
-
-        this.getUnits();
     },
 
 

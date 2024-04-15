@@ -7,26 +7,28 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Auction [LINK TO UNIT PAGE]</th>
+                        <th>Auction</th>
                         <th>Current Status</th>
                         <th>Time Remaining</th>
                         <th>Bid Amount </th>
                         <th>Current High Bid</th>
-                        <th>Outcome [COMPUTED WON OR LOST]</th>
+                        <th>Outcome</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="{bid, unit} in bidsAndUnits" v-bind:key="bid.amount">
                         <td>{{ bid.id }}</td>
-                        <td>URL</td>
-                        <td>COMPUTED</td>
+                        <td id="unit-link">
+                            <button v-on:click="this.$router.push({ name: 'unitDetails', params: { unitId: unit.id }})">{{unit.city}} #{{unit.id}}</button>
+                        </td>
+                        <td>{{ currentStatus(unit) }}</td>
                         <td id="unit-time-remaining">
-                            <Countdown :expiration="unit.expiration">QQ</Countdown>
+                            <Countdown :expiration="unit.expiration"></Countdown>
                         </td>
                         
                         <td>${{ bid.amount }}</td>
                         <td>${{unit.highestBid}}</td>
-                        <td>COMPUTED</td>
+                        <td>{{outcome(unit, bid)}}</td>
 
                     </tr>
                 </tbody>
@@ -46,7 +48,6 @@ import Bid from '../components/Bid.vue';
 import UnitCard from '../components/UnitCard.vue';
 import UnitService from '../services/UnitService.js';
 import Countdown from '../components/Countdown.vue';
-//import {countdown} from '../helpers/countdown.js';
 
 export default {
     name: "UserBids",
@@ -84,6 +85,8 @@ export default {
         },
 
         getUnitDetails(unitId) {
+
+            return this.units.find((u) => u.id === unitId);
             // UnitService
             //     .unitDetails(this.bid.unitId)
             //     .then((response) => {
@@ -100,7 +103,7 @@ export default {
             //             console.log("Error making request to fetch unit details");
             //         }
             //     })
-            return this.units.find((u) => u.id === unitId);
+            
 
         },
 
@@ -121,7 +124,29 @@ export default {
                         console.log("Error making request to fetch unit details");
                     }
                 })
+        },
+
+        currentStatus(unit) {
+            if(unit.active) {
+                return "ACTIVE";
+            }
+            else {
+                return "INACTIVE";
+            }
+        },
+
+        outcome(unit, bid) {
+            if(unit.highestBidder === bid.bidderId && unit.active === false) {
+              return "WON";
+            }
+            else if(unit.active === false) {
+                return "LOST";
+            }
+            else {
+                return "";
+            }
         }
+
 
     },
 
@@ -136,6 +161,7 @@ export default {
             })
             
         },
+
 
     },
 

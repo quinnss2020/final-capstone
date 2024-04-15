@@ -17,11 +17,31 @@
                     <br>
                     <button type="submit">BID NOW</button>
                 </form>
-                <h3>Details:</h3>
+                <h3>Details: {{ unit.details }}</h3>
             </div>
         </div>
-        <div id="bid-history-container">
+        <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
             <h1>Bid History</h1>
+            <table id="bid-history">
+                <thead>
+                    <tr>
+                        <th>Bid ID</th>
+                        <th>Unit ID</th>
+                        <th>Bidder ID</th>
+                        <th>Amount</th>
+                        <th>Date Placed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="bid in bidsByUnit" v-bind:key="bid.amount">
+                        <td>{{ bid.id }}</td>
+                        <td>{{ bid.unitId }}</td>
+                        <td>{{ bid.bidderId }}</td>
+                        <td>${{ bid.amount }}</td>
+                        <td>{{ bid.datePlaced }}</td>
+                    </tr>
+                </tbody>
+                 </table>
 
         </div>
     </div>
@@ -32,10 +52,12 @@ import UnitService from '../services/UnitService'
 import BidService from '../services/BidService'
 
 export default {
+    name: "UnitDetails",
 
     data() {
         return {
             unit: {},
+            bidsByUnit: [],
 
             bid: {
                 unitId: "",
@@ -77,14 +99,32 @@ export default {
                         }
                     })
             }
+        },
 
-
+        getBidsByUnit() {
+            BidService
+            .bidHistory(this.bid.unitId)
+            .then((response) => {
+                this.bidsByUnit = response.data;
+            })
+            .catch((error) => {
+                if (error.response) {
+                    console.log("Error loading bid history: ", error.response.status);
+                }
+                else if (error.request) {
+                    console.log("Error loading bid history. Unable to communicate to server.");
+                }
+                else {
+                    console.log("Error making request for bid history");
+                }
+            })
         }
     },
 
     created() {
-        //supposively
+        
         this.bid.unitId = this.$route.params.unitId;
+        this.getBidsByUnit();
         UnitService
             .unitDetails(this.bid.unitId)
             .then((response) => {
@@ -100,7 +140,9 @@ export default {
                 else {
                     console.log("Error making request");
                 }
-            })
+            });
+
+            
     }
 }
 
@@ -148,5 +190,25 @@ h1 {
 .bid-error-msg {
     color: red;
     font-weight: bold;
+}
+
+#bid-history-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+table {
+
+    margin: 10px;
+}
+
+td {
+    padding: 50px;
+}
+
+th {
+    color: #faefe0;
+    font-size: 1.5rem;
 }
 </style>
