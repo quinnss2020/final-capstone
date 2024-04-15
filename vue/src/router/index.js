@@ -11,6 +11,7 @@ import TermsAndConditionsView from "../views/TermsAndConditionsView.vue";
 import ListUnitView from '../views/ListUnitView.vue';
 import UnitDetailsView from '../views/UnitDetailsView.vue';
 import UserBidView from '../views/UserBidView.vue';
+import AdminDetailsView from '../views/AdminDetailsView.vue'
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -59,6 +60,15 @@ const routes = [
     component: RegisterView,
     meta: {
       requiresAuth: false
+    }
+  },
+
+  {
+    path: "/admin/units/:unitId",
+    name: "adminDetails",
+    component: AdminDetailsView,
+    meta: {
+      requiresAuth: true
     }
   },
 
