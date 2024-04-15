@@ -1,7 +1,7 @@
 <template>
     <section class="nav">
         <ol id="nav-buttons">
-            <img :src="image" id="logo" />
+            <router-link id="logo" v-bind:to="{ name: 'home' }" ><img src="../assets/DeltaLogoDark.svg" id="logo"/></router-link>
             <li> <router-link v-bind:to="{ name: 'bids' }" v-show="$store.state.token"> MY BIDS </router-link></li>
             <li><router-link v-bind:to="{ name: 'units' }">UNITS</router-link></li>
             <li> <router-link v-bind:to="{ name: 'register' }" v-show="!$store.state.token"> REGISTER </router-link></li>
@@ -70,8 +70,9 @@ a:hover {
     
 }
 
-ol>img {
+ol>#logo {
     height: 60px;
     margin-right: auto;
+    border: none;
 }
 </style>
