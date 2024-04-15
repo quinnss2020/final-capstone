@@ -1,13 +1,12 @@
 <template>
     <div class="unit-details">
-        <h1>Unit Details</h1>
-        <div id="container-details">
+        <div id="details-container">
             <div id="images-box">
                 <h1>- Pictures Here -</h1>
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
-                <h3>Highest Bid: ${{ unit.highestBid }}</h3>
+                <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3>
                 <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
                 
                 <form v-on:submit.prevent="placeBid()">
@@ -17,7 +16,8 @@
                     <br>
                     <button type="submit">BID NOW</button>
                 </form>
-                <h3>Details: {{ unit.details }}</h3>
+                <h3>Details:</h3>
+                <h3 id="details-text">{{ unit.details }}</h3>
             </div>
         </div>
         <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
@@ -81,6 +81,9 @@ export default {
             else if (!Number.isInteger(this.bid.amount)) {
                 this.bidErrors = true;
                 this.bidErrorMsg = 'Bid must be a whole number. Do not use decimals';
+            }
+            else if (!this.$store.state.token) {
+                this.$router.push("/login");
             }
             else {
                 BidService
@@ -153,28 +156,57 @@ export default {
     display: flex;
 }
 
-h1 {
-    padding: 20px;
+h2 {
+    font-size: 3rem;
+    margin: 0;
 }
 
-#container-details {
-    display: flex;
-    flex-direction: row;
+h3 {
+    text-align: left;
+    margin: 0;
+}
+
+form {
+    margin-top: 20px;
+}
+
+button {
+    margin-bottom: 30px;
+}
+
+#details-text{
+    font-weight: 300;
+}
+
+
+.highest-bid {
+    margin:0;
+    font-size: 2rem;
+}
+
+#details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     height: 500px;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    background-color: #8393C2;
+    margin-right: 20px;
+    margin-left: 20px;
+
 }
 
 #writing-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     border-style: outset;
-    border-color: #faefe0;
+    border-color: #F9F6F0;
     border-radius: 2rem;
-    margin-left: 100px;
-    padding: 50px;
-    background-color: #faefe0;
-    color: #264B56;
+    padding: 30px;
+    margin-left: 0;
+    background: rgba(244, 236, 225, .5);
+    color: #314668;
 }
 
 #images-box {
@@ -182,7 +214,7 @@ h1 {
     border-radius: 2rem;
     border-style: outset;
     height: 300px;
-    margin-right: 100px;
+    margin-right: 80px;
     padding: 20px;
 }
 
