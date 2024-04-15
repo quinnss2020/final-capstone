@@ -1,9 +1,8 @@
 <template>
-    <button> Upload Photo </button>
+    <div></div>
 </template>
 
 <script>
-
 </script>
 
 <style>

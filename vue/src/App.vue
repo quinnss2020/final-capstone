@@ -6,6 +6,7 @@
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
     </div> -->
     <router-view />
+
   </div>
 </template>
 
@@ -30,7 +31,7 @@ export default {
 html {
   font-family: "Nunito Sans", sans-serif;
   text-align: center;
-  color:#314668;
+  color: #314668;
   /* background-color:  #F9F6F0; */
   background-image: linear-gradient(#F9F6F0, #8393C2);
   background-attachment: fixed;
@@ -45,7 +46,7 @@ html {
 button {
   font-family: "Nunito Sans", sans-serif;
   font-weight: 730;
-  color:#314668;
+  color: #314668;
   /* background-color: #faefe0; */
   /* background-color:#9A94BC; */
   border-style: outset;
@@ -60,9 +61,20 @@ button {
 
 
 input {
-background-color:#F9F6F0;
-border: none;
-border-radius: 0.3rem;
-padding: 8px;
+  background-color: #F9F6F0;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 8px;
 }
+
+/* .slide-enter-from,
+.slide-leave-to {
+opacity: 0;
+transform: translateX(-100%);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: 0.3s ease-out;
+} */
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="unit-details">
-        <h1>This is the Unit Details View</h1>
+        <h1>Unit Details</h1>
         <div id="container-details">
             <div id="images-box">
                 <h1>- Pictures Here -</h1>
@@ -11,7 +11,7 @@
                 <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
                 
                 <form v-on:submit.prevent="placeBid()">
-                    <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
+                    $ <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
                         v-model.number="bid.amount">
                     <br>
                     <br>
@@ -66,7 +66,7 @@ export default {
 
             },
             bidErrors: false,
-            bidErrorMsg: 'Bid must be higher than current bid. Enter whole number.',
+            bidErrorMsg: 'Bid must be higher than current bid.',
 
         }
     },
@@ -149,6 +149,10 @@ export default {
 </script>
 
 <style scoped>
+.unit-details {
+    display: flex;
+}
+
 h1 {
     padding: 20px;
 }
@@ -160,7 +164,7 @@ h1 {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    background-color: rgb(48, 66, 78);
+    background-color: #8393C2;
 }
 
 #writing-box {
@@ -169,7 +173,7 @@ h1 {
     border-radius: 2rem;
     margin-left: 100px;
     padding: 50px;
-    background-color: #B4B09B;
+    background-color: #faefe0;
     color: #264B56;
 }
 
@@ -183,12 +187,12 @@ h1 {
 }
 
 #bid-history-container {
-    background-color: #B4B09B;
+    background-color: #F9F6F0;
     height: 200px;
 }
 
 .bid-error-msg {
-    color: red;
+    color: #FF7243;
     font-weight: bold;
 }
 
@@ -196,6 +200,10 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#bid-amount {
+    width: 110px;
 }
 
 table {

@@ -69,11 +69,13 @@ namespace Capstone.Controllers
                 EmailUtility emailUtility = new EmailUtility();
                 User user = userDao.GetUserById(unit.HighestBidder);
                 string code = emailUtility.OrderNumberGenerator();
-                //call DAO to update unit table w/ order number, returns int
-                //if 1, trigger sendcheckoutemail
-                //DO NOT SEND EMAIL IF WINNER IS ID 1 OR 2
+                unit.OrderNumber = code;
+                unitDao.UpdateUnit(unit);
+                if(unit != null && unit.HighestBidder != 1 && unit.HighestBidder != 2)
+                {
+                    emailUtility.SendCheckoutEmail(user.Email, unit, code);
+                }
 
-                emailUtility.SendCheckoutEmail(user.Email, unit, code);
             }
 
             return Ok(unit);
