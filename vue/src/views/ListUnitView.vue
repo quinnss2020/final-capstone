@@ -306,7 +306,7 @@ aside {
     width: 135px;
     position: fixed;
     z-index: 1;
-    top: 160px;
+    top: 150px;
     left: 30px;
     overflow-x: hidden;
     padding-top: 3px;
