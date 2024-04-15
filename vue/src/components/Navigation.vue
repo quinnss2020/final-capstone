@@ -2,9 +2,9 @@
     <section class="nav">
         <ol id="nav-buttons">
             <img :src="image" id="logo" />
-            <li> <router-link v-bind:to="{name: 'bids'}"  v-show="$store.state.token"> MY BIDS </router-link></li>
-            <li><router-link v-bind:to="{name:'units'}">UNITS</router-link></li>
-            <li> <router-link v-bind:to="{name: 'register'}"  v-show="!$store.state.token"> REGISTER </router-link></li>
+            <li> <router-link v-bind:to="{ name: 'bids' }" v-show="$store.state.token"> MY BIDS </router-link></li>
+            <li><router-link v-bind:to="{ name: 'units' }">UNITS</router-link></li>
+            <li> <router-link v-bind:to="{ name: 'register' }" v-show="!$store.state.token"> REGISTER </router-link></li>
             <li><router-link v-bind:to="{ name: 'logout' }" v-show="$store.state.token">LOGOUT</router-link></li>
             <li><router-link v-bind:to="{ name: 'login' }" v-show="!$store.state.token"> LOGIN </router-link></li>
         </ol>
@@ -13,7 +13,7 @@
 
 <script>
 
-import image from "../assets/DeltaLogo.svg"
+import image from "../assets/DeltaLogoDark.svg"
 export default {
     data: function () {
         return {
@@ -33,7 +33,7 @@ nav> :is(ul, ol) {
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
-    margin-top: 30px;
+    margin-top: 35px;
     list-style: none;
     background: none;
     margin-right: 20px;
@@ -43,17 +43,31 @@ nav> :is(ul, ol) {
 a {
     display: flex;
     text-decoration: none;
-    background-color: #264B56;
-    color: #faefe0;
+    /* background-color: #264B56; */
+
+    color: #314668;
     font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 800;
     padding: 2rem;
+    border-width: 1.9px;
     border-style: outset;
-    border-color: #264B56;
+    border-color: #9A94BC;
     border-radius: 2rem;
     padding-inline: 1.5rem;
     padding-block: 0.6rem;
     margin-right: 20px;
+}
+
+a:hover {
+    /* background-image: linear-gradient(to right, #F9F6F0, #8FB8DE); */
+    animation-name: example;
+    animation-duration: 1s;
+}
+
+@keyframes example {
+    from {background-color:#F9F6F0;}
+    to {background-color:  #d5d3e3;}  /*#d5d3e3*/
+    
 }
 
 ol>img {
