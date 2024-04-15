@@ -294,6 +294,9 @@ export default {
 }
 
 #unit-cards-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
     overflow-y: auto;
     margin-left: 180px;
     padding: 0px 10px;
@@ -317,20 +320,13 @@ aside {
     border-style: outset;
 }
 
-.wrapper {
-    height: 100%;
-}
-
-
-.unit-cards {
+/* .unit-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 600px;
-    height: 100vh;
-    flex-direction: row;
-    overflow-y: auto;
-}
+    height: 100vh
+} */
 
 /* #page-container {
     display: flex;
