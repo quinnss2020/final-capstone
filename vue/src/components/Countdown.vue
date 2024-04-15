@@ -17,12 +17,6 @@ export default {
         }
     },
 
-    // computed: {
-    //     giveCountdown(){
-    //         return reformatDate(this.currentTime);
-    //     }
-    // },
-
     mounted () {
         setInterval(() => this.currentTime = reformatDate(this.expiration), 1000);
     },
