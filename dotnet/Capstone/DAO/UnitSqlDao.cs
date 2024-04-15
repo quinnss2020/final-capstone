@@ -78,7 +78,7 @@ namespace Capstone.DAO
                         {
                             units.Add(unit);
                         }
-                                            }
+                    }
                 }
             }
             catch(SqlException ex)
