@@ -59,7 +59,7 @@ namespace Capstone.DAO
             IList<Unit> units = new List<Unit>();
 
             string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
-                "order_number, city, size, active, expiration, created, details FROM units";
+                "order_number, city, size, active, expiration, created, details FROM units WHERE active = 1";
 
             try
             {
@@ -73,8 +73,12 @@ namespace Capstone.DAO
                     while(reader.Read())
                     {
                         Unit unit = MapRowToUnit(reader);
-                        units.Add(unit);
-                    }
+
+                        if(unit.Expiration > DateTime.Now)
+                        {
+                            units.Add(unit);
+                        }
+                                            }
                 }
             }
             catch(SqlException ex)

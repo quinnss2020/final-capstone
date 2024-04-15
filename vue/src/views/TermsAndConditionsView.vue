@@ -203,7 +203,7 @@ form {
   padding-bottom: 10px;
   background: rgba(244, 236, 225, .2);
   text-align: left;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 ::-webkit-scrollbar {
 width: 16px;

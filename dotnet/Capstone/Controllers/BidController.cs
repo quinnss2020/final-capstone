@@ -38,7 +38,7 @@ namespace Capstone.Controllers
 
             if (!CheckIfUnitHasExpired(unit))
             {
-                return StatusCode(500, "This auction has closed.");
+                return StatusCode(410, "This auction has closed.");
             }
 
             if (bid.Amount > unit.HighestBid)
