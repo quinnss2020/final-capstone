@@ -110,7 +110,7 @@ export default {
 
         getUnits(){
             UnitService
-                .list()
+                .listAll()
                 .then((response) => {
                     this.units = response.data;
                 })
@@ -157,7 +157,7 @@ export default {
             return this.userBids.map( (bid) => {
                 return {
                     bid,
-                    unit: this.getUnitDetails(bid.unitId)
+                    unit: this.getUnitDetails(bid.unitId),
                 }
             })
             
@@ -172,10 +172,7 @@ export default {
 
         //then call method above that lists bids
         this.getBids();
-        this.getUnits();
-        //this.getUnitDetails();
-        
-
+        this.getUnits();        
     }
 }
 

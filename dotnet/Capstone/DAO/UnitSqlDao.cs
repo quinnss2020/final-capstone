@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using Capstone.Exceptions;
+using Capstone.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using Capstone.Exceptions;
-using Capstone.Models;
-using Capstone.Security;
-using Capstone.Security.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 
 namespace Capstone.DAO
@@ -53,6 +46,40 @@ namespace Capstone.DAO
             return unit;
         }
 
+        public IList<Unit> GetAllUnits()
+        {
+
+            IList<Unit> units = new List<Unit>();
+
+            string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
+                "order_number, city, size, active, expiration, created, details, email_sent FROM units";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Unit unit = MapRowToUnit(reader);
+
+                        units.Add(unit);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return units;
+        }
+
+
         public IList<Unit> GetAllActiveUnits()
         {
 
@@ -63,25 +90,25 @@ namespace Capstone.DAO
 
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         Unit unit = MapRowToUnit(reader);
 
-                        if(unit.Expiration > DateTime.Now)
+                        if (unit.Expiration > DateTime.Now)
                         {
                             units.Add(unit);
                         }
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw new DaoException("SQL exception occurred", ex);
             }
@@ -189,7 +216,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@emailSent", unit.EmailSent);
                     int count = cmd.ExecuteNonQuery();
 
-                    if(count == 1)
+                    if (count == 1)
                     {
                         return unit;
                     }

@@ -7,6 +7,7 @@ namespace Capstone.DAO
     {
         public IList<Unit> GetAllActiveUnits();
         public IList<Unit> GetAllInactiveUnits();
+        public IList<Unit> GetAllUnits();
         public Unit GetUnitById(int id);
         public Unit UpdateUnit(Unit unit);
     }

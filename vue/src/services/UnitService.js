@@ -5,6 +5,11 @@ export default {
         return axios.get('/units');
     },
 
+    listAll() {
+        return axios.get('/units/all');
+    },
+
+
     unitDetails(id) {
         return axios.get(`/units/${id}`);
     },

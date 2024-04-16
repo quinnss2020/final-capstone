@@ -41,23 +41,42 @@ namespace Capstone.Controllers
         }
 
         //FIX FIX FIX FIX FIX FIX 
-        //[HttpGet("/units/inactive")]
-        //public ActionResult<List<Unit>> GetAllInactiveUnits()
-        //{
-        //    const string ErrorMessage = "An error has occurred and a list of expired units was not created.";
-        //    IList<Unit> units = new List<Unit>();
+        [HttpGet("/units/inactive")]
+        public ActionResult<List<Unit>> GetAllInactiveUnits()
+        {
+            const string ErrorMessage = "An error has occurred and a list of expired units was not created.";
+            IList<Unit> units = new List<Unit>();
 
-        //    try
-        //    {
-        //        units = unitDao.GetAllInactiveUnits();
-        //        return Ok(units);
-        //    }
-        //    catch (DaoException)
-        //    {
-        //        return StatusCode(500, ErrorMessage);
-        //    }
+            try
+            {
+                units = unitDao.GetAllInactiveUnits();
+                return Ok(units);
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+            }
 
-        //}
+        }
+
+        [HttpGet("/units/all")]
+        public ActionResult<List<Unit>> GetAllUnits()
+        {
+            const string ErrorMessage = "An error has occurred and a list of expired units was not created.";
+            IList<Unit> units = new List<Unit>();
+
+            try
+            {
+                units = unitDao.GetAllUnits();
+                return Ok(units);
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+            }
+
+        }
+
 
         [HttpGet("/units/{id}")]
         public ActionResult<Unit> GetUnitById(int id)
