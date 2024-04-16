@@ -76,7 +76,7 @@ INSERT INTO users (first_name, last_name, email, password_hash, salt, user_role,
 VALUES ('Evil', 'Jake','eviljaketaylornorris@evil.com','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user', '234567', 1, 0);
 
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
-VALUES (101, 100, 100, 1, 'AA0000', 'Columbus', '5x5', 1, '2024-04-16 11:08:10', GETDATE(), 'Well-loved furniture assortment: A mishmash of worn sofas, chipped dining sets, and mismatched lamps, perfect for DIY enthusiasts looking to refurbish or repurpose these vintage pieces for a touch of character in any home.')
+VALUES (101, 100, 100, 1, 'AA0000', 'Columbus', '5x5', 1, '2024-04-16 10:30:10', GETDATE(), 'Well-loved furniture assortment: A mishmash of worn sofas, chipped dining sets, and mismatched lamps, perfect for DIY enthusiasts looking to refurbish or repurpose these vintage pieces for a touch of character in any home.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (102, 120, 120, 1, 'BB0001', 'Cleveland', '10x10', 1, '2024-04-19 12:08:10', GETDATE(), 'Sports memorabilia mishmash: Faded jerseys, dusty trophies, and scuffed photographs from forgotten games, waiting for a new owner to appreciate the nostalgia and history behind each piece, despite their worn condition.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
