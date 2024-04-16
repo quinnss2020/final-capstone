@@ -91,6 +91,15 @@ const routes = [
   },
 
   {
+    path: "/units/:unitId/edit",
+    name: "AdminDetailsView",
+    component: AdminDetailsView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+
+  {
     path: "/bids",
     name: "bids",
     component: UserBidView,
