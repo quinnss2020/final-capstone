@@ -116,6 +116,33 @@ VALUES (1001, 4, 120, '2024-04-10 11:08:10')
 INSERT INTO bids(unit_id, bidder_id, amount, date_placed) 
 VALUES (1002, 4, 140, '2024-04-10 11:08:10')
 
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1000, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280345/zcax5raretqskhayvloy.jpg')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1000, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280373/y2gvkr4bvbkssugtm2dz.jpg')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1000, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713278872/kw1jahxxyoxp7ouo30ih.jpg')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1000, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713278906/dpgu1cgpvfsta6yv19dc.webp')
+
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1001, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279129/vgtdzld2g2qiwpyh0pcg.jpg')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1001, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279174/ktigs8xebh3jlzpu5rc4.webp')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1001, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279214/m1ro4ztnzvjwbcxddyzf.webp')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1001, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279232/hzds5msfxtuqnvsajihd.webp')
+
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1002, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279901/tevceiczexl8o9tt1doe.jpg')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1002, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279861/a8ziytgndhfla6s5rpzl.jpg')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1002, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280005/efyhhlrzfajvrygzxttl.jpg')
+INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1002, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280020/vjsxavcfto5ppeyxxg9m.jpg')
+
 
 ALTER TABLE units WITH CHECK ADD CONSTRAINT [FK_users_units]
 FOREIGN KEY(highest_bidder) REFERENCES [users] (id)
