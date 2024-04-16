@@ -27,7 +27,7 @@ export default {
 
 
 html {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Nunito Sans", sans-serif !important;
   text-align: center;
   color: #314668;
   /* background-color:  #F9F6F0; */
@@ -42,11 +42,9 @@ html {
 }
 
 button {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Nunito Sans", sans-serif !important;
   font-weight: 730;
   color: #314668;
-  /* background-color: #faefe0; */
-  /* background-color:#9A94BC; */
   border-style: outset;
   border-color: #F4ECE1;
   border-radius: 0.6rem;
@@ -55,8 +53,9 @@ button {
   height: 35px;
   margin-bottom: 7px;
   white-space: nowrap;
+  /* background-color: #faefe0; */
+  /* background-color:#9A94BC; */
 }
-
 
 input {
   background-color: #F9F6F0;
