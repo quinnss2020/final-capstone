@@ -312,15 +312,15 @@ export default {
 }
 
 aside {
-    width: 155px;
+    width: 190px;
     position: fixed;
     z-index: 1;
     top: 150px;
     left: 30px;
     overflow-x: hidden;
-    padding-top: 3px;
-    padding-left: 20px;
-    padding-right: 8px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: px;
     padding-bottom: 10px;
     text-align: left;
     border-color: #faefe0;
