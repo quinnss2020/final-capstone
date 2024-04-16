@@ -8,28 +8,34 @@
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
+                <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3><br>
                 <div id="expiration-edit">
                     <h3 class="emphasis">
                         <Countdown :expiration="unit.expiration"></Countdown>
                     </h3>
-                    <form v-on:submit.prevent="updateUnit()">
-                        <label for="edit-expiration">Select new expiration for auction:</label>
-                        <input type="datetime-local" id="edit-expiration" name="edit-expiration" value="2024-04-19T16:00"
-                            min="2024-04-19T16:00" max="2025-04-19T16:00" />
-                    </form>
-                </div>
-                <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3>
-                <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
 
-                <form v-on:submit.prevent="placeBid()">
+                    <v-form id="update-expiration-form" v-on:submit.prevent="updateUnit()">
+                        <label for="edit-expiration">Set new expiration:</label><br>
+                        <input type="datetime-local" id="edit-expiration" name="edit-expiration" value="2024-04-19T16:00"
+                            min="2024-04-19T16:00" max="2025-04-19T16:00" /> <br><br> 
+                    <v-btn type="submit" color="success" form="update-expiration-form">Update</v-btn>  
+                    </v-form>
+
+                </div>
+                <!-- <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p> -->
+
+                <!-- <form v-on:submit.prevent="placeBid()">
                     <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
-                        v-model.number="bid.amount">
+                        v-model.number="bid.amount"> -->
                     <!-- <br>
                     <br>
                     <button type="submit">BID NOW</button> -->
-                </form>
+                <!-- </form> -->
                 <h3>Details:</h3>
-                <h3 id="details-text">{{ unit.details }}</h3>
+                <v-form @submit.prevent="updateUnit()">
+                    <v-textarea label="Unit Description" variant="solo">{{ unit.details }}</v-textarea>
+                </v-form>
+                <!-- <h3 id="details-text">{{ unit.details }}</h3> -->
             </div>
         </div>
         <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
@@ -91,8 +97,8 @@ export default {
             //TODO 
             this.unit.expiration = this.newExpiration; //v-model to where?
             UnitService
-            .edit(this.unit)
-            .then
+                .edit(this.unit)
+                .then
         },
 
         getBidsByUnit() {
@@ -163,8 +169,10 @@ button {
 }
 
 #expiration-edit {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
 }
 
