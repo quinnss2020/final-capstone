@@ -1,6 +1,6 @@
 <template>
   <div id="capstone-app">
-    <navigation />
+    <navigation v-if="!$route.meta.hideNavigation"/> <!--v-show = "!this.$route.path === 'home'"-->
     <!-- <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
