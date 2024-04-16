@@ -23,14 +23,14 @@ namespace Capstone.Controllers
         }
 
         [HttpGet("/units")]
-        public ActionResult<List<Unit>> GetAllUnits()
+        public ActionResult<List<Unit>> GetAllActiveUnits()
         {
             const string ErrorMessage = "An error has occurred and a list of units was not created.";
             IList<Unit> units = new List<Unit>();
 
             try
             {
-                units = unitDao.GetAllUnits();
+                units = unitDao.GetAllActiveUnits();
 
                 return Ok(units);
             }
@@ -38,6 +38,34 @@ namespace Capstone.Controllers
             {
                 return StatusCode(500, ErrorMessage);
             }
+        }
+
+        //FIX FIX FIX FIX FIX FIX 
+        [HttpGet("/units/inactive")]
+        public ActionResult<List<Unit>> GetAllInactiveUnits()
+        {
+            const string ErrorMessage = "An error has occurred and a list of units was not created.";
+            IList<Unit> units = new List<Unit>();
+
+            try
+            {
+                units = unitDao.GetAllActiveUnits();
+
+                //for(int i = 0; i < units.Count; i++)
+                //{
+                //    //if (!unit.Active && !emailSent && user.highestBidder != 1 && user.highestBidder != 2)
+                //    //{
+                //    //    EmailUtility emailUtility = new EmailUtility
+
+                //    //}
+                //}
+                return Ok(units);
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+            }
+
         }
 
         [HttpGet("/units/{id}")]

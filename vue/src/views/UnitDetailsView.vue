@@ -11,7 +11,7 @@
                 <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
                 
                 <form v-on:submit.prevent="placeBid()">
-                    $ <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
+                    <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
                         v-model.number="bid.amount">
                     <br>
                     <br>
@@ -235,7 +235,7 @@ h3.emphasis {
 }
 
 #bid-amount {
-    width: 110px;
+    width: 155px;
 }
 
 table {
