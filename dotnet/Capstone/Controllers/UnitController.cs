@@ -104,7 +104,7 @@ namespace Capstone.Controllers
             {
                 Unit updatedUnit = new Unit();
                 updatedUnit = unitDao.UpdateUnit(unit);
-                if(updatedUnit == null)
+                if (updatedUnit == null)
                 {
                     return BadRequest();
                 }
@@ -153,6 +153,29 @@ namespace Capstone.Controllers
             }
             return Ok(units);
 
+        }
+
+        [Authorize]
+        [HttpDelete("/units/{unitId}/delete")]
+        public ActionResult<Unit> DeleteUnitByUnitId(int unitId)
+        {
+            try
+            {
+                Unit unit = unitDao.DeleteUnit(unitId);
+
+                if (unit == null)
+                {
+                    return Ok(unit);
+                }
+                else
+                {
+                    return StatusCode(500, "Unit was not successfully deleted");
+                }
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, "An error occurred and the unit was not deleted");
+            }
         }
     }
 }
