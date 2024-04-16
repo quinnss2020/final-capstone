@@ -1,6 +1,5 @@
 <template>
     <div class="unit-details">
-        <h1>ADMIN EDIT VIEW</h1>
         <div id="details-container">
             <div id="images-box">
                 <h1>- Pictures Here -</h1>
@@ -8,28 +7,38 @@
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
-                <div id="expiration-edit">
-                    <h3 class="emphasis">
-                        <Countdown :expiration="unit.expiration"></Countdown>
-                    </h3>
-                    <form v-on:submit.prevent="updateUnit()">
-                        <label for="edit-expiration">Select new expiration for auction:</label>
-                        <input type="datetime-local" id="edit-expiration" name="edit-expiration" value="2024-04-19T16:00"
-                            min="2024-04-19T16:00" max="2025-04-19T16:00" />
-                    </form>
-                </div>
-                <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3>
-                <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
+                <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3><br>
 
-                <form v-on:submit.prevent="placeBid()">
+                <h3 class="emphasis">
+                    <Countdown :expiration="unit.expiration"></Countdown>
+                </h3>
+
+                <v-form id="update-expiration-form" v-on:submit.prevent="updateUnit()">
+                    <div class="form-input-group">
+                        <div><label class="bolded" for="edit-expiration">Set new expiration:</label></div>
+                        <div><input type="datetime-local" id="edit-expiration" name="edit-expiration"
+                                value="2024-04-19T16:00" min="2024-04-19T16:00" max="2025-04-19T16:00" v-model="newExpiration" /></div>
+                    </div>
+                    <v-btn type="submit" color="#314668">Update</v-btn>
+                </v-form>
+
+
+                <!-- <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p> -->
+
+                <!-- <form v-on:submit.prevent="placeBid()">
                     <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
-                        v-model.number="bid.amount">
-                    <!-- <br>
+                        v-model.number="bid.amount"> -->
+                <!-- <br>
                     <br>
                     <button type="submit">BID NOW</button> -->
-                </form>
+                <!-- </form> -->
                 <h3>Details:</h3>
-                <h3 id="details-text">{{ unit.details }}</h3>
+                <v-form @submit.prevent="updateUnit()">
+                    <v-textarea id="description-box" label="Unit Description" variant="solo"
+                    v-model="unit.details"></v-textarea>
+                    <v-btn class="button" type="submit" color="#314668">Update</v-btn>
+                </v-form>
+                <!-- <h3 id="details-text">{{ unit.details }}</h3> -->
             </div>
         </div>
         <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
@@ -73,6 +82,7 @@ export default {
             unit: {},
             bidsByUnit: [],
             newExpiration: "",
+            newDetails: "",
 
             bid: {
                 unitId: "",
@@ -87,12 +97,24 @@ export default {
     },
 
     methods: {
-        updateUnit() {
-            //TODO 
-            this.unit.expiration = this.newExpiration; //v-model to where?
+        updateUnit() { 
+            this.unit.expiration = this.newExpiration;
             UnitService
-            .edit(this.unit)
-            .then
+                .edit(this.unit)
+                .then(() => {
+                    this.$router.push({name:'unitDetails', params: { unitId: this.unit.id }})
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Error editing unit: ", error.response.status);
+                    }
+                    else if (error.request) {
+                        console.log("Error editing unit. Unable to communicate to server.");
+                    }
+                    else {
+                        console.log("Error making request to edit unit");
+                    }
+                })
         },
 
         getBidsByUnit() {
@@ -148,29 +170,39 @@ h2 {
     margin: 0;
 }
 
+.v-textarea {
+    width: 600px;
+}
 
 h3 {
     text-align: left;
     margin: 0;
+    margin-bottom: 10px;
 }
 
-form {
+/* form {
     margin-top: 20px;
+} */
+
+.button {
+    align-self: flex-end;
+    /* margin-bottom: 30px; */
 }
 
-button {
-    margin-bottom: 30px;
+.bolded {
+    font-weight: 800;
+    font-size: 1.4rem;
 }
 
+/* 
 #expiration-edit {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
-}
+} */
 
-#edit-expiration {
-    padding-left: 100px;
-}
 
 h3.emphasis {
     color: #FF7243;
@@ -186,14 +218,12 @@ h3.emphasis {
 }
 
 #details-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 500px;
+    display: flex;
+    /* height: 500px; */
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-top: 30px;
 
 }
 
@@ -229,11 +259,9 @@ h3.emphasis {
     flex-direction: column;
     justify-content: center;
     background-color: rgba(239, 237, 255, 0.8);
+    margin-top: 20px;
 }
 
-#bid-amount {
-    width: 155px;
-}
 
 table {
     margin: 10px;
