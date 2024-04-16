@@ -10,6 +10,10 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+// import Vue from 'vue'
+// import Vuetify from 'vuetify'
+
 
 const vuetify = createVuetify({
   components,
@@ -56,6 +60,9 @@ const store = createStore(currentToken, currentUser);
 const app = createApp(CapstoneApp);
 app.use(store);
 app.use(router);
-app.use(vuetify);
+app.use(vuetify,{
+iconfont: 'md'
+});
+// });
 app.mount('#app');
 //add app.use(NAME-OF-PLUGIN) if we want to use plugins

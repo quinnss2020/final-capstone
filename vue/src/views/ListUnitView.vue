@@ -1,12 +1,14 @@
 <template>
+    <br>
+    <br>
     <div id="view-units">
-        <h1>Available Units</h1>
-
+        <!-- <h1>Available Units</h1> -->
         <body class="page-container">
             <div class="wrapper">
                 <aside>
                     <div class="location">
                         <h2>Filter Units</h2>
+                        <br>
                         <h3>Location</h3>
                         <input type="checkbox" id="columbus" value="Columbus" v-model="filter.location">
                         <label for="Columbus">Columbus</label>
@@ -67,8 +69,8 @@
                         <br>
                     </div>
                     <br>
-                    <button v-on:click="filterUnits">APPLY</button>
-                    <button v-on:click="clearFilters">CLEAR</button>
+                    <v-btn elevation="8" rounded="xl" size="regular" v-on:click="filterUnits">APPLY</v-btn>
+                    <v-btn elevation="8" rounded="xl" size="regular" v-on:click="clearFilters">CLEAR</v-btn>
                 </aside>
                 <main id="unit-cards-container">
                     <div id="unit-cards">
@@ -295,7 +297,7 @@ export default {
 }
 
 #unit-cards-container {
-    display: flex;
+    /* display: flex; */
     justify-content: flex-start;
     flex-direction: row;
     overflow-y: auto;
@@ -310,7 +312,7 @@ export default {
 }
 
 aside {
-    width: 135px;
+    width: 155px;
     position: fixed;
     z-index: 1;
     top: 150px;

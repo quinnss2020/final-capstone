@@ -173,12 +173,13 @@ namespace Capstone.Controllers
                     string code = emailUtility.OrderNumberGenerator();
                     unit.OrderNumber = code;
                     unitDao.UpdateUnit(unit);
-                    if (unit != null)
+                    if (unit != null && unit.HighestBidder != 1 && unit.HighestBidder != 2)
                     {
                         emailUtility.SendCheckoutEmail(user.Email, unit, code);
                         unit.EmailSent = true;
                         unitDao.UpdateUnit(unit);
                     }
+                    
 
                 }
 
