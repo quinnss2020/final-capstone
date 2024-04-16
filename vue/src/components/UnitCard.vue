@@ -25,15 +25,6 @@ export default {
         }
     },
 
-    methods: {
-
-    },
-    
-    computed: {
-        
-
-    },
-
     created() {
         setInterval(this.countdown, 1000);
 
