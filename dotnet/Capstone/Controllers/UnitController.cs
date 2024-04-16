@@ -51,6 +51,11 @@ namespace Capstone.Controllers
             {
                 units = unitDao.GetAllActiveUnits();
 
+
+                foreach(Unit unit in units)
+                {
+                    return null;
+                }
                 //for(int i = 0; i < units.Count; i++)
                 //{
                 //    //if (!unit.Active && !emailSent && user.highestBidder != 1 && user.highestBidder != 2)
