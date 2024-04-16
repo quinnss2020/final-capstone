@@ -93,7 +93,7 @@ const routes = [
 
   {
     path: "/units/:unitId/edit",
-    name: "AdminDetailsView",
+    name: "adminDetailsView",
     component: AdminDetailsView,
     meta: {
       requiresAuth: true

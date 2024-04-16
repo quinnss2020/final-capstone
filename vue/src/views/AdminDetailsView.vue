@@ -1,8 +1,10 @@
 <template>
     <div class="unit-details">
+        <h1>ADMIN EDIT VIEW</h1>
         <div id="details-container">
             <div id="images-box">
                 <h1>- Pictures Here -</h1>
+                <v-btn>UPLOAD PHOTO</v-btn>
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
@@ -13,9 +15,9 @@
                 <form v-on:submit.prevent="placeBid()">
                     <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
                         v-model.number="bid.amount">
+                    <!-- <br>
                     <br>
-                    <br>
-                    <button type="submit">BID NOW</button>
+                    <button type="submit">BID NOW</button> -->
                 </form>
                 <h3>Details:</h3>
                 <h3 id="details-text">{{ unit.details }}</h3>

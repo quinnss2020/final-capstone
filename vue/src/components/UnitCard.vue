@@ -5,7 +5,8 @@
         <p id="closing-time">Closes in: <Countdown :expiration="item.expiration"></Countdown></p>
         <p id="highest-bid">High bid: ${{ item.highestBid }}</p>
     </div>
-    <button v-on:click="this.$router.push({ name: 'unitDetails', params: { unitId: item.id }})">BID NOW</button>
+    <button v-if="this.$store.state.user.id === 1" v-on:click="this.$router.push({ name: 'adminDetailsView', params: { unitId: item.id }})">EDIT</button>
+    <button v-else v-on:click="this.$router.push({ name: 'unitDetails', params: { unitId: item.id }})">BID NOW</button>
     </section>
 </template>
 
