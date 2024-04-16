@@ -202,28 +202,6 @@ export default {
                 })
         },
 
-        endAuctions() {
-            UnitService
-            .endAuction()
-            .then((response) => {
-                if(response === 200) {
-                    console.log("Auctions Ended");
-                }
-            })
-            .catch((error) => {
-                    if (error.response) {
-                        console.log("Error ending auctions: ", error.response.status);
-                    }
-                    else if (error.request) {
-                        console.log("Error ending auctions. Unable to communicate to server.");
-                    }
-                    else {
-                        console.log("Error making request");
-                    }
-                })
-
-        },
-
         filterUnits() {
 
             //this.filteredUnits = this.units;
