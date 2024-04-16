@@ -15,11 +15,44 @@ namespace Capstone.Controllers
     {
         private readonly IUnitSqlDao unitDao;
         private readonly IUserDao userDao;
+        private readonly IPhotoSqlDao photoDao;
 
-        public UnitController(IUnitSqlDao unitDao, IUserDao userDao)
+        public UnitController(IUnitSqlDao unitDao, IUserDao userDao, IPhotoSqlDao photoDao)
         {
             this.unitDao = unitDao;
             this.userDao = userDao;
+            this.photoDao = photoDao;
+        }
+
+        [Authorize]
+        [HttpPost("/units/add")]
+        public ActionResult<Unit> CreateUnit(Unit unit)
+        {
+            Unit newUnit = new Unit();
+
+            User user = userDao.GetUserByEmail(User.Identity.Name);
+
+            if (user.Role == "user")
+            {
+                return StatusCode(403, "Forbidden");
+            }
+
+            try
+            {
+                newUnit = unitDao.CreateUnit(unit);
+                if(newUnit != null)
+                {
+                    return StatusCode(201, "Unit was created");
+                }
+                else
+                {
+                    return StatusCode(500, "Unit was not successfully created");
+                }
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, "An error occurred and a unit could not be added.");
+            }
         }
 
         [HttpGet("/units")]
@@ -161,9 +194,10 @@ namespace Capstone.Controllers
         {
             try
             {
+                IList<Photo> photos = photoDao.DeletePhotosByUnitId(unitId);
                 Unit unit = unitDao.DeleteUnit(unitId);
 
-                if (unit == null)
+                if (unit.Id == 0)
                 {
                     return Ok(unit);
                 }

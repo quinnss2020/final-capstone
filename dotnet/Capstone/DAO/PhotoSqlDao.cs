@@ -110,11 +110,11 @@ namespace Capstone.DAO
             }
             return photos;
         }
-        public Photo DeletePhotoByPhotoID(int photoId)
+        public Photo DeletePhotoByPhotoId(int photoId)
         {
             Photo photo = new Photo();
 
-            string sql = "DELETE FROM unit_photos WHERE id = @photoID";
+            string sql = "DELETE FROM unit_photos WHERE id = @photoId";
 
             try
             {
@@ -125,6 +125,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@photoId", photoId);
 
+                    cmd.ExecuteNonQuery();
                     photo = GetPhotoByPhotoId(photoId);
                 }
             }

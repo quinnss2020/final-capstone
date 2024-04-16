@@ -82,7 +82,7 @@ VALUES (102, 120, 120, 1, 'BB0001', 'Cleveland', '10x10', 1, '2024-04-19 12:08:1
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (103, 180, 180, 1, 'CC0002', 'Cincinnati', '10x15', 1, '2024-04-16 14:08:10', GETDATE(), 'Outdoor adventure odds and ends: From frayed hiking boots to weathered tents, this collection offers a glimpse into past expeditions, with gear that''s seen its fair share of rugged terrain and outdoor escapades.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
-VALUES (104, 6000, 6000, 1, 'DD0003', 'Akron', '10x20', 1, '2024-04-19 11:08:10', GETDATE(), 'Vintage book grab bag: Dog-eared classics, well-thumbed paperbacks, and musty volumes, each telling its own story of past readers and literary journeys, waiting to be rediscovered and cherished once again.')
+VALUES (104, 60, 60, 1, 'DD0003', 'Akron', '10x20', 1, '2024-04-19 11:08:10', GETDATE(), 'Vintage book grab bag: Dog-eared classics, well-thumbed paperbacks, and musty volumes, each telling its own story of past readers and literary journeys, waiting to be rediscovered and cherished once again.')
 
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (111, 40, 40, 1, 'EE0004', 'Columbus', '5x5', 1, '2024-04-19 13:08:10', GETDATE(), 'Electronics graveyard: Outdated gadgets, cracked screens, and dusty devices from years gone by, a testament to the ever-changing landscape of technology and the memories held within each worn-out item.')

@@ -8,7 +8,7 @@ namespace Capstone.DAO
         public Photo CreatePhoto(Photo photo);
         public IList<Photo> GetPhotosByUnitId(int unitId);
         public Photo GetPhotoByPhotoId(int photoId);
-        public Photo DeletePhotoByPhotoID(int photoId);
+        public Photo DeletePhotoByPhotoId(int photoId);
 
         public IList<Photo> DeletePhotosByUnitId(int unitId);
 
