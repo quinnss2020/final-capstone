@@ -48,6 +48,7 @@ export default {
           }
       );
       const data = await res.json();
+      console.log(data.secure_url);
       this.fileName = "";
       this.preview = null;
       this.formData = null;
