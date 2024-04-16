@@ -10,5 +10,6 @@ namespace Capstone.DAO
         public IList<Unit> GetAllUnits();
         public Unit GetUnitById(int id);
         public Unit UpdateUnit(Unit unit);
+        public Unit DeleteUnit(int unitId);
     }
 }

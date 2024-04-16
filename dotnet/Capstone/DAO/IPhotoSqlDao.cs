@@ -6,7 +6,7 @@ namespace Capstone.DAO
     public interface IPhotoSqlDao
     {
         public Photo CreatePhoto(Photo photo);
-        public IList<Photo> GetAllPhotosByUnitId(int unitId);
+        public IList<Photo> GetPhotosByUnitId(int unitId);
         public Photo GetPhotoByPhotoId(int photoId);
         public Photo DeletePhotoByPhotoID(int photoId);
 

@@ -12,20 +12,20 @@
         </ol>
       </section>
       <div class="logo">
-      <img src="../assets/DeltaLogo-Light.svg" id="logo"/>
+      <img src="@/assets/DeltaLogo-Light.svg" id="logo"/>
       </div>
       <!-- <h1 v-if="$store.state.token"> Welcome </h1>
       <p>You are now logged in</p> -->
     </div>
 
     <div id="section-two">
-      <div id="title">
-      <h1>Bid Win Own</h1>
-      </div>
-      <p>
-        Storage units filled with forgotten treasures
-      </p>
-      <button>BID NOW</button>
+      <div id="text">
+        <h1>Bid Win Own</h1>
+        <p>
+          Storage units filled with forgotten treasures
+        </p>
+        <v-btn elevation="12" rounded="xl" size="x-large">BID NOW</v-btn>
+        </div>
     </div>
 
     
@@ -50,6 +50,7 @@ export default {
 
 <style scoped>
 
+
 #section-one {
   display: flex;
   background-image: url("../assets/Background-Home.png");
@@ -71,10 +72,12 @@ export default {
   align-items: flex-end;
   justify-content: flex-end;
   padding-right: 10px;
+  background-image: linear-gradient(#F9F6F0, #AFABA8);
+  text-align: left;
+  
 }
 
-#title{
-  display: flex;
+#text{
   margin-right: 100px;
 }
 
@@ -94,15 +97,24 @@ p {
 }
 
 button{
+  margin-top: 20px;
   margin-right: 100px;
   text-align: center;
-  font-size: 30px;
+  
+
+  /* font-size: 30px;
   font-weight: 300px;
   width: 300px;
-  height: 60px;
-  margin-top: 20px;
+  height: 100px;
+  margin-top: 20px;  */
 
 }
+
+button:hover {
+  color: #9A94BC;
+}
+
+
 
 nav> :is(ul, ol) {
     list-style: none;
@@ -164,5 +176,6 @@ a:hover {
     padding-left: 40px;
     position: absolute;
 }
+
 
 </style>

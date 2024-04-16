@@ -84,8 +84,8 @@
           </label>
           <br>
           <br>
-          <button type="submit">SUBMIT</button>
-          <button @click="logout()">CANCEL</button>
+          <v-btn elevation="8" rounded="xl" size="regular" :ripple="true" type="submit">SUBMIT</v-btn>
+          <v-btn elevation="8" rounded="xl" size="regular" :ripple="true" @click="logout()">CANCEL</v-btn>
           <br>
           <br>
         </div>

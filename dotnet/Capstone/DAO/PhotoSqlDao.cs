@@ -79,7 +79,7 @@ namespace Capstone.DAO
             }
             return photo;
         }
-        public IList<Photo> GetAllPhotosByUnitId(int unitId)
+        public IList<Photo> GetPhotosByUnitId(int unitId)
         {
             string sql = "SELECT id, unit_id, img_URL FROM unit_photos WHERE unit_id = @unitId";
 

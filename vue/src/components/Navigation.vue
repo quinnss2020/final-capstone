@@ -70,8 +70,9 @@ a:hover {
 }
 
 ol>#logo {
-    height: 60px;
+    height: 70px;
     margin-right: auto;
+    margin-left: 30px;
     border: none;
 }
 </style>
