@@ -53,7 +53,7 @@ namespace Capstone.DAO
             return unit;
         }
 
-        public IList<Unit> GetAllUnits()
+        public IList<Unit> GetAllActiveUnits()
         {
 
             IList<Unit> units = new List<Unit>();
@@ -88,6 +88,39 @@ namespace Capstone.DAO
 
             return units;
         }
+
+        public IList<Unit> GetAllInactiveUnits()
+        {
+
+            IList<Unit> units = new List<Unit>();
+
+            string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
+                "order_number, city, size, active, expiration, created, details FROM units WHERE active = 0";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Unit unit = MapRowToUnit(reader);
+                        units.Add(unit);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return units;
+        }
+
 
         public Unit CreateUnit(Unit unit)
         {
