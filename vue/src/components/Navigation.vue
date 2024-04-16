@@ -1,7 +1,7 @@
 <template>
     <section class="nav">
         <ol id="nav-buttons">
-            <router-link id="logo" v-bind:to="{ name: 'home' }" ><img src="../assets/DeltaLogoDark.svg" id="logo"/></router-link>
+            <router-link id="logo" v-bind:to="{ name: 'home' }"><img src="../assets/DeltaLogoDark.svg" id="logo"/></router-link>
             <li> <router-link v-bind:to="{ name: 'bids' }" v-show="$store.state.token"> MY BIDS </router-link></li>
             <li><router-link v-bind:to="{ name: 'units' }">UNITS</router-link></li>
             <li> <router-link v-bind:to="{ name: 'register' }" v-show="!$store.state.token"> REGISTER </router-link></li>
@@ -44,12 +44,11 @@ a {
     display: flex;
     text-decoration: none;
     /* background-color: #264B56; */
-
     color: #314668;
     font-size: 1.2rem;
     font-weight: 800;
     padding: 2rem;
-    border-width: 1.9px;
+    border-width: 2px;
     border-style: outset;
     border-color: #9A94BC;
     border-radius: 2rem;
