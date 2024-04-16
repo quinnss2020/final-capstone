@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <div id="section-one">
+    <div class="section-one">
       <section class="nav">
         <ol id="nav-buttons">
             <li><router-link v-bind:to="{ name: 'bids' }" v-show="$store.state.token"> MY BIDS </router-link></li>
@@ -11,24 +11,24 @@
             <li><router-link v-bind:to="{ name: 'login' }" v-show="!$store.state.token"> LOGIN </router-link></li>
         </ol>
       </section>
-      <div class="logo">
       <img src="@/assets/DeltaLogo-Light.svg" id="logo"/>
-      </div>
-      <!-- <h1 v-if="$store.state.token"> Welcome </h1>
-      <p>You are now logged in</p> -->
     </div>
 
-    <div id="section-two">
-      <div id="text">
+    <div class="section-two">
+      <div id="text-2">
         <h1>Bid Win Own</h1>
         <p>
           Storage units filled with forgotten treasures
         </p>
         <v-btn elevation="12" rounded="xl" size="x-large">BID NOW</v-btn>
         </div>
+        <img src="../assets/OrangeUnits.svg"/>
     </div>
-
-    
+    <div class="section-three">
+      <div id="text-3">
+        <h1> Expiring Soon </h1>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,12 +36,14 @@
 import { stringifyQuery } from 'vue-router';
 import image from "../assets/HomePage-Background-Purple.png"
 import img from "../assets/DeltaLogo-Light.svg"
+import orange from "../assets/OrangeUnits.svg"
 
 export default {
   data: function () {
     return {
       image: image,
-      img: img
+      img: img,
+      orange : orange
     }
   }
 }
@@ -51,20 +53,20 @@ export default {
 <style scoped>
 
 
-#section-one {
+.section-one {
   display: flex;
   background-image: url("../assets/Background-Home.png");
   background-color: #faefe0;
   background-size: cover;
   background-repeat: no-repeat;
   padding-top: 18px;
-  padding-bottom: 820px;
+  padding-bottom: 860px;
   background-repeat: no-repeat;
   justify-content: flex-start;
   flex-direction: column;
 }
 
-#section-two {
+.section-two {
   display: flex;
   flex-direction: column;
   padding-top: 300px;
@@ -74,10 +76,27 @@ export default {
   padding-right: 10px;
   background-image: linear-gradient(#F9F6F0, #AFABA8);
   text-align: left;
-  
+}
+.section-three{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 1000px;
+  /* padding-top: 300px;
+  padding-bottom: 510px; */
+  align-items: flex-end;
+  align-content: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding-left: 100px;
+  padding-top: 260px;
+  background-image: linear-gradient(#F9F6F0, #AFABA8);
 }
 
-#text{
+#text-2{
+  margin-right: 100px;
+}
+#text-3{
   margin-right: 100px;
 }
 
@@ -164,17 +183,17 @@ a:hover {
     
 }
 
-#logo {
-    display: flex;
+
+#logo{
     height: 150px;
-    margin-right: auto;
-    /* margin-left: 40px; */
+  
+    /* margin-left: 40px; 
     border: none;
     justify-content: flex-start;
     align-items: end;
     padding-top: 600px;
     padding-left: 40px;
-    position: absolute;
+    position: absolute;*/
 }
 
 
