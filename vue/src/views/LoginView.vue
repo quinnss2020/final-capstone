@@ -14,17 +14,15 @@
         </div>
         <div class="form-input-group">
 
-          <input type="text" placeholder="Email" id="email" v-model="user.email" required autofocus />
+          <v-text-field label="Email" variant="underlined" type="text" id="email" v-model="user.email" required autofocus></v-text-field>
         </div>
         <div class="form-input-group">
 
-          <input type="password" placeholder="Password" id="password" v-model="user.password" required />
+          <v-text-field type="password" variant="underlined" label="Password" id="password" v-model="user.password" required></v-text-field>
         </div>
-
-        <br>
-        <button type="submit" v-show="!isConfirmed">SIGN IN</button>
+        <v-btn elevation="8" rounded="xl" size="regular" :ripple="true" type="submit" v-show="!isConfirmed">SIGN IN</v-btn>
       </form>
-      <button id="new-user" v-show="!isConfirmed" v-on:click="this.$router.push('/register')">NEW USER</button>
+      <v-btn elevation="8" rounded="xl" size="regular" :ripple="true" id="new-user" v-show="!isConfirmed" v-on:click="this.$router.push('/register')">NEW USER</v-btn>
       <br>
       <form v-if="isConfirmed" v-on:submit.prevent="confirm">
         <div class="form-input-group">
@@ -32,7 +30,7 @@
 
           <input type="text" placeholder="Email Confirmation Code" id="code" v-model="code" required autofocus />
         </div>
-        <button type="submit">CONFIRM</button>
+        <v-btn elevation="12" rounded="xl" size="regular" type="submit">CONFIRM</v-btn>
       </form>
       <p>
         <br>

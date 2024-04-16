@@ -21,4 +21,8 @@ export default {
         return axios.put('/units/checkout');
     },
 
+    edit(unit) {
+        return axios.put(`/units/${unit.id}/edit`, unit);
+    }
+
 }

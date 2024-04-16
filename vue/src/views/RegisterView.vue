@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <div id="register" class="text-center">
-      <form v-on:submit.prevent="register">
+      <v-form v-on:submit.prevent="register">
         <h1>Create Account</h1>
         <br>
         <div role="alert" v-if="registrationErrors">
@@ -11,30 +11,31 @@
         </div>
         <div class="form-input-group">
           <label for="first-name"></label>
-          <input type="text" id="firstname" placeholder="First Name" v-model="user.firstname" required autofocus />
+          <v-text-field label="First Name" variant="underlined" type="text" id="firstname" v-model="user.firstname" required autofocus />
         </div>
         <div class="form-input-group">
           <label for="last-name"></label>
-          <input type="text" id="lastname" placeholder="Last Name" v-model="user.lastname" required autofocus />
+          <v-text-field label="Last Name" variant="underlined" type="text" id="lastname" v-model="user.lastname" required autofocus />
         </div>
         <div class="form-input-group">
           <label for="email"></label>
-          <input type="text" id="email" placeholder="Email" v-model="user.email" required autofocus />
+          <v-text-field label="Email" variant="underlined" type="text" id="email"  v-model="user.email" required autofocus />
         </div>
         <div class="form-input-group">
           <label for="password"></label>
-          <input type="password" placeholder="Password" id="password" v-model="user.password" required />
+          <v-text-field label="Password" variant="underlined" type="password"  id="password" v-model="user.password" required />
         </div>
         <div class="form-input-group">
           <label for="confirmPassword"></label>
-          <input type="password" placeholder="Confirm Password" id="confirmPassword" v-model="user.confirmPassword"
+          <v-text-field label="Confirm Password" variant="underlined" type="password" id="confirmPassword" v-model="user.confirmPassword"
             required /> 
           </div>
+          
+          <v-btn elevation="12" rounded="xl" size="regular" type="submit">CREATE ACCOUNT</v-btn>
           <br>
-          <button type="submit">CREATE ACCOUNT</button>
         <br>
         <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
-      </form>
+      </v-form>
     </div>
   </div>
 </template>
@@ -118,7 +119,7 @@ export default {
 .text-center {
   display: flex;
   width: 350px;
-  height: 500px;
+  height: 640px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -147,5 +148,11 @@ a {
   font-weight: 750;
   color: #314668;
 }
+
+button{
+  width: 200px;
+}
+
+
 
 </style>
