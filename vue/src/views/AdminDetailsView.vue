@@ -17,7 +17,8 @@
                     <div class="form-input-group">
                         <div><label class="bolded" for="edit-expiration">Set new expiration:</label></div>
                         <div><input type="datetime-local" id="edit-expiration" name="edit-expiration"
-                                value="2024-04-19T16:00" min="2024-04-19T16:00" max="2025-04-19T16:00" v-model="newExpiration" /></div>
+                                value="2024-04-19T16:00" min="2024-04-19T16:00" max="2025-04-19T16:00"
+                                v-model="newExpiration" /></div>
                     </div>
                     <v-btn type="submit" color="#314668">Update</v-btn>
                 </v-form>
@@ -35,13 +36,19 @@
                 <h3>Details:</h3>
                 <v-form @submit.prevent="updateUnit()">
                     <v-textarea id="description-box" label="Unit Description" variant="solo"
-                    v-model="unit.details"></v-textarea>
+                        v-model="unit.details"></v-textarea>
                     <v-btn class="button" type="submit" color="#314668">Update</v-btn>
                 </v-form>
                 <!-- <h3 id="details-text">{{ unit.details }}</h3> -->
             </div>
         </div>
-        <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
+
+        <v-app>
+            <v-container>
+                <v-data-table :headers="headers" :items="bidsByUnit"></v-data-table>
+            </v-container>
+        </v-app>
+        <!-- <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
             <br><br>
             <h2 id="history-title">Bid History</h2>
             <table id="bid-history">
@@ -65,7 +72,7 @@
                 </tbody>
             </table>
 
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -81,6 +88,13 @@ export default {
         return {
             unit: {},
             bidsByUnit: [],
+            headers: [
+                { title: 'Bid ID', align: 'center', value: 'id' },
+                { title: 'Unit ID', align: 'center', value: 'unitId' },
+                { title: 'Bidder ID', align: 'center', value: 'bidderId' },
+                { title: 'Amount', align: 'center', value: 'amount' },
+                { title: 'Date Placed', align: 'center', value: 'datePlaced' },
+            ],
             newExpiration: "",
             newDetails: "",
 
@@ -97,12 +111,15 @@ export default {
     },
 
     methods: {
-        updateUnit() { 
-            this.unit.expiration = this.newExpiration;
+        updateUnit() {
+            if (this.newExpiration) {
+                this.unit.expiration = this.newExpiration;
+            }
+
             UnitService
                 .edit(this.unit)
                 .then(() => {
-                    this.$router.push({name:'unitDetails', params: { unitId: this.unit.id }})
+                    this.$router.push({ name: 'unitDetails', params: { unitId: this.unit.id } })
                 })
                 .catch((error) => {
                     if (error.response) {
