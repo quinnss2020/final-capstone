@@ -263,7 +263,6 @@ export default {
 
     created() {
         this.getUnits();
-
         // UnitService
         //     .list()
         //     .then((response) => {

@@ -18,10 +18,11 @@ namespace Capstone.Models
         public DateTime Expiration { get; set; }
         public DateTime Created { get; set; }
         public string Details { get; set; }
+        public bool EmailSent { get; set; }
 
         public Unit() { }
 
-        public Unit(int id, int localId, int startBid, int highestBid, int highestBidder, string orderNumber, string city, string size, bool active, DateTime expiration, DateTime created, string details)
+        public Unit(int id, int localId, int startBid, int highestBid, int highestBidder, string orderNumber, string city, string size, bool active, DateTime expiration, DateTime created, string details, bool emailSent)
         {
             Id = id;
             LocalId = localId;
@@ -35,6 +36,7 @@ namespace Capstone.Models
             Expiration = expiration;
             Created = created;
             Details = details;
+            EmailSent = emailSent;
         }
 
     }

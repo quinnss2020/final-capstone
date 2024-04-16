@@ -1,28 +1,39 @@
 <template>
     <div class="unit-details">
+        <h1>ADMIN EDIT VIEW</h1>
         <div id="details-container">
             <div id="images-box">
                 <h1>- Pictures Here -</h1>
+                <v-btn>UPLOAD PHOTO</v-btn>
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
-                <h3 class="emphasis"><Countdown :expiration="unit.expiration"></Countdown></h3>
+                <div id="expiration-edit">
+                    <h3 class="emphasis">
+                        <Countdown :expiration="unit.expiration"></Countdown>
+                    </h3>
+                    <form v-on:submit.prevent="updateUnit()">
+                        <label for="edit-expiration">Select new expiration for auction:</label>
+                        <input type="datetime-local" id="edit-expiration" name="edit-expiration" value="2024-04-19T16:00"
+                            min="2024-04-19T16:00" max="2025-04-19T16:00" />
+                    </form>
+                </div>
                 <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3>
                 <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
-                
+
                 <form v-on:submit.prevent="placeBid()">
                     <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
                         v-model.number="bid.amount">
+                    <!-- <br>
                     <br>
-                    <br>
-                    <button type="submit">BID NOW</button>
+                    <button type="submit">BID NOW</button> -->
                 </form>
                 <h3>Details:</h3>
                 <h3 id="details-text">{{ unit.details }}</h3>
             </div>
         </div>
-    <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
-        <br><br>
+        <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
+            <br><br>
             <h2 id="history-title">Bid History</h2>
             <table id="bid-history">
                 <thead>
@@ -43,9 +54,9 @@
                         <td>{{ bid.datePlaced }}</td>
                     </tr>
                 </tbody>
-                 </table>
+            </table>
 
-    </div>
+        </div>
     </div>
 </template>
 
@@ -56,11 +67,12 @@ import Countdown from '../components/Countdown.vue';
 
 export default {
     name: "UnitDetails",
-    components: {Countdown},
+    components: { Countdown },
     data() {
         return {
             unit: {},
             bidsByUnit: [],
+            newExpiration: "",
 
             bid: {
                 unitId: "",
@@ -75,60 +87,36 @@ export default {
     },
 
     methods: {
-        placeBid() {
-            
-            if (this.bid.amount <= this.unit.highestBid) {
-                this.bidErrors = true;
-
-            }
-            else if (!Number.isInteger(this.bid.amount)) {
-                this.bidErrors = true;
-                this.bidErrorMsg = 'Bid must be a whole number. Do not use decimals';
-            }
-            else if (!this.$store.state.token) {
-                this.$router.push("/login");
-            }
-            else {
-                BidService
-                    .bid(this.bid)
-                    .then((response) => {
-                        if (response.status == 201) {
-                            this.$router.push({
-                                path: '/bids'
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        const response = error.response;
-                        if (response.status === 400) {
-                            console.log("Error placing bid.")
-                        }
-                    })
-            }
+        updateUnit() {
+            //TODO 
+            this.unit.expiration = this.newExpiration; //v-model to where?
+            UnitService
+            .edit(this.unit)
+            .then
         },
 
         getBidsByUnit() {
             BidService
-            .bidHistory(this.bid.unitId)
-            .then((response) => {
-                this.bidsByUnit = response.data;
-            })
-            .catch((error) => {
-                if (error.response) {
-                    console.log("Error loading bid history: ", error.response.status);
-                }
-                else if (error.request) {
-                    console.log("Error loading bid history. Unable to communicate to server.");
-                }
-                else {
-                    console.log("Error making request for bid history");
-                }
-            })
+                .bidHistory(this.bid.unitId)
+                .then((response) => {
+                    this.bidsByUnit = response.data;
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Error loading bid history: ", error.response.status);
+                    }
+                    else if (error.request) {
+                        console.log("Error loading bid history. Unable to communicate to server.");
+                    }
+                    else {
+                        console.log("Error making request for bid history");
+                    }
+                })
         }
     },
 
     created() {
-        
+
         this.bid.unitId = this.$route.params.unitId;
         this.getBidsByUnit();
         UnitService
@@ -148,14 +136,13 @@ export default {
                 }
             });
 
-            
+
     }
 }
 
 </script>
 
 <style scoped>
-
 h2 {
     font-size: 3rem;
     margin: 0;
@@ -175,16 +162,26 @@ button {
     margin-bottom: 30px;
 }
 
+#expiration-edit {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+#edit-expiration {
+    padding-left: 100px;
+}
+
 h3.emphasis {
     color: #FF7243;
 }
 
-#details-text{
+#details-text {
     font-weight: 300;
 }
 
 .highest-bid {
-    margin:0;
+    margin: 0;
     font-size: 2rem;
 }
 

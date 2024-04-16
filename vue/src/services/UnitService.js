@@ -5,6 +5,11 @@ export default {
         return axios.get('/units');
     },
 
+    listAll() {
+        return axios.get('/units/all');
+    },
+
+
     unitDetails(id) {
         return axios.get(`/units/${id}`);
     },
@@ -13,8 +18,12 @@ export default {
         return axios.get(`/units/${id}/bids`);
     },
 
-    endAuction(unitId) {
-        return axios.put('/units/checkout', unitId);
+    endAuction() {
+        return axios.put('/units/checkout');
     },
+
+    edit(unit) {
+        return axios.put(`/units/${unit.id}/edit`, unit);
+    }
 
 }

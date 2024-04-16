@@ -44,26 +44,12 @@ namespace Capstone.Controllers
         [HttpGet("/units/inactive")]
         public ActionResult<List<Unit>> GetAllInactiveUnits()
         {
-            const string ErrorMessage = "An error has occurred and a list of units was not created.";
+            const string ErrorMessage = "An error has occurred and a list of expired units was not created.";
             IList<Unit> units = new List<Unit>();
 
             try
             {
-                units = unitDao.GetAllActiveUnits();
-
-
-                foreach(Unit unit in units)
-                {
-                    return null;
-                }
-                //for(int i = 0; i < units.Count; i++)
-                //{
-                //    //if (!unit.Active && !emailSent && user.highestBidder != 1 && user.highestBidder != 2)
-                //    //{
-                //    //    EmailUtility emailUtility = new EmailUtility
-
-                //    //}
-                //}
+                units = unitDao.GetAllInactiveUnits();
                 return Ok(units);
             }
             catch (DaoException)
@@ -72,6 +58,25 @@ namespace Capstone.Controllers
             }
 
         }
+
+        [HttpGet("/units/all")]
+        public ActionResult<List<Unit>> GetAllUnits()
+        {
+            const string ErrorMessage = "An error has occurred and a list of expired units was not created.";
+            IList<Unit> units = new List<Unit>();
+
+            try
+            {
+                units = unitDao.GetAllUnits();
+                return Ok(units);
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, ErrorMessage);
+            }
+
+        }
+
 
         [HttpGet("/units/{id}")]
         public ActionResult<Unit> GetUnitById(int id)
@@ -91,27 +96,62 @@ namespace Capstone.Controllers
             }
         }
 
-        [HttpPut("/units/checkout")]
-        private ActionResult<Unit> UnitCheckout(int unitId)
+        [Authorize]
+        [HttpPut("/units/{id}/edit")]
+        public ActionResult<Unit> UpdateUnit(Unit unit)
         {
-            Unit unit = unitDao.GetUnitById(unitId);
-            if(unit.Active)
+            try
             {
-                unitDao.UpdateUnit(unit);
-                Email email = new Email();
-                EmailUtility emailUtility = new EmailUtility();
-                User user = userDao.GetUserById(unit.HighestBidder);
-                string code = emailUtility.OrderNumberGenerator();
-                unit.OrderNumber = code;
-                unitDao.UpdateUnit(unit);
-                if(unit != null && unit.HighestBidder != 1 && unit.HighestBidder != 2)
+                Unit updatedUnit = new Unit();
+                updatedUnit = unitDao.UpdateUnit(unit);
+                if(updatedUnit == null)
                 {
-                    emailUtility.SendCheckoutEmail(user.Email, unit, code);
+                    return BadRequest();
                 }
+                else
+                {
+                    return Ok(updatedUnit);
+                }
+            }
+            catch (DaoException)
+            {
+                return StatusCode(500, "Could not update unit");
 
             }
+        }
 
-            return Ok(unit);
+
+        [HttpPut("/units/checkout")]
+        public ActionResult<List<Unit>> UnitCheckout()
+        {
+            IList<Unit> units = new List<Unit>();
+
+            units = unitDao.GetAllInactiveUnits();
+
+            foreach (Unit unit in units)
+            {
+                if (unit.Active)
+                {
+                    unit.Active = false;
+                    unitDao.UpdateUnit(unit);
+                    Email email = new Email();
+                    EmailUtility emailUtility = new EmailUtility();
+                    User user = userDao.GetUserById(unit.HighestBidder);
+                    string code = emailUtility.OrderNumberGenerator();
+                    unit.OrderNumber = code;
+                    unitDao.UpdateUnit(unit);
+                    if (unit != null)
+                    {
+                        emailUtility.SendCheckoutEmail(user.Email, unit, code);
+                        unit.EmailSent = true;
+                        unitDao.UpdateUnit(unit);
+                    }
+
+                }
+
+
+            }
+            return Ok(units);
 
         }
     }

@@ -110,7 +110,7 @@ export default {
 
         getUnits(){
             UnitService
-                .list()
+                .listAll()
                 .then((response) => {
                     this.units = response.data;
                 })
@@ -125,6 +125,28 @@ export default {
                         console.log("Error making request to fetch unit details");
                     }
                 })
+        },
+
+        endAuctions() {
+            UnitService
+            .endAuction()
+            .then((response) => {
+                if(response === 200) {
+                    console.log("Auctions Ended");
+                }
+            })
+            .catch((error) => {
+                    if (error.response) {
+                        console.log("Error ending auctions: ", error.response.status);
+                    }
+                    else if (error.request) {
+                        console.log("Error ending auctions. Unable to communicate to server.");
+                    }
+                    else {
+                        console.log("Error making request");
+                    }
+                })
+
         },
 
         currentStatus(unit) {
@@ -144,7 +166,7 @@ export default {
                 return "LOST";
             }
             else {
-                return "";
+                return "PENDING";
             }
         }
 
@@ -157,7 +179,7 @@ export default {
             return this.userBids.map( (bid) => {
                 return {
                     bid,
-                    unit: this.getUnitDetails(bid.unitId)
+                    unit: this.getUnitDetails(bid.unitId),
                 }
             })
             
@@ -172,10 +194,8 @@ export default {
 
         //then call method above that lists bids
         this.getBids();
-        this.getUnits();
-        //this.getUnitDetails();
-        
-
+        this.getUnits(); 
+        this.endAuctions();       
     }
 }
 
