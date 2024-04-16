@@ -2,7 +2,7 @@
     <div class="unit-details">
         <div id="details-container">
             <div id="images-box">
-                <h1>- Pictures Here -</h1>
+                <Photos/>
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
@@ -53,10 +53,11 @@
 import UnitService from '../services/UnitService';
 import BidService from '../services/BidService';
 import Countdown from '../components/Countdown.vue';
+import Photos from '../components/Photos.vue';
 
 export default {
     name: "UnitDetails",
-    components: {Countdown},
+    components: {Countdown, Photos},
     data() {
         return {
             unit: {},
