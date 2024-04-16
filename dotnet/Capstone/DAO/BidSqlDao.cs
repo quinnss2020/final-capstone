@@ -115,7 +115,7 @@ namespace Capstone.DAO
         {
             IList<Bid> unitBids = new List<Bid>();
 
-            string sql = "SELECT  id, unit_id, bidder_id, amount, date_placed FROM bids WHERE unit_id = @unitId ORDER BY date_placed DESC";
+            string sql = "SELECT id, unit_id, bidder_id, amount, date_placed FROM bids WHERE unit_id = @unitId ORDER BY date_placed DESC";
 
             try
             {

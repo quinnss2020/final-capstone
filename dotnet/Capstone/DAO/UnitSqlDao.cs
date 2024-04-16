@@ -27,7 +27,7 @@ namespace Capstone.DAO
         {
             Unit unit = new Unit();
             string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
-                "order_number, city, size, active, expiration, created, details FROM units WHERE id = @id";
+                "order_number, city, size, active, expiration, created, details, email_sent FROM units WHERE id = @id";
 
             try
             {
@@ -59,7 +59,7 @@ namespace Capstone.DAO
             IList<Unit> units = new List<Unit>();
 
             string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
-                "order_number, city, size, active, expiration, created, details FROM units WHERE active = 1";
+                "order_number, city, size, active, expiration, created, details, email_sent FROM units WHERE active = 1";
 
             try
             {
@@ -95,7 +95,7 @@ namespace Capstone.DAO
             IList<Unit> units = new List<Unit>();
 
             string sql = "SELECT id, local_id, start_bid, highest_bid, highest_bidder, " +
-                "order_number, city, size, active, expiration, created, details FROM units WHERE active = 0";
+                "order_number, city, size, active, expiration, created, details, email_sent FROM units";
 
             try
             {
@@ -109,7 +109,11 @@ namespace Capstone.DAO
                     while (reader.Read())
                     {
                         Unit unit = MapRowToUnit(reader);
-                        units.Add(unit);
+
+                        if (unit.Expiration < DateTime.Now)
+                        {
+                            units.Add(unit);
+                        }
                     }
                 }
             }
@@ -127,8 +131,8 @@ namespace Capstone.DAO
             Unit newUnit = new Unit();
             int newUnitId = 0;
 
-            string sql = "INSERT INTO units(local_id, start_bid, highest_bid, order_number, city, size, active, expiration, details) " +
-                "OUTPUT INSERTED.id VALUES(@localId, @startBid, @highestBid, @orderNumber, @city, @size, @active, @expiration, @details);";
+            string sql = "INSERT INTO units(local_id, start_bid, highest_bid, order_number, city, size, active, expiration, details, email_sent) " +
+                "OUTPUT INSERTED.id VALUES(@localId, @startBid, @highestBid, @orderNumber, @city, @size, @active, @expiration, @details, @emailSent);";
 
             try
             {
@@ -146,6 +150,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@active", newUnit.Active);
                     cmd.Parameters.AddWithValue("@expiration", newUnit.Expiration);
                     cmd.Parameters.AddWithValue("@details", newUnit.Details);
+                    cmd.Parameters.AddWithValue("@emailSent", newUnit.EmailSent);
 
                     newUnitId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -162,7 +167,7 @@ namespace Capstone.DAO
         {
             string sql = "UPDATE units SET local_id = @localId, start_bid = @startBid, highest_bid = @highestBid, " +
                 "highest_bidder = @highestBidder, order_number = @orderNumber, city = @city, size = @size, active = @active, " +
-                "expiration = @expiration, details = @details WHERE id = @unitId";
+                "expiration = @expiration, details = @details, email_sent = @emailSent WHERE id = @unitId";
 
             try
             {
@@ -181,6 +186,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@expiration", unit.Expiration);
                     cmd.Parameters.AddWithValue("@details", unit.Details);
                     cmd.Parameters.AddWithValue("@unitId", unit.Id);
+                    cmd.Parameters.AddWithValue("@emailSent", unit.EmailSent);
                     int count = cmd.ExecuteNonQuery();
 
                     if(count == 1)
@@ -238,6 +244,7 @@ namespace Capstone.DAO
             unit.Expiration = Convert.ToDateTime(reader["expiration"]);
             unit.Created = Convert.ToDateTime(reader["created"]);
             unit.Details = Convert.ToString(reader["details"]);
+            unit.EmailSent = Convert.ToBoolean(reader["email_sent"]);
 
             return unit;
         }
