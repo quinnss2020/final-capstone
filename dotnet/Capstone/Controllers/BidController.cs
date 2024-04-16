@@ -38,7 +38,7 @@ namespace Capstone.Controllers
 
             if (!CheckIfUnitHasExpired(unit))
             {
-                return StatusCode(500, "This auction has closed.");
+                return StatusCode(410, "This auction has closed.");
             }
 
             if (bid.Amount > unit.HighestBid)
@@ -107,9 +107,18 @@ namespace Capstone.Controllers
 
         }
 
+        [Authorize]
         [HttpGet("/units/{unitId}/bids")]
         public ActionResult<List<Bid>> GetBidsByUnitId(int unitId)
         {
+            string email = User.Identity.Name;
+            User user = userDao.GetUserByEmail(email);
+
+            if(user.Role != "admin")
+            {
+                return StatusCode(403, "Forbidden: Cannot access page");
+            }
+
             const string ErrorMessage = "An error has occurred and a list of bids by unit was not created.";
 
             IList<Bid> unitBids = new List<Bid>();

@@ -14,14 +14,9 @@ export default {
     data () {
         return {
             currentTime: "",
+            isExpired: reformatDate(this.expiration),
         }
     },
-
-    // computed: {
-    //     giveCountdown(){
-    //         return reformatDate(this.currentTime);
-    //     }
-    // },
 
     mounted () {
         setInterval(() => this.currentTime = reformatDate(this.expiration), 1000);

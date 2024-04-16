@@ -1,0 +1,3 @@
+<template>
+    <unit-image />
+</template>

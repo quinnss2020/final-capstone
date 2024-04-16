@@ -6,13 +6,11 @@
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
     </div> -->
     <router-view />
-
   </div>
 </template>
 
 <script>
 import Navigation from "./components/Navigation.vue"
-// import TestUploadImage from "./components/TestUploadImage.vue"
 
 export default {
   name: 'App',
