@@ -15,7 +15,7 @@
 
                 <v-form id="update-expiration-form" v-on:submit.prevent="updateUnit()">
                     <div class="form-input-group">
-                        <div><label for="edit-expiration">Set new expiration:</label></div>
+                        <div><label class="bolded" for="edit-expiration">Set new expiration:</label></div>
                         <div><input type="datetime-local" id="edit-expiration" name="edit-expiration"
                                 value="2024-04-19T16:00" min="2024-04-19T16:00" max="2025-04-19T16:00" v-model="newExpiration" /></div>
                     </div>
@@ -35,7 +35,8 @@
                 <h3>Details:</h3>
                 <v-form @submit.prevent="updateUnit()">
                     <v-textarea id="description-box" label="Unit Description" variant="solo"
-                        v-model="unit.details"></v-textarea>
+                    v-model="unit.details"></v-textarea>
+                    <v-btn class="button" type="submit" color="#314668">Update</v-btn>
                 </v-form>
                 <!-- <h3 id="details-text">{{ unit.details }}</h3> -->
             </div>
@@ -81,6 +82,7 @@ export default {
             unit: {},
             bidsByUnit: [],
             newExpiration: "",
+            newDetails: "",
 
             bid: {
                 unitId: "",
@@ -175,14 +177,21 @@ h2 {
 h3 {
     text-align: left;
     margin: 0;
+    margin-bottom: 10px;
 }
 
 /* form {
     margin-top: 20px;
 } */
 
-button {
-    margin-bottom: 30px;
+.button {
+    align-self: flex-end;
+    /* margin-bottom: 30px; */
+}
+
+.bolded {
+    font-weight: 800;
+    font-size: 1.4rem;
 }
 
 /* 
@@ -250,6 +259,7 @@ h3.emphasis {
     flex-direction: column;
     justify-content: center;
     background-color: rgba(239, 237, 255, 0.8);
+    margin-top: 20px;
 }
 
 
