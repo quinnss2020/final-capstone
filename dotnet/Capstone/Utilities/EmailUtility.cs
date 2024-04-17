@@ -4,18 +4,26 @@ using MailKit.Security;
 using MimeKit;
 using MimeKit.Text;
 using System;
+using System.IO;
 
- public class EmailUtility
+public class EmailUtility
 {
     public bool SendConfirmEmail(Email emailModel)
     {
         try
         {
+            string directory = Environment.CurrentDirectory;
+            string filename = "Content.html";
+
+            // Create the full path
+            string fullPath = Path.Combine(directory, filename);
+
 
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("deltastoragesolutions@outlook.com"));
             email.To.Add(MailboxAddress.Parse(emailModel.ToAccount));
             email.Subject = emailModel.Subject;
+            string text = File.ReadAllText(fullPath);
             email.Body = new TextPart(TextFormat.Html) { Text = $"<h1>{emailModel.MessageBody}</h1>" };
 
             //send email
@@ -101,5 +109,7 @@ using System;
 
         return email;
     }
+
+    //private str method html data params stringify each line, WWJD: into text editor, use reg expression to get rid of enters 2) go look at reading lecture final for replace 
 }
 
