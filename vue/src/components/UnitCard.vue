@@ -67,34 +67,27 @@ export default {
 
 <style scoped>
 .unit-card {
-
     display: flex;
-    background: rgba(235, 229, 220, 0.5);
+    background: rgba(235, 229, 220, 0.726);
     border-color: #faefe0;
     border-radius: 2rem;
     border-style: outset;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 300px;
-    margin: 20px;
-
+    width: 23vw;
+    height: 500px;
+    margin: 10px;
 }
 
 #card-photo {
-    height: 150px;
-    width: 200px;
+    height: 220px;
+    width: 85%;
 }
 
 #writing-box {
-
-    /* flex-wrap:wrap; */
-    /* flex-direction: column;
-    justify-content: center;
-    align-self: center; */
-    width: 250px;
-    height: 200px;
+    width: 90%;
+    height: 90%;
 }
 
 p {
