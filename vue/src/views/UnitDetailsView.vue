@@ -3,7 +3,7 @@
     <div id="details-container">
       <div id="images-box">
         <v-container v-if="this.loading">
-          <v-carousel :show-arrows="false"
+          <v-carousel :show-arrows="true"
           >
             <v-carousel-item
               id="image"

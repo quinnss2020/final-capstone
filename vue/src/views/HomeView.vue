@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-
     <div class="section-one">
       <section class="nav">
         <ol id="nav-buttons">
@@ -22,7 +21,7 @@
         </p>
         <v-btn elevation="12" rounded="xl" size="x-large">BID NOW</v-btn>
         </div>
-        <img src="../assets/OrangeUnits.svg"/>
+        <img src="../assets/OrangeUnits.svg" id="orange"/>
     </div>
     <div class="section-three">
       <div id="text-3">
@@ -51,7 +50,9 @@ export default {
 </script>
 
 <style scoped>
-
+.home{
+  background-image:linear-gradient(#F9F6F0, #AFABA8);
+}
 
 .section-one {
   display: flex;
@@ -69,28 +70,25 @@ export default {
 .section-two {
   display: flex;
   flex-direction: column;
-  padding-top: 300px;
+  /* padding-top: 300px;
   padding-bottom: 510px;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-right: 10px;
-  background-image: linear-gradient(#F9F6F0, #AFABA8);
-  text-align: left;
+  padding-right: 10px; */
+  /* text-align: left; */
 }
 .section-three{
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 1000px;
-  /* padding-top: 300px;
-  padding-bottom: 510px; */
-  align-items: flex-end;
+
   align-content: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
   padding-left: 100px;
   padding-top: 260px;
-  background-image: linear-gradient(#F9F6F0, #AFABA8);
+ 
 }
 
 #text-2{
@@ -196,5 +194,7 @@ a:hover {
     position: absolute;*/
 }
 
-
+#orange{
+width:1000px
+}
 </style>
