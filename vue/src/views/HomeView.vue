@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid m-0 p-0">
+  <div class="home">
     <div id="home-page" class="top">
       <div class="nav">
         <HomeNavigation/>
@@ -11,13 +11,14 @@
 
     <div id="bid-win" class="middle">
       <div id="image-unit">
-        <img src="../assets/OrangeUnits.svg" id="orange"/>
+        <img src="../assets/OrangeUnits.svg" id="orange">
       </div>
       <div id="text-2">
         <h1>Bid Win Own</h1>
         <p>
           Storage units filled with forgotten treasures
         </p>
+        <br>
         <v-btn elevation="12" rounded="xl" size="x-large">BID NOW</v-btn>
       </div>
     </div>
@@ -25,6 +26,9 @@
     <div id="expiring" class="bottom">
       <div id="text-3">
         <h1> Expiring Soon </h1>
+      </div>
+      <div id="unit-cards">
+
       </div>
     </div>
 
@@ -59,56 +63,48 @@ export default {
 
 .top{
   display: grid;
-  grid-template-columns: 'header, header, header';
-
-  
-
-
-  /*background-color: #faefe0;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding-top: 18px;
-  padding-bottom: 860px;
-  background-repeat: no-repeat;
-  justify-content: flex-start;
-  flex-direction: column; */
   min-height: 100vh;
-}
-
-#home-page
-{
   background-image: url("../assets/Background-Home.png");
   background-size: cover;
 }
-
+.delta-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, rgba(175, 171, 168, 0.7), rgba(49, 70, 104, 3));
+  height: 170px;
+}
+#logo{
+  max-height: 170px;
+  
+}
 .middle {
   display: flex;
   flex-direction: row;
-
-  min-height: 100vh;
-
-  /* padding-top: 300px;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 510px;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding-right: 10px; */
-  /* text-align: left; */
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px; 
+  padding-top: 10px;
+  text-align: left; 
+  height: 80vh;
 }
 
-#bid-win{
-  background: rgba(244, 236, 225, .5);
+#image-unit{
+  padding-top: 2px;
+  padding-right: 90px;
 }
-
+#orange{
+  width: 800px;
+  box-shadow: 20px 20px rgba(46, 39, 82, 0.5);
+}
 
 .bottom{
   min-height: 100vh;
-  /* display: flex;
-  flex-direction: column;
+  background-image: linear-gradient(#AFABA8, #F9F6F0);
+  display: flex;
+/*flex-direction: column;
   width: 100%;
   height: 1000px;
-
   align-content: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -117,10 +113,18 @@ export default {
  
 }
 
+#text-3{
+  align-self: flex-start;
+  justify-self: start;
+  padding-left: 200px;
+  padding-top: 100px;
+
+}
+
 h1{
   color: #314668;
   font-weight: 800;
-  font-size: 50px; 
+  font-size: 80px; 
 }
 
 p {
@@ -130,7 +134,7 @@ p {
 }
 
 button{
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -139,20 +143,4 @@ button:hover {
   color: #9A94BC;
 }
 
-#logo{
-    max-height: 150px;
-  
-    /* margin-left: 40px; 
-    border: none;
-    justify-content: flex-start;
-    align-items: end;
-    padding-top: 600px;
-    padding-left: 40px;
-    position: absolute;*/
-}
-
-#orange{
-width: 1200px;
-
-}
 </style>
