@@ -203,8 +203,6 @@ export default {
 
         filterUnits() {
 
-            //this.filteredUnits = this.units;
-
             this.filteredUnits = this.filteredUnits.filter(unit => {
                 if (this.filter.location.length === 0) {
                     return true;
@@ -251,11 +249,14 @@ export default {
         },
 
         clearFilters() {
-            
-            if (this.filter.location || this.filter.expiration || this.filter.size || this.filter.highestBid) 
-            {
-                this.filter = {};
+            this.filter = {
+                location: [],
+                expiration: [],
+                size: [],
+                highestBid: [],
             }
+            this.getUnits();
+            
             return this.filter;
 
         }
