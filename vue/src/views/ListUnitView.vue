@@ -1,8 +1,5 @@
 <template>
-    <br>
     <div id="view-units">
-        <!-- <h1>Available Units</h1> -->
-
         <body class="page-container">
             <div class="wrapper">
                 <aside>
@@ -69,13 +66,13 @@
                         <br>
                     </div>
                     <br>
-                    <v-btn elevation="8" rounded="xl" size="regular" v-on:click="filterUnits">APPLY</v-btn>
+                    <!-- <v-btn elevation="8" rounded="xl" size="regular" v-on:click="filterUnits">APPLY</v-btn> -->
                     <v-btn elevation="8" rounded="xl" size="regular" v-on:click="clearFilters">CLEAR</v-btn>
                 </aside>
                 <main id="unit-cards-container">
-                    <div id="unit-cards">
-                        <UnitCard v-for="unit in filterUnits" v-bind:key="unit.id" v-bind:item="unit" />
-                    </div>
+                    
+                        <UnitCard class="unit-card" v-for="unit in filterUnits" v-bind:key="unit.id" v-bind:item="unit" />
+                    
                 </main>
             </div>
         </body>
@@ -293,19 +290,23 @@ export default {
 </script>
 
 <style scoped>
+
 .page-container {
     display: flex;
-    overflow: hidden;
-    height: 100 vh;
+    flex-wrap: wrap;
+    /* overflow: hidden; */
+    width: 100vw;
 }
 
 #unit-cards-container {
-    /* display: flex; */
+    display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    overflow-y: auto;
+    flex-wrap: wrap;
+    overflow-y: scroll;
     margin-left: 330px;
-    padding: 0px 10px;
+    width: 95%;
+    padding: 0px 30px;
 
 }
 
@@ -314,16 +315,20 @@ export default {
     flex-wrap: wrap;
 }
 
+#view-units {
+    margin-top: 25px;
+}
+
 aside {
-    width: 300px;
-    position: fixed;
+    height: 80%;
+    width: 200px;
+    position:fixed;
     z-index: 1;
-    top: 150px;
+    top: 140px;
     left: 30px;
-    overflow-x: hidden;
+    overflow-y:auto;
     padding-top: 10px;
     padding-left: 30px;
-    padding-right: px;
     padding-bottom: 15px;
     text-align: left;
     border-color: #faefe0;
@@ -331,6 +336,13 @@ aside {
     border-radius: 2rem;
     border-style: outset;
 }
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    /* height: 100vh; */
+}
+
 
 /* .unit-cards {
     display: flex;
