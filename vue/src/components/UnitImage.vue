@@ -2,11 +2,10 @@
     <div class="dropzone" @dragover.prevent @dragenter.prevent @dragstart.prevent @drop.prevent="handleFileChange($event.dataTransfer)">
         <input id="file-input" type="file" accept="image/png, image/jpeg" v-on:change="handleFileChange($event.target)" required />
         <h2 for="file-input">Click or Drag and Drop Image</h2>
-        <img v-bind:src="preview">
+        <img v-if="preview" v-bind:src="preview">
         <h3 v-if="preview">File name: {{ fileName }} </h3>
-    </div>
-
-    <button type="submit" v-on:click="upload">Upload</button>
+    </div><br>
+    <v-btn type="submit" v-on:click="upload">Upload</v-btn>
     <h3 v-if="success">File Uploaded Successfully. publicId: {{success}}</h3>
 </template>
 
@@ -15,6 +14,7 @@ export default {
   name: "TestUploadImage",
   data() {
     return { 
+      test: false,
       fileName: "",
       preview: null,
       preset: import.meta.env.VITE_APP_UPLOAD_PRESET,
@@ -61,12 +61,12 @@ export default {
 <style scoped>
 .dropzone {
   height: fit-content;
-  min-height: 200px;
-  max-height: 400px;
-  width: 600px;
+  min-height: 540px;
+  max-height: 600px;
+  width: 33vw;
+  margin: 10px;
   background: #fdfdfd;
-  border-radius: 5px;
-  border: 2px dashed #000;
+  border-radius: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,6 +83,8 @@ input[type="file"] {
 }
 
 img {
+  max-height: 300px;
+  max-width: 600px;
   width: 50%;
   height: 50%;
 }

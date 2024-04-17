@@ -23,7 +23,7 @@
             v-model.number="bid.amount" />
           <br />
           <br />
-          <button type="submit">BID NOW</button>
+          <v-btn type="submit">BID NOW</v-btn>
         </form>
         <h3>Details:</h3>
         <h3 id="details-text">{{ unit.details }}</h3>
@@ -234,11 +234,13 @@ h3.emphasis {
 
 #images-box {
   border-color: #faefe0;
-  border-radius: 2rem;
+  border-radius: 1.5rem;
   border-style: outset;
   /* height: 300px; */
   margin-right: 80px;
   /* padding: 20px; */
+  background: rgba(244, 236, 225, 0.5);
+
 }
 
 .bid-error-msg {
@@ -254,7 +256,9 @@ h3.emphasis {
 }
 
 #bid-amount {
-  width: 155px;
+  width: 170px;
+  border-radius: .30rem;
+  background-color: #f9f6f0;
 }
 
 table {

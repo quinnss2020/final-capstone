@@ -2,8 +2,7 @@
     <div class="unit-details">
         <div id="details-container">
             <div id="images-box">
-                <h1>- Pictures Here -</h1>
-                <v-btn>UPLOAD PHOTO</v-btn>
+                <unit-image />
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
@@ -43,39 +42,14 @@
             </div>
         </div>
 
-        <v-app>
+        <div id="biv">
             <v-container>
                 <div id="bid-history">
                     <p>Bid History</p>
                 </div>
-                <v-data-table :headers="headers" :items="bidsByUnit" class="elevation-4 blue lighten-5"></v-data-table>
+                <v-data-table id="vdt" :headers="headers" :items="bidsByUnit" class="elevation-4 blue lighten-5"></v-data-table>
             </v-container>
-        </v-app>
-        <!-- <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
-            <br><br>
-            <h2 id="history-title">Bid History</h2>
-            <table id="bid-history">
-                <thead>
-                    <tr>
-                        <th>Bid ID</th>
-                        <th>Unit ID</th>
-                        <th>Bidder ID</th>
-                        <th>Amount</th>
-                        <th>Date Placed</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="bid in bidsByUnit" v-bind:key="bid.amount">
-                        <td>{{ bid.id }}</td>
-                        <td>{{ bid.unitId }}</td>
-                        <td>{{ bid.bidderId }}</td>
-                        <td>${{ bid.amount }}</td>
-                        <td>{{ bid.datePlaced }}</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -83,10 +57,11 @@
 import UnitService from '../services/UnitService';
 import BidService from '../services/BidService';
 import Countdown from '../components/Countdown.vue';
+import UnitImage from '../components/UnitImage.vue'
 
 export default {
     name: "UnitDetails",
-    components: { Countdown },
+    components: { Countdown, UnitImage },
     data() {
         return {
             unit: {},
@@ -185,6 +160,11 @@ export default {
 </script>
 
 <style scoped>
+#vdt table.v-table thead th {
+    font-size: 20px !important;
+    font-weight: 800
+}
+
 h2 {
     font-size: 3rem;
     margin: 0;
@@ -268,6 +248,8 @@ h3.emphasis {
     border-color: #faefe0;
     border-radius: 2rem;
     border-style: outset;
+    height: fit-content;
+    width: fit-content;
     /* height: 300px; */
     margin-right: 80px;
     /* padding: 20px; */
@@ -278,11 +260,19 @@ h3.emphasis {
     font-weight: bold;
 }
 
+#biv {
+    margin-top: 2%;
+    border-radius: 2rem;
+    background-color: #314668;
+    color: white;
+}
+
 #bid-history-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: rgba(239, 237, 255, 0.8);
+    border-radius: 2rem;
     margin-top: 20px;
 }
 
