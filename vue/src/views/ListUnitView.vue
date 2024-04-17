@@ -1,6 +1,5 @@
 <template>
     <br>
-    <br>
     <div id="view-units">
         <!-- <h1>Available Units</h1> -->
         <body class="page-container">
@@ -174,8 +173,6 @@ export default {
                 size: [],
                 highestBid: [],
             },
-
-
         }
     },
 
@@ -254,11 +251,13 @@ export default {
         },
 
         clearFilters() {
-            if (this.filter.location || this.filter.expiration || this.filter.size || this.filter.highestBid) {
+            
+            if (this.filter.location || this.filter.expiration || this.filter.size || this.filter.highestBid) 
+            {
                 this.filter = {};
             }
-
             return this.filter;
+
         }
 
     },
@@ -312,16 +311,16 @@ export default {
 }
 
 aside {
-    width: 155px;
+    width: 300px;
     position: fixed;
     z-index: 1;
     top: 150px;
     left: 30px;
     overflow-x: hidden;
-    padding-top: 3px;
-    padding-left: 20px;
-    padding-right: 8px;
-    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: px;
+    padding-bottom: 15px;
     text-align: left;
     border-color: #faefe0;
     background: rgba(244, 236, 225, .5);
@@ -393,5 +392,6 @@ h3 {
 
 button {
     width: 115px;
+    margin-right: 10px;
 }
 </style>
