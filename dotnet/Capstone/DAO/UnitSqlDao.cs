@@ -3,7 +3,7 @@ using Capstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-
+using System.Linq;
 
 namespace Capstone.DAO
 {
@@ -113,8 +113,9 @@ namespace Capstone.DAO
                 throw new DaoException("SQL exception occurred", ex);
             }
 
-            return units;
+            return units.OrderBy(x => x.Expiration).ToList();
         }
+
 
         public IList<Unit> GetAllInactiveUnits()
         {

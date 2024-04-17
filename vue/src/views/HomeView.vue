@@ -26,16 +26,14 @@
     <div id="expiring" class="bottom">
       <div id="text-3">
         <h1> Expiring Soon </h1>
+  
       </div>
-
       
       <div id="unit-cards">
-
+        <UnitCard v-for="unit in getTopThree" v-bind:key="unit.id" v-bind:item="unit"></UnitCard>
       </div>
     </div>
 
-    <div id="footer" class="map">
-    </div>
   </div>
 </template>
 
@@ -45,16 +43,55 @@ import image from "../assets/HomePage-Background-Purple.png"
 import img from "../assets/DeltaLogo-Light.svg"
 import orange from "../assets/OrangeUnits.svg"
 import HomeNavigation from "../components/HomeNavigation.vue"
+import UnitCard from '../components/UnitCard.vue';
+import UnitService from '../services/UnitService';
+
+
 export default {
-  components: {HomeNavigation},
+  components: {HomeNavigation, UnitCard},
+
   data: function () {
     return {
+      units: [],
       image: image,
       img: img,
       orange : orange
     }
+  },
+
+  computed: {
+    getTopThree() {
+     return this.units.slice(0,3);
+    }
+  },
+
+  methods: {
+    getUnits() {
+            UnitService
+                .list()
+                .then((response) => {
+                    this.units = response.data;
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Error loading units: ", error.response.status);
+                    }
+                    else if (error.request) {
+                        console.log("Error loading units. Unable to communicate to server.");
+                    }
+                    else {
+                        console.log("Error making request");
+                    }
+                })
+        },
+  },
+
+  created() {
+   this.getUnits();
   }
+
 }
+
 
 </script>
 
@@ -101,9 +138,10 @@ export default {
 }
 
 .bottom{
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-image: linear-gradient(#AFABA8, #F9F6F0);
-  display: flex;
 /*flex-direction: column;
   width: 100%;
   height: 1000px;
@@ -115,11 +153,21 @@ export default {
  
 }
 
+#unit-cards{
+display: flex;
+align-self: center;
+}
+
+section.unit-card{
+margin-right: 40px;
+margin-top: 40px;
+}
+
 #text-3{
   align-self: flex-start;
   justify-self: start;
-  padding-left: 200px;
-  padding-top: 80px;
+  padding-left: 100px;
+  padding-top: 60px; 
 
 }
 
