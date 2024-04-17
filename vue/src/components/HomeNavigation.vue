@@ -1,7 +1,6 @@
 <template>
     <section class="nav">
         <ol id="nav-buttons">
-            <router-link id="logo" v-bind:to="{ name: 'home' }"><img src="../assets/DeltaLogoDark.svg" id="logo"/></router-link>
             <li><router-link v-bind:to="{ name: 'bids' }" v-show="$store.state.token"> MY BIDS </router-link></li>
             <li><router-link v-bind:to="{ name: 'units' }">UNITS</router-link></li>
             <li><router-link v-bind:to="{ name: 'register' }" v-show="!$store.state.token"> REGISTER </router-link></li>
@@ -24,6 +23,10 @@ export default {
 </script>
 
 <style scoped>
+.nav{
+ display: flex;
+ justify-content: flex-end;
+}
 nav> :is(ul, ol) {
     list-style: none;
 
@@ -55,6 +58,7 @@ a {
     padding-inline: 1.5rem;
     padding-block: 0.6rem;
     margin-right: 20px;
+    background-color: #F9F6F0;
 }
 
 a:hover {
