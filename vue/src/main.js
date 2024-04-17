@@ -13,7 +13,17 @@ import * as directives from 'vuetify/directives'
 //import 'material-design-icons-iconfont/dist/material-design-icons.css'
 // import Vue from 'vue'
 // import Vuetify from 'vuetify'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
+export default createVuetify({
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+    }
+  },
+})
 
 const vuetify = createVuetify({
   components,
