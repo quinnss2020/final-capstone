@@ -89,7 +89,7 @@ VALUES (111, 40, 40, 1, 'EE0004', 'Columbus', '5x5', 1, '2024-04-19 13:08:10', G
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (112, 65, 65, 1, 'FF0005', 'Cleveland', '10x10', 1, '2024-04-22 12:08:10', GETDATE(), ' Musical instrument medley: Instruments with missing strings, chipped finishes, and signs of wear, yet still holding the promise of melodic harmony and creative expression for those willing to give them a second chance.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
-VALUES (113, 90, 90, 1, 'GG0006', 'Cincinnati', '10x15', 1, '2024-04-17 15:08:10', GETDATE(), 'Fashion mishmash closet: Pre-loved garments, hand-me-downs, and thrifted treasures, offering a budget-friendly way to indulge in style and self-expression while giving new life to once-loved pieces.')
+VALUES (113, 90, 90, 1, 'GG0006', 'Cincinnati', '10x15', 1, '2024-04-17 14:02:10', GETDATE(), 'Fashion mishmash closet: Pre-loved garments, hand-me-downs, and thrifted treasures, offering a budget-friendly way to indulge in style and self-expression while giving new life to once-loved pieces.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (201, 120, 120, 3, 'HH0007', 'Akron', '10x20', 1, '2024-04-16 12:48:10', GETDATE(), 'Well-worn tool assortment: Rusty saws, dented hammers, and well-loved wrenches, a testament to the hard work and DIY projects of the past, ready to be reinvigorated by a new owner with a knack for restoration.')
 

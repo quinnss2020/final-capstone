@@ -46,18 +46,25 @@ public class EmailUtility
 
     public bool SendCheckoutEmail(string userEmail, Unit unit, string code)
     {
-        string subject = $"Congrats From DSS! You placed the winning bid";
-        string messageBody = $"Congratulations! You have won an auction! \n Your unit is number {unit.LocalId} and is located in {unit.City}. \nYour confirmation code is {code}.";
-
+        string subject = $"Congrats From DSS! You placed the winning bid!";
 
         try
         {
+
+            string directory = Environment.CurrentDirectory;
+            string filename = "Winning.html";
+
+            // Create the full path
+            string fullPath = Path.Combine(directory, filename);
+
 
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("deltastoragesolutions@outlook.com"));
             email.To.Add(MailboxAddress.Parse(userEmail));
             email.Subject = subject;
-            email.Body = new TextPart(TextFormat.Html) { Text = $"<h1>{messageBody}</h1>" };
+            string text = File.ReadAllText(fullPath).Replace("AA0000", code).Replace("Columbus", unit.City).Replace("101", unit.LocalId.ToString());
+
+            email.Body = new TextPart(TextFormat.Html) { Text = text };
 
 
             //send email

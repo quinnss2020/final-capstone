@@ -3,14 +3,10 @@
     <div id="details-container">
       <div id="images-box">
         <v-container v-if="this.loading">
-          <v-carousel :show-arrows="true"
-          >
-            <v-carousel-item
-              id="image"
-              v-for="(photo, id) in photos"
-              :key="id"
-              :src="photo.url"
-            ></v-carousel-item>
+          <v-carousel id="vc" show-arrows="true" v-model="slider">
+            <v-carousel-item id="image" v-for="(photo, id) in photos" :key="id" eager>
+              <v-img :src="photo.url" eager />
+            </v-carousel-item>
           </v-carousel>
         </v-container>
       </div>
@@ -23,13 +19,8 @@
         <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
 
         <form v-on:submit.prevent="placeBid()">
-          <input
-            type="text"
-            placeholder="Enter Bid Amount"
-            id="bid-amount"
-            name="bid-amount"
-            v-model.number="bid.amount"
-          />
+          <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
+            v-model.number="bid.amount" />
           <br />
           <br />
           <button type="submit">BID NOW</button>
@@ -73,12 +64,12 @@ import PhotoService from "../services/PhotoService";
 
 export default {
   name: "UnitDetails",
-  components: {Countdown},
+  components: { Countdown },
   data() {
     return {
       unit: {},
       bidsByUnit: [],
-
+      slider: 0,
       bid: {
         unitId: "",
         bidderId: this.$store.state.user.id,
@@ -138,7 +129,7 @@ export default {
 
     getPhotoList() {
       PhotoService
-      .getPhotos(this.unit.id)
+        .getPhotos(this.unit.id)
         .then((response) => {
           this.photos = response.data;
         })
@@ -158,13 +149,14 @@ export default {
   },
 
   created() {
-    this.loading = true;
     this.bid.unitId = this.$route.params.unitId;
     this.getBidsByUnit();
     UnitService.unitDetails(this.bid.unitId)
       .then((response) => {
         this.unit = response.data;
+        console.log("This is not a dance")
         this.getPhotoList();
+    this.loading = true;
       })
       .catch((error) => {
         if (error.response) {
@@ -175,9 +167,12 @@ export default {
           console.log("Error making request");
         }
       });
-
-
   },
+
+  mounted() {
+    //document.getElementById('vc').firstChild.style.display = "inherit";
+    //this.$el.querySelector('v-carousel__controls'.firstChild.style.display = 'flex')
+  }
 };
 </script>
 

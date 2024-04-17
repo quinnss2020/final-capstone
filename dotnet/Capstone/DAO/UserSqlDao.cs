@@ -146,7 +146,7 @@ namespace Capstone.DAO
                     
                 }
                 newUser = GetUserById(newUserId);
-                Email email = emailUtility.FormEmail(user.Email, "Verification Code", "Your account verification code is " + user.Code);
+                Email email = emailUtility.FormEmail(user.Email, "Verification Code", user.Code);
                 if (!emailUtility.SendConfirmEmail(email))
                 {
                     return null;
