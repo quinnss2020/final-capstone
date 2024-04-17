@@ -19,7 +19,7 @@
                     <tr v-for="{bid, unit} in bidsAndUnits" v-bind:key="bid.amount">
                         <td>{{ bid.id }}</td>
                         <td id="unit-link">
-                            <button v-on:click="this.$router.push({ name: 'unitDetails', params: { unitId: unit.id }})">{{unit.city}} #{{unit.id}}</button>
+                            <v-btn v-on:click="this.$router.push({ name: 'unitDetails', params: { unitId: unit.id }})">{{unit.city}} #{{unit.id}}</v-btn>
                         </td>
                         <td>{{ currentStatus(unit) }}</td>
                         <td id="unit-time-remaining">
@@ -28,7 +28,12 @@
                         
                         <td>${{ bid.amount }}</td>
                         <td>${{unit.highestBid}}</td>
-                        <td>{{outcome(unit, bid)}}</td>
+                        <td class="outcome"
+                            v-bind:class="{
+                                green: outcome(unit, bid) === 'WON',
+                                red: outcome(unit, bid) === 'LOST',
+                            }"
+                        >{{outcome(unit, bid)}}</td>
 
                     </tr>
                     
@@ -49,6 +54,7 @@ import Bid from '../components/Bid.vue';
 import UnitCard from '../components/UnitCard.vue';
 import UnitService from '../services/UnitService.js';
 import Countdown from '../components/Countdown.vue';
+import { red } from '@cloudinary/url-gen/actions/adjust';
 
 export default {
     name: "UserBids",
@@ -160,7 +166,7 @@ export default {
 
         outcome(unit, bid) {
             if(unit.highestBidder === bid.bidderId && unit.active === false) {
-              return "WON";
+                return "WON";
             }
             else if(unit.active === false) {
                 return "LOST";
@@ -219,12 +225,15 @@ h1 {
 table {
     margin: 10px;
     border-collapse: separate;
+    font-weight: bold;
+    border-collapse: collapse;
+    
     /*border-spacing: 10px; */
 }
 
 
 tbody tr:nth-child(odd) {
-    background-color: #8393C2;
+    background-color: #F9F6F0;
     padding: 2rem;
 
 }
@@ -244,4 +253,15 @@ th {
     padding: 2rem;
 
 }
+
+.green {
+    color: rgb(67, 189, 67);
+    font-weight: bolder;
+}
+
+.red {
+    color: red;
+    font-weight: bolder;
+}
+
 </style>
