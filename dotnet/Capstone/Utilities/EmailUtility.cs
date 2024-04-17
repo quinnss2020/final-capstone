@@ -13,7 +13,7 @@ public class EmailUtility
         try
         {
             string directory = Environment.CurrentDirectory;
-            string filename = "Content.html";
+            string filename = "Confirmation.html";
 
             // Create the full path
             string fullPath = Path.Combine(directory, filename);
@@ -23,8 +23,8 @@ public class EmailUtility
             email.From.Add(MailboxAddress.Parse("deltastoragesolutions@outlook.com"));
             email.To.Add(MailboxAddress.Parse(emailModel.ToAccount));
             email.Subject = emailModel.Subject;
-            string text = File.ReadAllText(fullPath);
-            email.Body = new TextPart(TextFormat.Html) { Text = $"<h1>{emailModel.MessageBody}</h1>" };
+            string text = File.ReadAllText(fullPath).Replace("999999", emailModel.MessageBody);
+            email.Body = new TextPart(TextFormat.Html) { Text = text };
 
             //send email
 
