@@ -27,6 +27,8 @@
       <div id="text-3">
         <h1> Expiring Soon </h1>
       </div>
+
+      
       <div id="unit-cards">
 
       </div>
@@ -117,7 +119,7 @@ export default {
   align-self: flex-start;
   justify-self: start;
   padding-left: 200px;
-  padding-top: 100px;
+  padding-top: 80px;
 
 }
 

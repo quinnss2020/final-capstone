@@ -67,7 +67,7 @@
                     </div>
                     <br>
                     <!-- <v-btn elevation="8" rounded="xl" size="regular" v-on:click="filterUnits">APPLY</v-btn> -->
-                    <v-btn elevation="8" rounded="xl" size="regular" v-on:click="clearFilters">CLEAR</v-btn>
+                    <v-btn id="clear" elevation="8" rounded="xl" size="regular" v-on:click="clearFilters">CLEAR</v-btn>
                 </aside>
                 <main id="unit-cards-container">
                     
@@ -290,53 +290,28 @@ export default {
 </script>
 
 <style scoped>
-
-/* .page-container {
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-    /* overflow: hidden; */
-    /* width: 100vw;
-} */ 
-
 #unit-cards-container {
-    box-sizing: border-box;
-    /* display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap; */
-    overflow-y: scroll;
-    /* margin-left: 330px; */
-    /* width: 95%; */
-    padding: 0px 30px;
-
-}
-
-#unit-cards {
     display: flex;
     flex-wrap: wrap;
+    padding-left: 10vh;
+
 }
 
 #view-units {
-    box-sizing: border-box;
     margin-top: 25px;
 }
 
 aside {
     /* display: flex; */
-    align-self: flex-start;
     flex-direction: column;
-    height: auto;
-    width: 200px;
-    position:sticky;
-    position: -webkit-sticky;
+    height: 90vh;
+    width: 28vw;
     /* z-index: 1; */
     top: 140px;
     left: 30px;
     /* overflow-y:auto; */
-    padding-top: 10px;
-    padding-left: 30px;
+    padding-top: 3vh;
+    padding-left:3vh;
     padding-bottom: 15px;
     text-align: left;
     border-color: #faefe0;
@@ -345,16 +320,13 @@ aside {
     border-style: outset;
 }
 
+
 .wrapper {
-    /* width: 100vw; */
-    box-sizing: border-box;
     display: flex;
-    overflow: auto;
     /* height: 200px;  */
     flex-direction: row;
-    flex-wrap: wrap;
-
     /* height: 100vh; */
+    padding-left: 5vh;
 }
 
 

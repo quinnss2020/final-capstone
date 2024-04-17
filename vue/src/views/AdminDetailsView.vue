@@ -47,7 +47,8 @@
                 <div id="bid-history">
                     <p>Bid History</p>
                 </div>
-                <v-data-table id="vdt" :headers="headers" :items="bidsByUnit" class="elevation-4 blue lighten-5"></v-data-table>
+                <v-data-table id="vdt" :headers="headers" :items="bidsByUnit" class="elevation-4 blue lighten-5"
+                hide-default-header ></v-data-table>
             </v-container>
         </div>
     </div>
@@ -67,11 +68,11 @@ export default {
             unit: {},
             bidsByUnit: [],
             headers: [
-                { title: 'Bid ID', align: 'center', value: 'id' },
-                { title: 'Unit ID', align: 'center', value: 'unitId' },
-                { title: 'Bidder ID', align: 'center', value: 'bidderId' },
-                { title: 'Amount', align: 'center', value: 'amount' },
-                { title: 'Date Placed', align: 'center', value: 'datePlaced' },
+                { title: 'Bid ID', align: 'center', value: 'id', class: 'my-header-style' },
+                { title: 'Unit ID', align: 'center', value: 'unitId', class: 'my-header-style' },
+                { title: 'Bidder ID', align: 'center', value: 'bidderId', class: 'my-header-style' },
+                { title: 'Amount', align: 'center', value: 'amount', class: 'my-header-style' },
+                { title: 'Date Placed', align: 'center', value: 'datePlaced', class: 'my-header-style' },
             ],
             newExpiration: "",
             newDetails: "",
@@ -160,9 +161,14 @@ export default {
 </script>
 
 <style scoped>
-#vdt table.v-table thead th {
+.my-header-style {
+    font-size: 40px !important;
+    font-weight: 800;
+}
+
+#vdt {
     font-size: 20px !important;
-    font-weight: 800
+    font-weight: 800;
 }
 
 h2 {
@@ -297,8 +303,4 @@ td {
     padding: 30px;
 }
 
-th {
-    color: #314668;
-    font-size: 1.5rem;
-}
 </style>
