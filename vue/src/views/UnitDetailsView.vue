@@ -2,7 +2,7 @@
     <div class="unit-details">
         <div id="details-container">
             <div id="images-box">
-                <Photos/>
+                <Photos />
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>

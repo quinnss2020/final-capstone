@@ -83,10 +83,11 @@ using System;
         string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random rand = new Random();
         int num = rand.Next(0, chars.Length -1);
-        string letters = chars[num].ToString() + chars[num].ToString();
-
+        string letter1 = chars[num].ToString();      
+        num = rand.Next(0, chars.Length - 1);
+        string letter2 = chars[num].ToString();
+        string letters = letter1 + letter2;
         rand = new Random();
-
         return letters += rand.Next(0, 10000).ToString("0000");
     }
     
