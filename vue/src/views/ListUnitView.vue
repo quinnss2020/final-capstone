@@ -1,12 +1,9 @@
 <template>
-    <br>
     <div id="view-units">
-        <!-- <h1>Available Units</h1> -->
-
         <body class="page-container">
             <div class="wrapper">
                 <aside>
-                    <div class="location">
+                    <div class="filter location">
                         <h2>Filter Units</h2>
                         <br>
                         <h3>Location</h3>
@@ -24,7 +21,7 @@
                         <br>
                     </div>
 
-                    <div class="expiration">
+                    <div class="filter expiration">
                         <h3>Expires in</h3>
                         <input type="radio" id="one-hour" value="60" v-model="filter.expiration">
                         <label for="one-hour"> &lt; 1 hour </label>
@@ -37,7 +34,7 @@
                         <br>
                     </div>
 
-                    <div class="size">
+                    <div class="filter size">
                         <h3>Size</h3>
                         <input type="checkbox" id="5x5" value="5x5" v-model="filter.size">
                         <label for="5x5">5x5</label>
@@ -53,7 +50,7 @@
                         <br>
                     </div>
 
-                    <div class="high-bid">
+                    <div class="filter high-bid">
                         <h3>High Bid</h3>
                         <input type="checkbox" id="0-50" value="0-50" v-model="filter.highestBid">
                         <label for="0-50">$0 - $50</label>
@@ -69,13 +66,13 @@
                         <br>
                     </div>
                     <br>
-                    <v-btn elevation="8" rounded="xl" size="regular" v-on:click="filterUnits">APPLY</v-btn>
+                    <!-- <v-btn elevation="8" rounded="xl" size="regular" v-on:click="filterUnits">APPLY</v-btn> -->
                     <v-btn elevation="8" rounded="xl" size="regular" v-on:click="clearFilters">CLEAR</v-btn>
                 </aside>
                 <main id="unit-cards-container">
-                    <div id="unit-cards">
-                        <UnitCard v-for="unit in filterUnits" v-bind:key="unit.id" v-bind:item="unit" />
-                    </div>
+                    
+                        <UnitCard class="unit-card" v-for="unit in filterUnits" v-bind:key="unit.id" v-bind:item="unit" />
+                    
                 </main>
             </div>
         </body>
@@ -293,19 +290,26 @@ export default {
 </script>
 
 <style scoped>
-.page-container {
+
+/* .page-container {
+    box-sizing: border-box;
     display: flex;
-    overflow: hidden;
-    height: 100 vh;
-}
+    flex-wrap: wrap;
+    overflow: auto;
+    /* overflow: hidden; */
+    /* width: 100vw;
+} */ 
 
 #unit-cards-container {
-    /* display: flex; */
+    box-sizing: border-box;
+    /* display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    overflow-y: auto;
-    margin-left: 330px;
-    padding: 0px 10px;
+    flex-wrap: wrap; */
+    overflow-y: scroll;
+    /* margin-left: 330px; */
+    /* width: 95%; */
+    padding: 0px 30px;
 
 }
 
@@ -314,16 +318,25 @@ export default {
     flex-wrap: wrap;
 }
 
+#view-units {
+    box-sizing: border-box;
+    margin-top: 25px;
+}
+
 aside {
-    width: 300px;
-    position: fixed;
-    z-index: 1;
-    top: 150px;
+    /* display: flex; */
+    align-self: flex-start;
+    flex-direction: column;
+    height: auto;
+    width: 200px;
+    position:sticky;
+    position: -webkit-sticky;
+    /* z-index: 1; */
+    top: 140px;
     left: 30px;
-    overflow-x: hidden;
+    /* overflow-y:auto; */
     padding-top: 10px;
     padding-left: 30px;
-    padding-right: px;
     padding-bottom: 15px;
     text-align: left;
     border-color: #faefe0;
@@ -331,6 +344,19 @@ aside {
     border-radius: 2rem;
     border-style: outset;
 }
+
+.wrapper {
+    /* width: 100vw; */
+    box-sizing: border-box;
+    display: flex;
+    overflow: auto;
+    /* height: 200px;  */
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    /* height: 100vh; */
+}
+
 
 /* .unit-cards {
     display: flex;

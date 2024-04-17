@@ -2,8 +2,7 @@
     <div class="unit-details">
         <div id="details-container">
             <div id="images-box">
-                <h1>- Pictures Here -</h1>
-                <v-btn>UPLOAD PHOTO</v-btn>
+                <unit-image />
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
@@ -83,10 +82,11 @@
 import UnitService from '../services/UnitService';
 import BidService from '../services/BidService';
 import Countdown from '../components/Countdown.vue';
+import UnitImage from '../components/UnitImage.vue'
 
 export default {
     name: "UnitDetails",
-    components: { Countdown },
+    components: { Countdown, UnitImage },
     data() {
         return {
             unit: {},
@@ -268,6 +268,8 @@ h3.emphasis {
     border-color: #faefe0;
     border-radius: 2rem;
     border-style: outset;
+    height: fit-content;
+    width: fit-content;
     /* height: 300px; */
     margin-right: 80px;
     /* padding: 20px; */
