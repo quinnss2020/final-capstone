@@ -228,7 +228,6 @@ export default {
     },
 
     methods: {
-
         getUnits() {
             UnitService
                 .list()
@@ -293,7 +292,7 @@ export default {
 #unit-cards-container {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 10vh;
+    padding-left: 15vh;
 
 }
 
@@ -304,21 +303,23 @@ export default {
 aside {
     /* display: flex; */
     flex-direction: column;
-    height: 90vh;
-    width: 28vw;
+    height: 93vh;
+    width: 25vw;
     /* z-index: 1; */
-    top: 140px;
     left: 30px;
     /* overflow-y:auto; */
     padding-top: 3vh;
     padding-left:3vh;
-    padding-bottom: 15px;
+    padding-right: 3vh;
     text-align: left;
     border-color: #faefe0;
     background: rgba(244, 236, 225, .5);
     border-radius: 2rem;
     border-style: outset;
+    position: sticky;
+    top: 10px;
 }
+
 
 
 .wrapper {
@@ -393,6 +394,7 @@ h3 {
 }
 
 button {
+    align-self: flex-end;
     width: 115px;
     margin-right: 10px;
 }
