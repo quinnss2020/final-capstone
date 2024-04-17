@@ -2,6 +2,7 @@
     <br>
     <div id="view-units">
         <!-- <h1>Available Units</h1> -->
+
         <body class="page-container">
             <div class="wrapper">
                 <aside>
@@ -73,7 +74,7 @@
                 </aside>
                 <main id="unit-cards-container">
                     <div id="unit-cards">
-                        <UnitCard v-for="unit in filteredUnits" v-bind:key="unit.id" v-bind:item="unit" />
+                        <UnitCard v-for="unit in filterUnits" v-bind:key="unit.id" v-bind:item="unit" />
                     </div>
                 </main>
             </div>
@@ -159,14 +160,15 @@
 <script>
 import UnitCard from '../components/UnitCard.vue';
 import UnitService from '../services/UnitService.js';
-// import FilterUnits from '../components/FilterUnits.vue'
+
 
 export default {
     name: "ListUnits",
     components: { UnitCard },
     data() {
         return {
-            filteredUnits: [],
+            units: [],
+            // filteredUnits: [],
             filter: {
                 location: [],
                 expiration: [],
@@ -177,7 +179,55 @@ export default {
     },
 
     computed: {
- 
+        filterUnits() {
+
+            let filteredUnits = this.units;
+
+            filteredUnits = filteredUnits.filter(unit => {
+                if (this.filter.location.length === 0) {
+                    return true;
+                }
+                return this.filter.location.includes(unit.city);
+            })
+            //TODO see if we can call countdown util below
+            filteredUnits = filteredUnits.filter(unit => {
+                if (this.filter.expiration.length === 0) {
+                    return true;
+                }
+                var date = new Date(Date.parse(unit.expiration));
+                const now = Date.now();
+                let timeRemaining = date - now;
+                var minutes = Math.floor(timeRemaining / 60000)
+                var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                console.log('reached expiration filter')
+                return minutes < (this.filter.expiration) && seconds > 0;
+
+            })
+
+            filteredUnits = filteredUnits.filter(unit => {
+                if (this.filter.size.length === 0) {
+                    return true;
+                }
+                return this.filter.size.includes(unit.size);
+            })
+
+
+            filteredUnits = filteredUnits.filter(unit => {
+                if (this.filter.highestBid.length === 0) {
+                    return true;
+                }
+
+                let result;
+
+                this.filter.highestBid.forEach((x) => {
+                    let range = x.split("-");
+                    result = unit.highestBid >= parseInt(range[0]) && unit.highestBid <= parseInt(range[1]);
+                })
+
+                return result;
+            })
+            return filteredUnits;
+        },
     },
 
     methods: {
@@ -186,7 +236,7 @@ export default {
             UnitService
                 .list()
                 .then((response) => {
-                    this.filteredUnits = response.data;
+                    this.units = response.data;
                 })
                 .catch((error) => {
                     if (error.response) {
@@ -201,53 +251,6 @@ export default {
                 })
         },
 
-        filterUnits() {
-
-            this.filteredUnits = this.filteredUnits.filter(unit => {
-                if (this.filter.location.length === 0) {
-                    return true;
-                }
-                return this.filter.location.includes(unit.city);
-            })
-            //TODO see if we can call countdown util below
-            this.filteredUnits = this.filteredUnits.filter(unit => {
-                if (this.filter.expiration.length === 0) {
-                    return true;
-                }
-                var date = new Date(Date.parse(unit.expiration));
-                const now = Date.now();
-                let timeRemaining = date - now;
-                var minutes = Math.floor(timeRemaining / 60000)
-                var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-                console.log('reached expiration filter')
-                return minutes < (this.filter.expiration) && seconds > 0;
-
-            })
-
-            this.filteredUnits = this.filteredUnits.filter(unit => {
-                if (this.filter.size.length === 0) {
-                    return true;
-                }
-                return this.filter.size.includes(unit.size);
-            })
-
-
-            this.filteredUnits = this.filteredUnits.filter(unit => {
-                if (this.filter.highestBid.length === 0) {
-                    return true;
-                }
-
-                let result;
-
-                this.filter.highestBid.forEach((x) => {
-                    let range = x.split("-");
-                    result = unit.highestBid >= parseInt(range[0]) && unit.highestBid <= parseInt(range[1]);
-                })
-
-                return result;
-            })
-        },
-
         clearFilters() {
             this.filter = {
                 location: [],
@@ -256,9 +259,8 @@ export default {
                 highestBid: [],
             }
             this.getUnits();
-            
-            return this.filter;
 
+            return this.filter;
         }
 
     },
@@ -287,6 +289,7 @@ export default {
 
 }
 
+
 </script>
 
 <style scoped>
@@ -306,7 +309,7 @@ export default {
 
 }
 
-#unit-cards{
+#unit-cards {
     display: flex;
     flex-wrap: wrap;
 }
