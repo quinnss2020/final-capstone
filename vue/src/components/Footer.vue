@@ -180,13 +180,13 @@ footer {
 }
 
 .footer-top .widget-title {
-    color: #ffffff;
+    color: #F4ECE1;
     margin-bottom: 40px;
 }
 
 .footer-top .small-post-title a {
     font-family: var(--para-font);
-    color: #ffffff;
+    color: #F4ECE1;
     font-weight: 400;
 }
 
@@ -199,7 +199,7 @@ footer {
 }
 
 .copy-right-text {
-    color: #ffffff;
+    color: #F4ECE1;
 }
 
 .copy-right-text a {
@@ -212,14 +212,14 @@ footer {
 }
 
 .terms-privacy li a {
-    color: #ffffff;
+    color: #F4ECE1;
     position: relative;
 }
 
 .terms-privacy li a:after {
     position: absolute;
     content: '-';
-    color: #ffffff;
+    color: #F4ECE1;
     display: inline-block;
     top: 0;
     right: -18px;

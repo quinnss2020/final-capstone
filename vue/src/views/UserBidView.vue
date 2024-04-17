@@ -218,6 +218,7 @@ h1 {
 .bid-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 250px;
 }
 
 h1 {
