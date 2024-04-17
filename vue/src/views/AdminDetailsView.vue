@@ -45,7 +45,10 @@
 
         <v-app>
             <v-container>
-                <v-data-table :headers="headers" :items="bidsByUnit"></v-data-table>
+                <div id="bid-history">
+                    <p>Bid History</p>
+                </div>
+                <v-data-table :headers="headers" :items="bidsByUnit" class="elevation-4 blue lighten-5"></v-data-table>
             </v-container>
         </v-app>
         <!-- <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
@@ -197,9 +200,13 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* form {
-    margin-top: 20px;
-} */
+#bid-history {
+    font-size: 2rem;
+}
+
+.v-application__wrap {
+    min-height: 100px !important;
+}
 
 .button {
     align-self: flex-end;
