@@ -3,9 +3,12 @@
     <v-card
       :class="{ 'on-hover': isHovering }"
       :elevation="isHovering ? 16 : 2"
-      class="mx-auto"
+      :color="color"
+      class="ma-2 "
       v-bind="props"
-      outlined color="transparent"
+      outlined="transparent"
+      id="card"
+      
     >
       <section class="unit-card">
         <div id="writing-box">
@@ -19,13 +22,14 @@
           <h3 id="top-line">
             {{ item.city }} #{{ item.id }} | {{ item.size }}
           </h3>
-          <br />
+         <br>
           <p id="closing-time">
             <Countdown :expiration="item.expiration"></Countdown>
           </p>
-          <br />
+          <br>
           <p id="highest-bid">High bid: ${{ item.highestBid }}</p>
-          <br />
+          <br>
+          <div class="buttons">
           <v-btn
             elevation="8"
             rounded="xl"
@@ -54,6 +58,7 @@
             "
             >BID NOW</v-btn
           >
+        </div>
         </div>
       </section>
     </v-card>
@@ -107,15 +112,16 @@ export default {
   align-items: center;
   width: 23vw;
   height: 500px;
-  margin: 10px;;
+  /* margin: 10px; */
 }
 
-.mx-auto{
-  background-color: aqua;
+#card{
+  background-color: rgba(244, 236, 225, .5);
   border-color: #faefe0;
   border-radius: 2rem;
   border-style: outset;
   height: 470px;
+
 
 }
 
@@ -137,8 +143,23 @@ h3 {
 }
 
 #closing-time {
+  /* background-color: white;
+  background-size: 7px 7px; 
+   */
   font-size: 18px;
   font-weight: 800;
   color: #6a3212a7;
+  /* background: repeating-linear-gradient(
+  0deg,
+  transparent,
+  transparent 3px,
+  #faefe0 3px,
+  #314668 50px
+), linear-gradient(to bottom ,#faefe0, #314668); */
 }
+
+/* .buttons{
+
+
+} */
 </style>

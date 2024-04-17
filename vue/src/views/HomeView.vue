@@ -25,12 +25,12 @@
     
     <div id="expiring" class="bottom">
       <div id="text-3">
-        <h1> Expiring Soon </h1>
+        <h1 id="ex"> Expiring Soon </h1>
   
       </div>
       
       <div id="unit-cards">
-        <UnitCard v-for="unit in getTopThree" v-bind:key="unit.id" v-bind:item="unit"></UnitCard>
+        <UnitCard v-for="unit in getTopThree" v-bind:key="unit.id" v-bind:item="unit" id="card"></UnitCard>
       </div>
     </div>
 
@@ -140,8 +140,9 @@ export default {
 .bottom{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-height: 100vh;
-  background-image: linear-gradient(#AFABA8, #F9F6F0);
+  background-image: linear-gradient( #314668, #F9F6F0);
 /*flex-direction: column;
   width: 100%;
   height: 1000px;
@@ -156,21 +157,20 @@ export default {
 #unit-cards{
 display: flex;
 align-self: center;
-}
-
-section.unit-card{
-margin-right: 40px;
-margin-top: 40px;
+padding-bottom: 20px;
 }
 
 #text-3{
   align-self: flex-start;
   justify-self: start;
   padding-left: 100px;
-  padding-top: 60px; 
+  padding-top: 10px; 
+  padding-bottom: 40px;
 
 }
-
+#ex{
+  color:#F9F6F0
+}
 h1{
   color: #314668;
   font-weight: 800;
