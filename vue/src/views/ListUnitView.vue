@@ -3,7 +3,7 @@
         <body class="page-container">
             <div class="wrapper">
                 <aside>
-                    <div class="location">
+                    <div class="filter location">
                         <h2>Filter Units</h2>
                         <br>
                         <h3>Location</h3>
@@ -21,7 +21,7 @@
                         <br>
                     </div>
 
-                    <div class="expiration">
+                    <div class="filter expiration">
                         <h3>Expires in</h3>
                         <input type="radio" id="one-hour" value="60" v-model="filter.expiration">
                         <label for="one-hour"> &lt; 1 hour </label>
@@ -34,7 +34,7 @@
                         <br>
                     </div>
 
-                    <div class="size">
+                    <div class="filter size">
                         <h3>Size</h3>
                         <input type="checkbox" id="5x5" value="5x5" v-model="filter.size">
                         <label for="5x5">5x5</label>
@@ -50,7 +50,7 @@
                         <br>
                     </div>
 
-                    <div class="high-bid">
+                    <div class="filter high-bid">
                         <h3>High Bid</h3>
                         <input type="checkbox" id="0-50" value="0-50" v-model="filter.highestBid">
                         <label for="0-50">$0 - $50</label>
@@ -291,21 +291,24 @@ export default {
 
 <style scoped>
 
-.page-container {
+/* .page-container {
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
+    overflow: auto;
     /* overflow: hidden; */
-    width: 100vw;
-}
+    /* width: 100vw;
+} */ 
 
 #unit-cards-container {
-    display: flex;
+    box-sizing: border-box;
+    /* display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     overflow-y: scroll;
-    margin-left: 330px;
-    width: 95%;
+    /* margin-left: 330px; */
+    /* width: 95%; */
     padding: 0px 30px;
 
 }
@@ -316,17 +319,22 @@ export default {
 }
 
 #view-units {
+    box-sizing: border-box;
     margin-top: 25px;
 }
 
 aside {
-    height: 80%;
+    /* display: flex; */
+    align-self: flex-start;
+    flex-direction: column;
+    height: auto;
     width: 200px;
-    position:fixed;
-    z-index: 1;
+    position:sticky;
+    position: -webkit-sticky;
+    /* z-index: 1; */
     top: 140px;
     left: 30px;
-    overflow-y:auto;
+    /* overflow-y:auto; */
     padding-top: 10px;
     padding-left: 30px;
     padding-bottom: 15px;
@@ -338,8 +346,14 @@ aside {
 }
 
 .wrapper {
+    /* width: 100vw; */
+    box-sizing: border-box;
     display: flex;
+    overflow: auto;
+    /* height: 200px;  */
+    flex-direction: row;
     flex-wrap: wrap;
+
     /* height: 100vh; */
 }
 
