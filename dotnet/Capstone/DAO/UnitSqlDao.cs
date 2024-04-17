@@ -168,16 +168,16 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@localId", newUnit.LocalId);
-                    cmd.Parameters.AddWithValue("@startBid", newUnit.StartBid);
-                    cmd.Parameters.AddWithValue("@highestBid", newUnit.HighestBid);
-                    cmd.Parameters.AddWithValue("@orderNumber", newUnit.OrderNumber);
-                    cmd.Parameters.AddWithValue("@city", newUnit.City);
-                    cmd.Parameters.AddWithValue("@size", newUnit.Size);
-                    cmd.Parameters.AddWithValue("@active", newUnit.Active);
-                    cmd.Parameters.AddWithValue("@expiration", newUnit.Expiration);
-                    cmd.Parameters.AddWithValue("@details", newUnit.Details);
-                    cmd.Parameters.AddWithValue("@emailSent", newUnit.EmailSent);
+                    cmd.Parameters.AddWithValue("@localId", unit.LocalId);
+                    cmd.Parameters.AddWithValue("@startBid", unit.StartBid);
+                    cmd.Parameters.AddWithValue("@highestBid", unit.HighestBid);
+                    cmd.Parameters.AddWithValue("@orderNumber", unit.OrderNumber);
+                    cmd.Parameters.AddWithValue("@city", unit.City);
+                    cmd.Parameters.AddWithValue("@size", unit.Size);
+                    cmd.Parameters.AddWithValue("@active", unit.Active);
+                    cmd.Parameters.AddWithValue("@expiration", unit.Expiration);
+                    cmd.Parameters.AddWithValue("@details", unit.Details);
+                    cmd.Parameters.AddWithValue("@emailSent", unit.EmailSent);
 
                     newUnitId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
