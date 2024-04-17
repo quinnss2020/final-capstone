@@ -1,21 +1,11 @@
 <template>
   <div class="container-fluid m-0 p-0">
     <div id="home-page" class="top">
-      <div class="container pt-3">
-        <div class="nav">
-          <ol id="nav-buttons">
-            <li><router-link v-bind:to="{ name: 'bids' }" v-show="$store.state.token"> MY BIDS </router-link></li>
-            <li><router-link v-bind:to="{ name: 'units' }">UNITS</router-link></li>
-            <li><router-link v-bind:to="{ name: 'register' }" v-show="!$store.state.token"> REGISTER </router-link></li>
-            <li><router-link v-bind:to="{ name: 'logout' }" v-show="$store.state.token">LOGOUT</router-link></li>
-            <li><router-link v-bind:to="{ name: 'login' }" v-show="!$store.state.token"> LOGIN </router-link></li>
-          </ol>
-        </div>
-        <div class="row pb-5 pt-4">    
-        </div>
+      <div class="nav">
+        <HomeNavigation/>
       </div>
-      <div class="col my-auto">
-      <img src="@/assets/DeltaLogo-Light.svg" id="logo" class="float-left img-fluid"/>
+      <div class="delta-logo">
+      <img src="@/assets/DeltaLogo-Light.svg" id="logo" />  <!-- class="float-left" -->
       </div>
     </div>
 
@@ -48,8 +38,9 @@ import { stringifyQuery } from 'vue-router';
 import image from "../assets/HomePage-Background-Purple.png"
 import img from "../assets/DeltaLogo-Light.svg"
 import orange from "../assets/OrangeUnits.svg"
-
+import HomeNavigation from "../components/HomeNavigation.vue"
 export default {
+  components: {HomeNavigation},
   data: function () {
     return {
       image: image,
@@ -67,8 +58,13 @@ export default {
 }
 
 .top{
-  /* display: flex;
-  background-color: #faefe0;
+  display: grid;
+  grid-template-columns: 'header, header, header';
+
+  
+
+
+  /*background-color: #faefe0;
   background-size: cover;
   background-repeat: no-repeat;
   padding-top: 18px;
@@ -100,9 +96,7 @@ export default {
   padding-right: 10px; */
   /* text-align: left; */
 }
-#image-unit{
-  align-self: flex-end;
-}
+
 #bid-win{
   background: rgba(244, 236, 225, .5);
 }
@@ -144,57 +138,6 @@ button{
 button:hover {
   color: #9A94BC;
 }
-
-
-
-nav> :is(ul, ol) {
-    list-style: none;
-
-}
-.nav {
- display: flex;
- justify-content: flex-end;
-}
-
-#nav-buttons {
-    display: flex;
-    flex-flow: row nowrap;
-    margin-top: 10px;
-    list-style: none;
-    background: none;
-    margin-right: 20px;
-}
-
-
-a {
-    display: flex;
-    text-decoration: none;
-    color: #314668;
-    font-size: 1.2rem;
-    font-weight: 800;
-    padding: 2rem;
-    border-width: 2px;
-    border-style: outset;
-    border-color: #9A94BC;
-    border-radius: 2rem;
-    background-color: #F9F6F0;
-    padding-inline: 1.5rem;
-    padding-block: 0.6rem;
-    margin-right: 20px;
-}
-
-a:hover {
-    /* background-image: linear-gradient(to right, #F9F6F0, #8FB8DE); */
-    animation-name: example;
-    animation-duration: 1s;
-}
-
-@keyframes example {
-    from {background-color:#F9F6F0;}
-    to {background-color:  #d5d3e3;}  /*#d5d3e3*/
-    
-}
-
 
 #logo{
     max-height: 150px;
