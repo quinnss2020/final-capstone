@@ -45,7 +45,7 @@ export default {
             .getPhotos(this.item.id)
             .then((response) => {
                 this.photos = response.data;
-                this.firstPhoto = this.photos[1];
+                this.firstPhoto = this.photos[0];
             })
             .catch((error) => {
                 if (error.response) {
