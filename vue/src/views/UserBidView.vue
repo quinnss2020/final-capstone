@@ -223,6 +223,8 @@ h1 {
 
 h1 {
     color: #314668;
+    
+    background-image: linear-gradient(to right, rgba(175, 171, 168, 0.2), rgba(49, 70, 104, 0.7));
 }
 
 table {

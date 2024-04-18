@@ -7,7 +7,7 @@
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
     </div> -->
     <router-view />
-    <Footer/>
+    <Footer id="footer"/>
   </div>
 </template>
 
@@ -69,6 +69,11 @@ input {
   border: none;
   border-radius: 0.3rem;
   padding: 8px;
+}
+
+#footer {
+  bottom: 0;
+  width: 100%;
 }
 
 /* .slide-enter-from,
