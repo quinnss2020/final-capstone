@@ -120,7 +120,10 @@ const routes = [
 // Create the router
 const router = createRouter({
   history: createWebHistory(),
-  routes: routes
+  routes: routes,
+  scrollBehavior() {
+    return {top: 0, left: 0}
+  }
 });
 
 router.beforeEach((to) => {
