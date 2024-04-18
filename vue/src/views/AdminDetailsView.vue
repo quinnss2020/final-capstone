@@ -6,7 +6,7 @@
             </div>
             <div id="writing-box">
                 <h2>{{ unit.city }} Unit #{{ unit.id }}</h2>
-                <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3><br>
+                <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3>
 
                 <h3 class="emphasis">
                     <Countdown :expiration="unit.expiration"></Countdown>
@@ -213,6 +213,7 @@ h3 {
 
 
 h3.emphasis {
+    font-size: x-large;
     color: #FF7243;
 }
 
@@ -221,7 +222,7 @@ h3.emphasis {
 }
 
 .highest-bid {
-    margin: 0;
+    margin-bottom: 20px;
     font-size: 2rem;
 }
 
@@ -238,7 +239,7 @@ h3.emphasis {
 #writing-box {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     border-style: outset;
     border-color: #F9F6F0;
     border-radius: 2rem;
@@ -266,8 +267,11 @@ h3.emphasis {
 
 #biv {
     margin-top: 2%;
+    margin-right: 20px;
+    margin-left: 5px;
     border-radius: 2rem;
-    background-color: #314668;
+    padding-bottom: 40px;
+    background-image: linear-gradient(to right,rgba(244, 236, 225, .5), rgba(49, 70, 104, 0.7));
     color: white;
 }
 
@@ -299,6 +303,18 @@ tbody tr:nth-child(even) {
 
 td {
     padding: 30px;
+}
+
+#update-expiration-form{
+    padding-bottom: 20px;
+}
+
+.unit-details{
+margin-bottom: 30px;
+}
+
+p{
+    font-weight: bold;
 }
 
 </style>
