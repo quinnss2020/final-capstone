@@ -4,7 +4,7 @@ export default {
     list() {
         return axios.get('/units');
     },
-
+    
     listAll() {
         return axios.get('/units/all');
     },

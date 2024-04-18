@@ -7,15 +7,17 @@
       <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
     </div> -->
     <router-view />
+    <Footer/>
   </div>
 </template>
 
 <script>
-import Navigation from "./components/Navigation.vue"
+import Navigation from "./components/Navigation.vue";
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
-  components: { Navigation },
+  components: { Navigation, Footer },
 
 }
 

@@ -44,7 +44,6 @@
 
             <!-- <Bid v-for="bid in userBids" v-bind:key="bid.amount" v-bind:b="bid" /> -->
         </section>
-        <Footer />
     </div>
 </template>
 
@@ -55,12 +54,12 @@ import UnitCard from '../components/UnitCard.vue';
 import UnitService from '../services/UnitService.js';
 import Countdown from '../components/Countdown.vue';
 import { red } from '@cloudinary/url-gen/actions/adjust';
-import Footer from '../components/Footer.vue';
+
 
 export default {
     name: "UserBids",
     //props: ['item'],
-    components: { Countdown, Footer },
+    components: { Countdown },
     data() {
         return {
             userBids: [],
@@ -70,9 +69,6 @@ export default {
     },
 
     methods: {
-        // countdown(expiration) {
-        //     return countdown(expiration);
-        // },
         getBids() {
             BidService
                 .list()
@@ -209,6 +205,11 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+    margin-top: 50px;
+    font-weight: 800;
+}
+
 .bid-details {
     display: flex;
 
@@ -217,6 +218,7 @@ export default {
 .bid-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 250px;
 }
 
 h1 {
@@ -234,7 +236,7 @@ table {
 
 
 tbody tr:nth-child(odd) {
-    background-color: #F9F6F0;
+    background-color: #f9f6f073;
     padding: 2rem;
 
 }
