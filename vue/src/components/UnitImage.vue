@@ -1,19 +1,23 @@
 <template>
-    <div class="dropzone" @dragover.prevent @dragenter.prevent @dragstart.prevent @drop.prevent="handleFileChange($event.dataTransfer)">
-        <input id="file-input" type="file" accept="image/png, image/jpeg" v-on:change="handleFileChange($event.target)" required />
-        <h2 for="file-input">Click or Drag and Drop Image</h2>
-        <img v-if="preview" v-bind:src="preview">
-        <h3 v-if="preview">File name: {{ fileName }} </h3>
+  <div id="mom">
+    <div class="dropzone" @dragover.prevent @dragenter.prevent @dragstart.prevent
+      @drop.prevent="handleFileChange($event.dataTransfer)">
+      <input id="file-input" type="file" accept="image/png, image/jpeg" v-on:change="handleFileChange($event.target)"
+        required />
+      <h2 for="file-input">Click or Drag and Drop Image</h2>
+      <img v-if="preview" v-bind:src="preview">
+      <h3 v-if="preview">File name: {{ fileName }} </h3>
     </div><br>
     <v-btn type="submit" v-on:click="upload">Upload</v-btn>
-    <h3 v-if="success">File Uploaded Successfully. publicId: {{success}}</h3>
+    <h3 v-if="success">File Uploaded Successfully. publicId: {{ success }}</h3>
+  </div>
 </template>
 
 <script>
 export default {
   name: "TestUploadImage",
   data() {
-    return { 
+    return {
       test: false,
       fileName: "",
       preview: null,
@@ -27,7 +31,7 @@ export default {
     handleFileChange: function (event) {
       this.file = event.files[0];
       this.fileName = this.file.name;
-      
+
       this.formData = new FormData();
       this.formData.append("upload_preset", this.preset);
 
@@ -39,13 +43,13 @@ export default {
         this.formData.append("file", this.preview);
       }
     },
-    upload: async function() {
+    upload: async function () {
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`,
-          {
-            method: "POST",
-            body: this.formData,
-          }
+        {
+          method: "POST",
+          body: this.formData,
+        }
       );
       const data = await res.json();
       console.log(data.secure_url);
@@ -59,6 +63,12 @@ export default {
 </script>
 
 <style scoped>
+#mom {
+  background: rgba(235, 229, 220, 0.726);
+  border-color: #faefe0;
+  border-radius: 2rem;
+}
+
 .dropzone {
   height: fit-content;
   min-height: 540px;
@@ -73,6 +83,7 @@ export default {
   align-items: center;
   margin: 0 auto;
 }
+
 input[type="file"] {
   position: absolute;
   opacity: 0;

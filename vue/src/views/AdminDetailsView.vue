@@ -161,14 +161,11 @@ export default {
 </script>
 
 <style scoped>
-.my-header-style {
-    font-size: 40px !important;
-    font-weight: 800;
-}
 
 #vdt {
     font-size: 20px !important;
     font-weight: 800;
+    color: #314668;
 }
 
 h2 {
@@ -202,6 +199,7 @@ h3 {
 .bolded {
     font-weight: 800;
     font-size: 1.4rem;
+    
 }
 
 /* 
