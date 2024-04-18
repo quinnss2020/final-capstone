@@ -103,7 +103,7 @@ INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number
 VALUES (166, 20, 20, 1, 'LL0011', 'Akron', '10x20', 1, '2024-04-20 18:08:10', GETDATE(), 'Fitness gear grab bag: Tattered yoga mats, worn-out dumbbells, and cracked exercise machines, a testament to the dedication and sweat of past fitness enthusiasts, waiting to be revitalized by new energy and determination.')
 
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
-VALUES (316, 30, 30, 1, 'BB0013', 'Cleveland', '10x10', 1, '2024-04-20 11:15:10', GETDATE(), 'Home office odds and ends: Scratched desks, wobbly chairs, and cluttered organizers, a mix of well-used essentials perfect for creating a functional workspace on a budget, with a touch of DIY charm.')
+VALUES (316, 30, 30, 1, 'BB0013', 'Cleveland', '10x10', 1, '2024-04-19 11:15:10', GETDATE(), 'Home office odds and ends: Scratched desks, wobbly chairs, and cluttered organizers, a mix of well-used essentials perfect for creating a functional workspace on a budget, with a touch of DIY charm.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (224, 50, 50, 1, 'CC0011', 'Columbus', '5x5', 1, '2024-04-20 10:08:10', GETDATE(), 'Vinyl record mishmash: Scratchy LPs, dusty covers, and worn-out sleeves, each holding a piece of musical history and the memories of past listeners, waiting to spin their tales once again.')
 
