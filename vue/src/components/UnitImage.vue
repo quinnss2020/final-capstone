@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import PhotoService from '../services/PhotoService';
+
 export default {
   name: "TestUploadImage",
   data() {
@@ -25,8 +27,18 @@ export default {
       formData: null,
       cloudName: import.meta.env.VITE_APP_CLOUD_NAME,
       success: "",
+      photo: {
+        unitId: "",
+        url: ""
+      },
     };
   },
+
+  created() {
+    this.photo.unitId = this.$route.path.match(/(\d+)/)[0];
+    console.log(this.photo.unitId);
+  },
+
   methods: {
     handleFileChange: function (event) {
       this.file = event.files[0];
@@ -43,6 +55,24 @@ export default {
         this.formData.append("file", this.preview);
       }
     },
+
+    addPhoto() {
+      if(this.preview && (this.photo.unitId != 0)){
+        PhotoService.postPhoto(this.photo)
+          .then((response) => {
+            if(response.status === 201){
+              console.log("Photo successfully added");
+            }
+          })
+          .catch((error) => {
+            const response = error.response;
+            if(response.status === 400){
+              console.log("Error placing bid.");
+            }
+          });
+      }
+    },
+
     upload: async function () {
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`,
@@ -53,6 +83,8 @@ export default {
       );
       const data = await res.json();
       console.log(data.secure_url);
+      this.photo.url = data.secure_url;
+      this.addPhoto();
       this.fileName = "";
       this.preview = null;
       this.formData = null;
