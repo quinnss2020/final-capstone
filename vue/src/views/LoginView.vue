@@ -23,17 +23,18 @@
         <v-btn elevation="8" rounded="xl" size="regular" :ripple="true" type="submit" v-show="!isConfirmed">SIGN IN</v-btn>
       </form>
       <v-btn elevation="8" rounded="xl" size="regular" :ripple="true" id="new-user" v-show="!isConfirmed" v-on:click="this.$router.push('/register')">NEW USER</v-btn>
-      <br>
+      
       <form v-if="isConfirmed" v-on:submit.prevent="confirm">
         <div class="form-input-group">
           <p> A confirmation email was sent to you, please enter the code below.</p>
-
-          <input type="text" placeholder="Email Confirmation Code" id="code" v-model="code" required autofocus />
+          <br>
+          <v-text-field type="text" variant="underlined" label="Email Confirmation Code" id="code" v-model="code" required autofocus></v-text-field>
         </div>
         <v-btn elevation="12" rounded="xl" size="regular" type="submit">CONFIRM</v-btn>
       </form>
+      <br>
       <p>
-        <br>
+        
         <!-- <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link> -->
       </p>
     </div>
@@ -105,7 +106,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 60px
+  margin-top: 30px
 }
 
 

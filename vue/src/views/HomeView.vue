@@ -19,7 +19,9 @@
           Storage units filled with forgotten treasures
         </p>
         <br>
-        <v-btn elevation="12" rounded="xl" size="x-large">BID NOW</v-btn>
+        <v-btn elevation="12" rounded="xl" size="x-large" v-on:click="
+                this.$router.push({
+                  name: 'units'})"> BID NOW </v-btn>
       </div>
     </div>
     
