@@ -205,8 +205,11 @@ export default {
 </script>
 
 <style scoped>
+.user-bids{
+    height: 90vh;
+}
+
 h1 {
-    margin-top: 50px;
     font-weight: 800;
 }
 
@@ -223,8 +226,8 @@ h1 {
 
 h1 {
     color: #314668;
-    margin-top: 50px;
-    background-image: linear-gradient(to right, rgba(175, 171, 168, 0.2), rgba(49, 70, 104, 0.7));
+    padding: 17px;
+    background-image: linear-gradient(to right,rgba(244, 236, 225, .4), rgba(49, 70, 104, 0.4));
 }
 
 table {
