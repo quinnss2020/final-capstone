@@ -24,8 +24,15 @@ export default {
 </script>
 
 <style scoped>
+#nav-buttons[data-v-578fcad0] {
+    margin-top: 0;
+    padding-top: 35px;
+    padding-bottom: 20px;
+}
+
 nav> :is(ul, ol) {
     list-style: none;
+    
 
 }
 
@@ -37,6 +44,11 @@ nav> :is(ul, ol) {
     list-style: none;
     background: none;
     margin-right: 20px;
+    
+}
+
+a:hover {
+    box-shadow: 0 12px 16px 0 rgba(49,70,104,0.24),0 17px 80px 0 rgba(49,70,104,0.19);
 }
 
 
@@ -74,5 +86,9 @@ ol>#logo {
     margin-right: auto;
     margin-left: 30px;
     border: none;
+}
+
+ol#nav-buttons {
+    background-image: linear-gradient(20deg, #f9f6f027,#8393c24d,#F9F6F0);
 }
 </style>

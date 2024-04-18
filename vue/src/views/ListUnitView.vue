@@ -1,6 +1,7 @@
 <template>
     <div id="view-units">
         <body class="page-container">
+            <img id="list-unit-banner" src="../assets/BidWinOwn.png"/>
             <div class="wrapper">
                 <aside>
                     <div class="filter location">
@@ -292,8 +293,14 @@ export default {
 #unit-cards-container {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 15vh;
+    padding-left: 12vh;
 
+}
+
+#list-unit-banner{
+    margin-top: -25px;
+    margin-bottom: 25px;
+    width: 100%;
 }
 
 #view-units {
@@ -327,7 +334,7 @@ aside {
     /* height: 200px;  */
     flex-direction: row;
     /* height: 100vh; */
-    padding-left: 5vh;
+    padding-left: 7vh;
 }
 
 
