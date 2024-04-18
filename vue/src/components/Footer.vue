@@ -104,7 +104,6 @@ img {
 }
 
 footer {
-    margin-top: 50px;
     padding-left: 20px;
 }
 

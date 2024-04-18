@@ -35,7 +35,6 @@
         <UnitCard v-for="unit in getTopThree" v-bind:key="unit.id" v-bind:item="unit" id="card"></UnitCard>
       </div>
     </div>
-
   </div>
 </template>
 
