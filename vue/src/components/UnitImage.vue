@@ -4,10 +4,10 @@
       @drop.prevent="handleFileChange($event.dataTransfer)">
       <input id="file-input" type="file" accept="image/png, image/jpeg" v-on:change="handleFileChange($event.target)"
         required />
-      <h2 for="file-input">Click or Drag and Drop Image</h2>
+      <h2 class="drop-text" for="file-input">Click or Drag and Drop Image</h2>
       <img v-if="preview" v-bind:src="preview">
       <h3 v-if="preview">File name: {{ fileName }} </h3>
-    </div><br>
+    </div>
     <v-btn type="submit" v-on:click="upload">Upload</v-btn>
     <h3 v-if="success">File Uploaded Successfully. publicId: {{ success }}</h3>
   </div>
@@ -96,9 +96,10 @@ export default {
 
 <style scoped>
 #mom {
-  background: rgba(235, 229, 220, 0.726);
+  background: rgba(235, 229, 220, 0.3); 
   border-color: #faefe0;
   border-radius: 2rem;
+  padding-bottom: 50px;
 }
 
 .dropzone {
@@ -107,13 +108,21 @@ export default {
   max-height: 600px;
   width: 33vw;
   margin: 10px;
-  background: #fdfdfd;
+  /* background: #fdfdfd; */
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+}
+
+.drop-text{
+  border: 1px solid antiquewhite;
+  border-style: outset;
+  border-radius: 2rem;
+  border-width: 2px;
+  padding: 10px;
 }
 
 input[type="file"] {
@@ -131,4 +140,6 @@ img {
   width: 50%;
   height: 50%;
 }
+
+
 </style>
