@@ -242,17 +242,6 @@ VALUES(1013, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279214/m1ro
 INSERT INTO unit_photos(unit_id, img_URL)
 VALUES(1013, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279232/hzds5msfxtuqnvsajihd.webp')
 
-INSERT INTO unit_photos(unit_id, img_URL)
-VALUES(1014, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279901/tevceiczexl8o9tt1doe.jpg')
-INSERT INTO unit_photos(unit_id, img_URL)
-VALUES(1014, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279861/a8ziytgndhfla6s5rpzl.jpg')
-INSERT INTO unit_photos(unit_id, img_URL)
-VALUES(1014, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280005/efyhhlrzfajvrygzxttl.jpg')
-INSERT INTO unit_photos(unit_id, img_URL)
-VALUES(1014, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280020/vjsxavcfto5ppeyxxg9m.jpg')
-
-
-
 ALTER TABLE units WITH CHECK ADD CONSTRAINT [FK_users_units]
 FOREIGN KEY(highest_bidder) REFERENCES [users] (id)
 ALTER TABLE bids WITH CHECK ADD CONSTRAINT [FK_bids_units]
