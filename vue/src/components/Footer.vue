@@ -11,33 +11,10 @@
                             <br>
                             <ul class="company-footer-contact-list">
                                 <span><i class="fas fa-phone"></i>Tel: (614) 123-4567</span>
-                                <span><i class="fas fa-clock"></i>Mon - Sat 8.00 - 18.00</span>
+                                <span><i class="fas fa-clock"></i>Mon - Sat 8:00 - 6:00</span>
                             </ul>
                         </div>
-                    </div><!-- widget end -->
-                    
-                   <!-- <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="widget latest-news-widget">
-                            <h5 class="widget-title">lastest news</h5>
-                            <ul class="small-post-list">
-                                <li>
-                                    <div class="small-post-item">
-                                        <a href="#" class="post-date">July 18, 2018</a>
-                                        <h6 class="small-post-title"><a href="#">Lorem Ipsum is simply dummy text of the
-                                                printing.</a></h6>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="small-post-item">
-                                        <a href="#" class="post-date">July 28, 2018</a>
-                                        <h6 class="small-post-title"><a href="#">Lorem Ipsum is simply dummy text of the
-                                                printing</a></h6>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>-->
-                    
+                    </div>
                 </div>
             </div>
         </div>
