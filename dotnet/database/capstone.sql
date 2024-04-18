@@ -80,7 +80,7 @@ VALUES (101, 100, 100, 1, 'AA0000', 'Columbus', '5x5', 1, '2024-04-20 10:30:10',
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (102, 120, 120, 1, 'BB0001', 'Cleveland', '10x10', 1, '2024-04-20 12:08:10', GETDATE(), 'Sports memorabilia mishmash: Faded jerseys, dusty trophies, and scuffed photographs from forgotten games, waiting for a new owner to appreciate the nostalgia and history behind each piece, despite their worn condition.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
-VALUES (103, 180, 180, 1, 'CC0002', 'Cincinnati', '10x15', 1, '2024-04-20 14:08:10', GETDATE(), 'Outdoor adventure odds and ends: From frayed hiking boots to weathered tents, this collection offers a glimpse into past expeditions, with gear that''s seen its fair share of rugged terrain and outdoor escapades.')
+VALUES (103, 180, 180, 1, 'CC0002', 'Cincinnati', '10x15', 1, '2024-04-18 13:12:10', GETDATE(), 'Outdoor adventure odds and ends: From frayed hiking boots to weathered tents, this collection offers a glimpse into past expeditions, with gear that''s seen its fair share of rugged terrain and outdoor escapades.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (104, 60, 60, 1, 'DD0003', 'Akron', '10x20', 1, '2024-04-20 11:08:10', GETDATE(), 'Vintage book grab bag: Dog-eared classics, well-thumbed paperbacks, and musty volumes, each telling its own story of past readers and literary journeys, waiting to be rediscovered and cherished once again.')
 
@@ -103,7 +103,7 @@ INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number
 VALUES (166, 20, 20, 1, 'LL0011', 'Akron', '10x20', 1, '2024-04-20 18:08:10', GETDATE(), 'Fitness gear grab bag: Tattered yoga mats, worn-out dumbbells, and cracked exercise machines, a testament to the dedication and sweat of past fitness enthusiasts, waiting to be revitalized by new energy and determination.')
 
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
-VALUES (316, 30, 30, 1, 'BB0013', 'Cleveland', '10x10', 1, '2024-04-20 10:38:10', GETDATE(), 'Home office odds and ends: Scratched desks, wobbly chairs, and cluttered organizers, a mix of well-used essentials perfect for creating a functional workspace on a budget, with a touch of DIY charm.')
+VALUES (316, 30, 30, 1, 'BB0013', 'Cleveland', '10x10', 1, '2024-04-20 11:15:10', GETDATE(), 'Home office odds and ends: Scratched desks, wobbly chairs, and cluttered organizers, a mix of well-used essentials perfect for creating a functional workspace on a budget, with a touch of DIY charm.')
 INSERT INTO units(local_id, start_bid, highest_bid, highest_bidder, order_number, city, size, active, expiration, created, details) 
 VALUES (224, 50, 50, 1, 'CC0011', 'Columbus', '5x5', 1, '2024-04-20 10:08:10', GETDATE(), 'Vinyl record mishmash: Scratchy LPs, dusty covers, and worn-out sleeves, each holding a piece of musical history and the memories of past listeners, waiting to spin their tales once again.')
 
@@ -225,16 +225,14 @@ INSERT INTO unit_photos(unit_id, img_URL)
 VALUES(1011, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280005/efyhhlrzfajvrygzxttl.jpg')
 
 INSERT INTO unit_photos(unit_id, img_URL)
+VALUES(1012, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713278906/dpgu1cgpvfsta6yv19dc.webp')
+INSERT INTO unit_photos(unit_id, img_URL)
 VALUES(1012, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279174/ktigs8xebh3jlzpu5rc4.webp')
 INSERT INTO unit_photos(unit_id, img_URL)
 VALUES(1012, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713280373/y2gvkr4bvbkssugtm2dz.jpg')
 INSERT INTO unit_photos(unit_id, img_URL)
-VALUES(1012, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713278872/kw1jahxxyoxp7ouo30ih.jpg')
-INSERT INTO unit_photos(unit_id, img_URL)
-VALUES(1012, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713278906/dpgu1cgpvfsta6yv19dc.webp')
+VALUES(1012, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713465522/l88gsktcatprhrfj7cyn.jpg')
 
-INSERT INTO unit_photos(unit_id, img_URL)
-VALUES(1013, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279129/vgtdzld2g2qiwpyh0pcg.jpg')
 INSERT INTO unit_photos(unit_id, img_URL)
 VALUES(1013, 'https://res.cloudinary.com/dpicdmebf/image/upload/v1713279174/ktigs8xebh3jlzpu5rc4.webp')
 INSERT INTO unit_photos(unit_id, img_URL)

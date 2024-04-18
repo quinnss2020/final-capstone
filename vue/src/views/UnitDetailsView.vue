@@ -29,30 +29,6 @@
         <h3 id="details-text">{{ unit.details }}</h3>
       </div>
     </div>
-    <div id="bid-history-container" v-if="this.$store.state.user.id === 1">
-      <br /><br />
-      <h2 id="history-title">Bid History</h2>
-      <table id="bid-history">
-        <thead>
-          <tr>
-            <th>Bid ID</th>
-            <th>Unit ID</th>
-            <th>Bidder ID</th>
-            <th>Amount</th>
-            <th>Date Placed</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="bid in bidsByUnit" v-bind:key="bid.amount">
-            <td>{{ bid.id }}</td>
-            <td>{{ bid.unitId }}</td>
-            <td>{{ bid.bidderId }}</td>
-            <td>${{ bid.amount }}</td>
-            <td>{{ bid.datePlaced }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </template>
 

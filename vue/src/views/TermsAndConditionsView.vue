@@ -124,7 +124,7 @@ export default {
             this.isConfirmed = true;
           }
           else {
-            this.$router.push("/");
+            this.$router.push("/units");
           }
         })
         .catch(error => {
@@ -140,7 +140,7 @@ export default {
         .confirmEmail(this.user, this.code)
         .then(response => {
           if (response.status == 200) {
-            this.$router.push("/");
+            this.$router.push("/units");
           }
         })
         .catch(error => {
@@ -153,7 +153,7 @@ export default {
         .agreeTerms(this.user, this.agreed)
         .then(response => {
           if (response.status == 200) {
-            this.$router.push("/");
+            this.$router.push("/units");
           }
         })
         .catch(error => {
