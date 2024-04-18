@@ -97,7 +97,8 @@ export default {
 
 <style scoped>
 .home{
-  background-image:linear-gradient(#F9F6F0, #AFABA8);
+  background-color: #F9F6F0;
+  /* background-image:linear-gradient(#F9F6F0, #AFABA8); */
 }
 
 .top{
@@ -142,7 +143,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  background-image: linear-gradient( #314668, #F9F6F0);
+  background-image: linear-gradient(#F9F6F0,#314668);
 /*flex-direction: column;
   width: 100%;
   height: 1000px;
@@ -168,9 +169,8 @@ padding-bottom: 20px;
   padding-bottom: 40px;
 
 }
-#ex{
-  color:#F9F6F0
-}
+
+
 h1{
   color: #314668;
   font-weight: 800;
