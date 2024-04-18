@@ -187,6 +187,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 79vh;
+  margin-bottom: 25px;
 }
 
 form {

@@ -113,6 +113,7 @@ export default {
   align-items: center;
   width: 100%;
   margin-top: 50px;
+  margin-bottom: 20px;
 
 }
 
