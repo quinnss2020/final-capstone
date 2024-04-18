@@ -5,7 +5,7 @@
         <v-container v-if="this.loading">
           <v-carousel id="vc" show-arrows="hover" v-model="slider">
             <v-carousel-item id="image" v-for="(photo, id) in photos" :key="id" eager>
-              <v-img :src="photo.url" eager />
+                <v-img class="v-img" :class="hover ? 'zoom' : ''" :src="photo.url" eager />
             </v-carousel-item>
           </v-carousel>
         </v-container>
@@ -213,10 +213,11 @@ h3.emphasis {
 #details-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 500px;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  height: 500px;
+  margin-top: 30px;
   margin-right: 20px;
   margin-left: 20px;
 }
@@ -244,6 +245,12 @@ h3.emphasis {
   /* padding: 20px; */
   background: rgba(244, 236, 225, 0.5);
 
+}
+
+.v-img:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
 }
 
 .bid-error-msg {
