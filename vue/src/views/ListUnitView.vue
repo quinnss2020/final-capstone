@@ -305,6 +305,7 @@ export default {
 
 #view-units {
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 aside {

@@ -222,6 +222,10 @@ h3.emphasis {
   margin-left: 20px;
 }
 
+.unit-details {
+  margin-bottom: 69px;
+}
+
 #writing-box {
   display: flex;
   flex-direction: column;

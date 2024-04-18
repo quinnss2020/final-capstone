@@ -106,7 +106,9 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 30px
+  height: 75vh;
+  margin-top: 30px;
+  margin-bottom: 25px;
 }
 
 
