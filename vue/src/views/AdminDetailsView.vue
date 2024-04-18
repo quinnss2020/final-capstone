@@ -98,7 +98,7 @@ export default {
             UnitService
                 .edit(this.unit)
                 .then(() => {
-                    this.$router.push({ name: 'unitDetails', params: { unitId: this.unit.id } })
+                    this.$router.push({ name: 'units' })
                 })
                 .catch((error) => {
                     if (error.response) {
