@@ -6,7 +6,7 @@
         <h1>Please Sign In</h1>
         <br>
 
-        <div role="alert" v-if="invalidCredentials">
+        <div id="alert" role="alert" v-if="invalidCredentials">
           Invalid email and password!
         </div>
         <div role="alert" v-if="this.$route.query.registration">
@@ -124,6 +124,11 @@ export default {
   border-color: #F4ECE1;
   padding: 0.5rem;
 
+}
+
+#alert {
+  color:red;
+  padding-bottom: 5px;
 }
 
 .form-input-group {

@@ -236,7 +236,7 @@ table {
 
 
 tbody tr:nth-child(odd) {
-    background-color: #F9F6F0;
+    background-color: #f9f6f073;
     padding: 2rem;
 
 }

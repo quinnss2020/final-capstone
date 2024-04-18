@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="widget company-intro-widget">
-                            <a href="index.html" class="site-logo"><img src="../assets/DeltaLogo-Light.svg"
+                            <a href="/" class="site-logo"><img src="../assets/DeltaLogo-Light.svg"
                                     alt="logo"></a>
                             <p class="description">Fulfilling your storage needs since 2024 at several convenient locations across the great state of Ohio.</p>
                             <br>
@@ -113,7 +113,7 @@ footer {
 }
 
 .footer-section {
-    background-color: #233243;
+    background-color: #314668;
     position: relative;
     overflow: hidden;
     z-index: 9;
@@ -127,7 +127,7 @@ footer {
     width: 44%;
     height: 257%;
     transform: rotate(54deg);
-    background-color: rgb(31, 47, 64);
+    background-color: rgb(37, 67, 100);
     -webkit-transform: rotate(54deg);
     -moz-transform: rotate(54deg);
     -ms-transform: rotate(54deg);

@@ -3,7 +3,7 @@
     <div id="details-container">
       <div id="images-box">
         <v-container v-if="this.loading">
-          <v-carousel id="vc" show-arrows="true" v-model="slider">
+          <v-carousel id="vc" show-arrows="hover" v-model="slider">
             <v-carousel-item id="image" v-for="(photo, id) in photos" :key="id" eager>
               <v-img :src="photo.url" eager />
             </v-carousel-item>
@@ -17,7 +17,6 @@
         </h3>
         <h3 class="highest-bid">Highest Bid: ${{ unit.highestBid }}</h3>
         <p class="bid-error-msg" v-if="bidErrors">{{ this.bidErrorMsg }}</p>
-
         <form v-on:submit.prevent="placeBid()">
           <input type="text" placeholder="Enter Bid Amount" id="bid-amount" name="bid-amount"
             v-model.number="bid.amount" />
@@ -25,6 +24,7 @@
           <br />
           <v-btn type="submit">BID NOW</v-btn>
         </form>
+        <br>
         <h3>Details:</h3>
         <h3 id="details-text">{{ unit.details }}</h3>
       </div>
@@ -196,6 +196,7 @@ button {
 }
 
 h3.emphasis {
+  font-size: x-large;
   color: #ff7243;
 }
 
@@ -206,6 +207,7 @@ h3.emphasis {
 .highest-bid {
   margin: 0;
   font-size: 2rem;
+  padding-bottom: 5px;
 }
 
 #details-container {
@@ -225,16 +227,17 @@ h3.emphasis {
   align-items: flex-start;
   border-style: outset;
   border-color: #f9f6f0;
-  border-radius: 2rem;
+  border-radius: 1.2rem;
   padding: 30px;
   margin-left: 0;
   background: rgba(244, 236, 225, 0.5);
   color: #314668;
+  height: 530px;
 }
 
 #images-box {
   border-color: #faefe0;
-  border-radius: 1.5rem;
+  border-radius: 1.2rem;
   border-style: outset;
   /* height: 300px; */
   margin-right: 80px;

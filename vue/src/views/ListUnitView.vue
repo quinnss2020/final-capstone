@@ -303,8 +303,8 @@ export default {
 aside {
     /* display: flex; */
     flex-direction: column;
-    height: 93vh;
-    width: 25vw;
+    height: 650px;
+    width: 25vw fixed;
     /* z-index: 1; */
     left: 30px;
     /* overflow-y:auto; */
@@ -397,5 +397,9 @@ button {
     align-self: flex-end;
     width: 115px;
     margin-right: 10px;
+}
+
+h2 {
+    font-weight: 700;
 }
 </style>
